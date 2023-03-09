@@ -52,7 +52,7 @@
                         <div>
                             <div
                                 class="relative overflow-hidden transition duration-300 transform rounded lg:hover:-translate-y-2 px-2">
-                                <img class="object-cover h-12 md:h-20 xl:h-28" src="/images/{{ $zutat['image'] }}" />
+                                <img class="object-cover h-12 md:h-20 xl:h-28" src="/images/piece/{{ $zutat['image'] }}" />
                                 <div
                                     class="absolute w-44 inset-0 flex flex-col justify-center px-5 py-4 text-center transition-opacity duration-300 bg-black bg-opacity-75 opacity-0 hover:opacity-100">
                                     <p class="mb-1 text-lg font-bold text-gray-100">{{ $zutat['name'] }}</p>

@@ -72,7 +72,7 @@
                                     <div
                                         class="relative overflow-hidden transition duration-300 transform rounded lg:hover:-translate-y-2 px-2">
                                         <img class="object-cover h-12 md:h-20 xl:h-28"
-                                            src="/images/{{ $zutat['image'] }}" />
+                                            src="/images/piece/{{ $zutat['image'] }}" />
                                     </div>
                                     <div class="mx-auto my-2">
                                         <div>

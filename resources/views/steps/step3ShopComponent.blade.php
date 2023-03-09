@@ -32,7 +32,7 @@
                         @if (Gloudemans\Shoppingcart\Facades\Cart::count() > 0)
                             @foreach (Gloudemans\Shoppingcart\Facades\Cart::content() as $item)
                                 <tr>
-                                    <td class=""><img src="/images/{{ $item->options->image }}" class="w-50">
+                                    <td class=""><img src="/images/piece/{{ $item->options->image }}" class="w-50">
                                     </td>
                                     <td><span class="text-dark">{{ $item->name }}</span></td>
                                     <td> <span class="font-weight-bold"> {{ $item->price }}€</span></td>
