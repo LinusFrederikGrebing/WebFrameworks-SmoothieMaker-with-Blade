@@ -22,13 +22,11 @@
 <body class="antialiased">
     <x-guest-layout>
         <!-- component -->
-        <div class="my-32 py-16">
-            <div class="container m-auto px-6">
-
+        <div class="container v-card">
+            <div class="py-8 main-container m-auto px-6">
                 <div class="lg:flex justify-between items-center">
-                    <div id="left-text" class="lg:w-6/12 lg:p-0 p-7 "
-                        style="transform: scale(1) perspective(1040px) rotateY(21deg) rotateX(-2deg) rotate(-2deg);">
-                        <h1 class="text-4xl font-bold leading-tight mb-5 capitalize px-4 py-4"> Smoothiemaker </h1>
+                    <div id="left-text" class="lg:w-6/12">
+                        <h1 class="text-4xl font-bold leading-tight mb-5 capitalize px-4 mt-16 p-16"> Smoothiemaker </h1>
                         <p class="text-xl px-4 py-4"> Stelle Dir jetzt deinen perfekten Smoothie zusammen! Deine Auswahl
                             erstreckt
                             sich aus einer Vielzahl verschiedener Zutaten. Es gibt vier veschiedene Smoothie-Größen. Du
@@ -36,7 +34,7 @@
                             bestehen soll. Den Smoothie kannst du kostenlos und ohne Anmeldung zusammenstellen. Bei Kauf
                             errechnet sich der Preis deines Getränks aus den Einzelpreisen der Zutaten. </p>
                         <div class="px-4 py-4">
-                            <button class="button-right greenbg"
+                            <button class="custom-btn green-bg"
                                 onclick="window.location='{{ route('showBottleSizes') }}'">
                                 Beginne mit der Zusammenstellung
 
@@ -44,7 +42,7 @@
                         </div>
                     </div>
                     <div class="lg:w-7/12 order-2">
-                        <img id="right-img" src="/images/smoothie.jpg"
+                        <img class="v-card" id="right-img" src="/images/smoothie.jpg"
                             style="transform: scale(1) perspective(1040px) rotateY(-11deg) rotateX(2deg) rotate(2deg);"
                             alt="" class="rounded">
                     </div>
@@ -128,7 +126,7 @@
                     <div id="tip1" class="flex flex-col overflow-hidden rounded-md shadow-sm lg:flex-row">
                         <img style="transform: scale(1) perspective(1040px) rotateY(11deg) rotateX(-2deg) rotate(-2deg);" src="/images/beerensmoothie.jpg" alt=""
                             class="h-80 aspect-video">
-                        <div class="flex flex-col justify-center flex-1 p-6">
+                        <div class="flex flex-col justify-center flex-1 p-6 v-card">
                             <h4 class="text-2xl font-bold">Beeren-Smoothie mit Flohsamenschalen & Kokoswasser</h4>
                             <p class="my-6">Dieser beerige Smoothie liefert viele wertvolle Ballaststoffe, wichtige Antioxidantien und Eisen. Er schmeckt fruchtig frisch und erhält eine leichte Schärfe durch den enthaltenen Ingwer. Der natürliche, fettfreie Iso-Drink aus der Kokosnuss - das Kokoswasser - rundet den Smoothie perfekt ab.</p>
                         </div>
@@ -137,7 +135,7 @@
                     <div id="tip2" class="flex flex-col overflow-hidden rounded-md shadow-sm lg:flex-row-reverse">
                         <img style="transform: scale(1) perspective(1040px) rotateY(-11deg) rotateX(-2deg) rotate(-2deg);" src="/images/rucolasmoothie.jpg" alt=""
                             class="h-80 aspect-video">
-                        <div class="flex flex-col justify-center flex-1 p-6">
+                        <div class="flex flex-col justify-center flex-1 p-6 v-card">
                             <h4 class="text-2xl font-bold">Grüner Smoothie mit Rucola</h4>
                             <p class="my-6 gray-400"> Dieses Exemplar ist perfekt für alle, die sich gerade erst an dieses Metier herantrauen, denn Mango und Zitrone bieten noch viel Fruchtigkeit. Mit einem leistungsstarken Mixer werden die Fasern des Rucolas optimal aufgespalten und du erhältst einen samtigen Smoothie, der fast so fein wie Saft ist.</p>
                         </div>
@@ -146,7 +144,7 @@
                     <div id="tip3" class="flex flex-col overflow-hidden rounded-md shadow-sm lg:flex-row">
                         <img  style="transform: scale(1) perspective(1040px) rotateY(11deg) rotateX(-2deg) rotate(-2deg);" src="/images/schokosmoothie.jpg" alt=""
                             class="h-80 aspect-video">
-                        <div class="flex flex-col justify-center flex-1 p-6">
+                        <div class="flex flex-col justify-center flex-1 p-6 v-card">
                             <h4 class="text-2xl font-bold">Avocado-Schoko-Smoothie</h4>
                             <p class="my-6-gray-400">Schokolade zum Frühstück – mit diesem Smoothie ist das problemlos möglich. Dank Bananen, Avocado und Backkakao wird es nicht nur lecker, sondern auch gesund.</p>
                         </div>

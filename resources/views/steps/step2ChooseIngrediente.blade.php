@@ -1,208 +1,161 @@
 <x-guest-layout>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
     <div class="container">
-        @include('layouts.progressbar')
         @include('layouts.groesse')
-        <div class=" mt-5">
-            <div>
-                <h2 class="sr-only">Steps</h2>
-                <div>
-                    <ol
-                        class="grid grid-cols-1 divide-x divide-gray-100 overflow-hidden rounded-lg border border-gray-100 text-sm text-gray-500 sm:grid-cols-3 w-3/5">
-                        <button onclick="window.location='{{ route('showFruits') }}'">
-                            <li class="flex items-center justify-center p-4 bg-gray-600">
-                                <img src="/images/fruitsicon.png" alt="" class="mr-2 h-7 w-7 flex-shrink-0">
-                                <p class="leading-none">
-                                    <strong class="block text-white font-bold"> Früchte </strong>
-                                </p>
-
-                            </li>
-                        </button>
-                        <button onclick="window.location='{{ route('showVeggie') }}'">
-                            <li class="relative flex items-center justify-center bg-gray-500 p-4">
-                                <span
-                                    class="absolute -left-2 top-1/2 hidden h-4 w-4 -translate-y-1/2 rotate-45 border border-b-0 border-l-0 border-gray-100 bg-gray-600 sm:block">
-                                </span>
-
-                                <span
-                                    class="absolute -right-2 top-1/2 hidden h-4 w-4 -translate-y-1/2 rotate-45 border border-b-0 border-l-0 border-gray-100 bg-gray-500 sm:block">
-                                </span>
-
-                                <img src="/images/vegetablesicon.png" alt="" class="mr-2 h-7 w-7 flex-shrink-0">
-                                <p class="leading-none">
-                                    <strong class="block text-white font-bold"> Gemüse </strong>
-                                </p>
-                            </li>
-                        </button>
-                        <button onclick="window.location='{{ route('showLiquids') }}'">
-                            <li class="flex items-center justify-center p-4 bg-gray-600">
-                                <img src="/images/liquidicon.png" alt="" class="mr-2 h-7 w-7 flex-shrink-0">
-                                <p class="leading-none">
-                                    <strong class="block text-white font-bold"> Flüssigkeit </strong>
-                                </p>
-                            </li>
-                        </button>
-                    </ol>
-                </div>
+        <div class="w-full">
+            <div class="flex">
+                <button onclick="window.location='{{ route('showFruits') }}'"
+                    class="flex justify-center w-1/2 custom-btn grey-bg">
+                    <img src="/images/fruitsicon.png" alt="Bild 1" class="inline-block h-6">
+                    Früchte
+                </button>
+                <button onclick="window.location='{{ route('showVeggie') }}'"
+                    class="flex items-center justify-center w-1/2 custom-btn grey-bg">
+                    <img src="/images/vegetablesicon.png" alt="Bild 2" class="inline-block h-6">
+                    Gemüse
+                </button>
             </div>
         </div>
-        <div class="flex test w-100">
-            <div class="px-4 basis-3/5">
-                <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 mx-auto">
-                    @foreach ($zutaten as $zutat)
-                        <div>
-                            <div
-                                class="relative overflow-hidden transition duration-300 transform rounded lg:hover:-translate-y-2 px-2">
-                                <img class="object-cover h-12 md:h-20 xl:h-28" src="/images/piece/{{ $zutat['image'] }}" />
-                                <div
-                                    class="absolute w-44 inset-0 flex flex-col justify-center px-5 py-4 text-center transition-opacity duration-300 bg-black bg-opacity-75 opacity-0 hover:opacity-100">
-                                    <p class="mb-1 text-lg font-bold text-gray-100">{{ $zutat['name'] }}</p>
-                                    <p class="mb-4 text-xs text-gray-100">Preis: {{ $zutat['price'] }}€ </p>
-                                    <p class="mb-4 text-xs text-gray-100">evtl. Bereich für Nährwerte der Zutaten </p>
-                                </div>
-                            </div>
-                            <div class="mx-auto my-2">
-                                <div>
-                                    <span class="text-dark">Zutat: {{ $zutat['name'] }}</span>
-                                    <div>
-                                        <span class="font-weight-bold"> Preis: {{ $zutat['price'] }}€</span>
+        <div class="flex flex-col md:flex-row">
+            <div class="w-full md:w-3/5">
+                <div class="flex flex-wrap item-list">
+                    @foreach ($ingredients as $ingredient)
+                        <div class="w-full sm:w-1/2 md:w-1/4 lg:w-1/5 p-2">
+                            <div class="v-card mx-auto ingrediente-item bg-white rounded-md overflow-hidden">
+                                <div class="text-center">
+                                    <div class="h-16 w-16 mx-auto mt-4">
+                                        <img class="h-full w-full object-contain"
+                                            src="/images/piece/{{ $ingredient->image }}" alt="{{ $ingredient->name }}">
                                     </div>
+                                    <p class="font-bold text-lg my-2">{{ $ingredient->name }}</p>
+                                    <p>{{ $ingredient->price }}€ / 50g</p>
                                 </div>
-                                <form action="/addCart/{{ $zutat['id'] }}" enctype="multipart/form-data"
-                                    method="post">
-                                    @csrf
-                                    <div class="flex">
-                                        <input id="amount" type="number" step="1" min="1"
-                                            max="20" name="amount" value="1">
-                                        <button class="btn wkorb">
-                                            <svg class="flex-1 w-8 h-8 fill-current ml-3" viewbox="0 0 24 24">
-                                                <path
-                                                    d="M17,18C15.89,18 15,18.89 15,20A2,2 0 0,0 17,22A2,2 0 0,0 19,20C19,18.89 18.1,18 17,18M1,2V4H3L6.6,11.59L5.24,14.04C5.09,14.32 5,14.65 5,15A2,2 0 0,0 7,17H19V15H7.42A0.25,0.25 0 0,1 7.17,14.75C7.17,14.7 7.18,14.66 7.2,14.63L8.1,13H15.55C16.3,13 16.96,12.58 17.3,11.97L20.88,5.5C20.95,5.34 21,5.17 21,5A1,1 0 0,0 20,4H5.21L4.27,2M7,18C5.89,18 5,18.89 5,20A2,2 0 0,0 7,22A2,2 0 0,0 9,20C9,18.89 8.1,18 7,18Z" />
+                                <form enctype="multipart/form-data" method="post">
+                                    <div class="flex justify-center items-center mb-4">
+                                        <button
+                                            class="w-8 h-8 text-lg bg-thm-red text-white font-bold rounded-full focus:outline-none"
+                                            @click.prevent="decreaseSelectedAmount({{ $loop->index }})">
+                                            <svg class="w-4 h-4 fill-current text-gray-900" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 13H13v6c0 .6-.4 1-1 1s-1-.4-1-1v-6H5c-.6 0-1-.4-1-1s.4-1 1-1h6V5c0-.6.4-1 1-1s1 .4 1 1v6h6c.6 0 1 .4 1 1s-.4 1-1 1z"/></svg>
+
+                                              
+                                        </button>
+                                        <div class="w-12 mx-2 text-center">1</div>
+                                        <button
+                                            class="w-8 h-8 text-lg bg-thm-red text-white font-bold rounded-full focus:outline-none"
+                                            @click.prevent="decreaseSelectedAmount({{ $loop->index }})">
+                                            <svg class="w-4 h-4 text-gray-900" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" d="M15 9a1 1 0 010 2H5a1 1 0 110-2h10z" clip-rule="evenodd" />
                                             </svg>
+                                        </button>
+                                        <button
+                                            class="w-12 h-8 ml-2 bg-thm-blue text-white rounded-md hover:bg-thm-blue-hover focus:outline-none"
+                                            type="submit"
+                                            @click.prevent="addToCart('{{ $ingredient->name }}', {{ $ingredient->price }},1 }})">
+                                            <svg class="w-8 h-8 fill-current text-gray-900" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 7h-4.44l-.76-2.3A1 1 0 0 0 14.91 4H9.09a1 1 0 0 0-.89.7L7.44 7H3a1 1 0 0 0 0 2h.44l2.24 9.78A2 2 0 0 0 7.58 20h8.84a2 2 0 0 0 1.9-1.44L20.56 9H21a1 1 0 0 0 0-2zm-9 11a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm4-4a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm-4-4a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/></svg>
+
                                         </button>
                                     </div>
                                 </form>
-                                <!-- <form  action="/addCart/{{ $zutat['id'] }}"  enctype="multipart/form-data" method="post">
-                                @csrf
-                                <div class="flex">
-                                <input id="amount" type="number"  step="1" min="1" max="20"
-                                        name="amount" value="1">
-                                <button onclick="setImg('/images/{{ $zutat['image'] }}')" class="btn wkorb" > <svg class="flex-1 w-8 h-8 fill-current ml-3" viewbox="0 0 24 24">
-                                <path d="M17,18C15.89,18 15,18.89 15,20A2,2 0 0,0 17,22A2,2 0 0,0 19,20C19,18.89 18.1,18 17,18M1,2V4H3L6.6,11.59L5.24,14.04C5.09,14.32 5,14.65 5,15A2,2 0 0,0 7,17H19V15H7.42A0.25,0.25 0 0,1 7.17,14.75C7.17,14.7 7.18,14.66 7.2,14.63L8.1,13H15.55C16.3,13 16.96,12.58 17.3,11.97L20.88,5.5C20.95,5.34 21,5.17 21,5A1,1 0 0,0 20,4H5.21L4.27,2M7,18C5.89,18 5,18.89 5,20A2,2 0 0,0 7,22A2,2 0 0,0 9,20C9,18.89 8.1,18 7,18Z"/>
-                                </svg></button>
-                                </div>
-                            
-                            </form> -->
                             </div>
                         </div>
                     @endforeach
                 </div>
-                <div class="buttonsBottom">
-                    <div class="center-con">
-                        <div class="arrcontainer">
-                            <div id="cta">
-                                <button class="button-left redbg back" data-href="{{ route('showBottleSizes') }} ">
-                                    <span class="arrow prev arrow-left"></span>
-                                    <span class="arrow segunda prev arrow-left segunda-left  "></span>
-                                    Zurück!
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="center-con">
-                        <div class="arrcontainer">
-                            <div id="cta">
-                                <button class="button-right greenbg"
-                                    onclick="window.location='{{ route('showCard') }}'">
-                                    Weiter!
-                                    <span class="arrow next "></span>
-                                    <span class="arrow segunda next "></span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                <div class="flex">
+                    <button onclick="window.location='{{ route('showBottleSizes') }}'"
+                        class="flex justify-center w-1/2 custom-btn red-bg custom-btn">
+                        Zurück
+                    </button>
+                    <button onclick="window.location='{{ route('showCard') }}'"
+                        class="flex items-center justify-center w-1/2 green-bg custom-btn">
+                        Weiter
+                    </button>
                 </div>
             </div>
-            <div class="basis-2/5">
+            <div class="w-full md:w-2/5">
                 <livewire:mixer />
+                @include('layouts.progressbar')
             </div>
         </div>
-        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-        <script>
-            handleFormSubmit();
-            handleArrowClick();
-            handleBackClick();
+    </div>
+    <script src="{{ asset('js/gsap.js') }}"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script>
+        handleFormSubmit();
+        handleArrowClick();
+        handleBackClick();
 
-            function handleFormSubmit() {
-                $('.btn.wkorb').click(function(e) {
-                    e.preventDefault();
-                    var form = $(this).closest('form');
-                    var url = form.prop('action');
-                    var data = form.serialize();
+        function handleFormSubmit() {
+            $('.btn.wkorb').click(function(e) {
+                e.preventDefault();
+                var form = $(this).closest('form');
+                var url = form.prop('action');
+                var data = form.serialize();
 
-                    $.ajax({
-                        type: 'post',
-                        url: url,
-                        data: data,
-                        success: function(response) {
-                            if (response.image) {
-                                setImg(response.image, response.reqCount);
-                                setNewCounter(response.count);
-                                progress(response.count, response.amount);
-                            } else {
-                                showAlertTooMany();
-                            }
+                $.ajax({
+                    type: 'post',
+                    url: url,
+                    data: data,
+                    success: function(response) {
+                        if (response.image) {
+                            setImg(response.image, response.reqCount);
+                            setNewCounter(response.count);
+                            progress(response.count, response.amount);
+                        } else {
+                            showAlertTooMany();
                         }
-                    });
-                });
-            }
-
-            function handleArrowClick() {
-                $('.arrcontainer').click(function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    $('.arrow').toggleClass('bounceAlpha');
-                });
-            }
-
-            function handleBackClick() {
-                $(".back").click(function(e) {
-                    e.preventDefault();
-                    var self = $(this);
-                    removeAllAlert(self);
-                });
-            }
-
-            function removeAllAlert(self) {
-                Swal.fire({
-                    title: 'Bist du Dir sicher?',
-                    text: "Wenn du zurückgehst wird deine bisherige Zusammenstellung unwiederruflich gelöscht!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#6D9E1F',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Weiter zurück!',
-                    cancelButtonText: 'Abbrechen!'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        location.href = self.data('href');
                     }
                 });
-            }
+            });
+        }
 
-            function showAlertTooMany() {
-                Swal.fire({
-                    title: 'Du hast zu viele Zutaten ausgewählt!',
-                    text: "",
-                    icon: 'error',
-                    showCancelButton: false,
-                    confirmButtonColor: '#6D9E1F',
-                    confirmButtonText: 'Okay!',
-                });
-            }
+        function handleArrowClick() {
+            $('.arrcontainer').click(function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                $('.arrow').toggleClass('bounceAlpha');
+            });
+        }
 
-            function setNewCounter(newCounter) {
-                $(".cart-count").html(newCounter);
-            }
-        </script>
+        function handleBackClick() {
+            $(".back").click(function(e) {
+                e.preventDefault();
+                var self = $(this);
+                removeAllAlert(self);
+            });
+        }
+
+        function removeAllAlert(self) {
+            Swal.fire({
+                title: 'Bist du Dir sicher?',
+                text: "Wenn du zurückgehst wird deine bisherige Zusammenstellung unwiederruflich gelöscht!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#6D9E1F',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Weiter zurück!',
+                cancelButtonText: 'Abbrechen!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    location.href = self.data('href');
+                }
+            });
+        }
+
+        function showAlertTooMany() {
+            Swal.fire({
+                title: 'Du hast zu viele Zutaten ausgewählt!',
+                text: "",
+                icon: 'error',
+                showCancelButton: false,
+                confirmButtonColor: '#6D9E1F',
+                confirmButtonText: 'Okay!',
+            });
+        }
+
+        function setNewCounter(newCounter) {
+            $(".cart-count").html(newCounter);
+        }
+    </script>
 </x-guest-layout>

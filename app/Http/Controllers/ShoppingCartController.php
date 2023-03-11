@@ -83,5 +83,4 @@ class ShoppingCartController extends Controller
 
         return view('steps/step3ShopComponent')->with('bottle', $bottle);
     }
-
 }

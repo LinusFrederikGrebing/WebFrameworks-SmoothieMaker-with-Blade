@@ -1,7 +1,7 @@
 function removeSpecificOne(image) {
     var count = 0;
     for (var i = 0; i < balls.length; i++) {
-      if (balls[i].img === "../images/" + image) {
+      if (balls[i].img === "../images/piece/" + image) {
         balls.splice(i, 1);
         count++;
         i--;
@@ -15,7 +15,7 @@ function removeSpecificOne(image) {
 
 function removeSpecificAll(img) {
     balls = balls.filter(function (ball) {
-        return ball.img !== "../images/" + img;
+        return ball.img !== "../images/piece/" + img;
     });
     sessionStorage.setItem("zutatenArray", JSON.stringify(balls));
 }
@@ -32,7 +32,7 @@ function Ball(x, y, radius, e, mass, image) {
     this.mass = mass; //kg
     this.radius = radius; //m
     this.area = (Math.PI * radius * radius) / 100; //m^2
-    this.img = "../images/" + image;
+    this.img = "../images/piece/" + image;
 }
 var canvas = null;
 var ctx = null;

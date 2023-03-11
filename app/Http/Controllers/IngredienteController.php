@@ -14,23 +14,23 @@ class IngredienteController extends Controller
     private $test;
     public function showFruits(Request $request)
     {
-        $zutaten = Ingrediente::where('type', IngredienteType::FRUITS)->get();
+        $ingredients = Ingrediente::where('type', IngredienteType::FRUITS)->get();
 
-        return view('steps/step2ChooseIngrediente', compact('zutaten'));
+        return view('steps/step2ChooseIngrediente', compact('ingredients'));
 
     }
     public function showVeggie(Request $request)
     {
-        $zutaten = Ingrediente::where('type', IngredienteType::VEGETABLES)->get();
+        $ingredients = Ingrediente::where('type', IngredienteType::VEGETABLES)->get();
 
-        return view('steps/step2ChooseIngrediente', compact('zutaten'));
+        return view('steps/step2ChooseIngrediente', compact('ingredients'));
 
     }
     public function showLiquids(Request $request)
     {
-        $zutaten = Ingrediente::where('type', IngredienteType::LIQUID)->get();
+        $ingredients = Ingrediente::where('type', IngredienteType::LIQUID)->get();
 
-        return view('steps/step2ChooseIngrediente', compact('zutaten'));
+        return view('steps/step2ChooseIngrediente', compact('ingredients'));
     }
 
     public function create()

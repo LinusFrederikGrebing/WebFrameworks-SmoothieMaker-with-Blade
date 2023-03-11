@@ -32,52 +32,6 @@ gsap.fromTo(
     }
   );
 
-  /*
-  gsap.timeline({ delay: 0, 
-    scrollTrigger: {
-    trigger: "#tips",
-    start: "top 100%",
-    end: "bottom 0%",
-    toggleActions: "play reset play reset ",
-  },})
-  .fromTo("#tipsheader",  {
-    delay: 0,
-    opacity: 0,
-  },
-  {
-    opacity: 1,
-  })
-  .fromTo("#tip1",  {
-    delay: 0.5,
-    y: 0,
-    x: -1000,
-    opacity: 0,
-  },
-  {
-    opacity: 1,
-    x: 0,
-  })
-  .fromTo("#tip2",  {
-    y: 0,
-    delay: 0.5,
-    x: 1000,
-    opacity: 0,
-  },
-  {
-    opacity: 1,
-    x: 0,
-  })
-  .fromTo("#tip3",  {
-    delay: 0.5,
-    y: 0,
-    x: -1000,
-    opacity: 0,
-  },
-  {
-    opacity: 1,
-    x: 0,
-  });
-*/
 gsap.fromTo(
   "#tipsheader",
   {
@@ -193,3 +147,32 @@ gsap.fromTo(
     opacity: 1,
     y: 0,
   });
+
+  
+  function hoverEnter(obj) {
+    console.log(obj);
+    gsap.to(obj.target, {
+      duration: 0.2,
+      scale: 1.05,
+    });
+  };
+  function hoverLeave(obj) {
+    gsap.to(obj.target, { duration: 0.2, scale: 1 });
+  };
+  function enterGrid() {
+    for (let i = 1; i <= 4; i++) {
+      let element = document.getElementById("bottle-card" + i);
+      let start = 1400;
+      if(i % 2 == 0) { start = -1400 } 
+      gsap.fromTo(
+        element,
+        {
+          x: start
+        },
+        {
+          duration: 1,
+          x: 0
+        }
+      );
+    }
+  };
