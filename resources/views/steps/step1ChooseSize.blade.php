@@ -1,6 +1,4 @@
 <x-guest-layout>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
     <div class="w-full bg-white-800">
         <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-4 py-12">
             <div class="text-center pb-12">
@@ -11,7 +9,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 @foreach ($bottles as $bottle)
                     <div class="v-card w-full bg-gray-200 rounded-lg sahdow-lg overflow-hidden flex flex-col md:flex-row"
-                    onmouseenter="hoverEnter(event)" onmouseleave="hoverLeave(event)">
+                        onmouseenter="hoverEnter(event)" onmouseleave="hoverLeave(event)">
                         <div class="w-full md:w-2/5 h-80">
                             <img class="object-center object-cover w-full h-full" src="/images/{{ $bottle['image'] }}"
                                 alt="bottleSize">
@@ -22,13 +20,11 @@
                             <p class="text-base leading-relaxed text-gray-500 font-normal">{{ $bottle['description'] }}
                             </p>
                             <div>
-            
-                                        <button class="custom-btn green-bg newBottleSize"
-                                            onclick="window.location='{{ route('showInhalt', ['bottle' => $bottle]) }}'">
-                                            Weiter
-                            
-                                        </button>
-  
+                                <button class="custom-btn green-bg newBottleSize"
+                                    onclick="window.location='{{ route('showInhalt', ['bottle' => $bottle]) }}'">
+                                    Weiter
+
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -37,7 +33,6 @@
         </section>
     </div>
 </x-guest-layout>
-<script src="{{ asset('js/gsap.js') }}"></script>
 <script>
-   sessionStorage.clear();
+    sessionStorage.clear();
 </script>

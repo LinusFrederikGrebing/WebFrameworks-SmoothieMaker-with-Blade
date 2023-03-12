@@ -1,6 +1,4 @@
 <x-guest-layout>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
     <div class="container">
         @include('layouts.groesse')
         <div class="w-full">
@@ -59,80 +57,4 @@
             </div>
         </div>
     </div>
-    <script src="{{ asset('js/gsap.js') }}"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
-    <script>
-        var cartCount = 0;
-        var bottle = [];
-        var liquidCount = 0;
-        getProgress();
-        setNewSizeCounter();
-        function getProgress() {
-            axios.get('/cart/count')
-                .then(response => {
-                    cartCount = response.data.cartCount;
-                    bottle = response.data.bottle;
-                    liquidCount = response.data.liquidCount;
-                    setNewProgress();
-                    setNewSizeCounter();
-                })
-        }
-
-        function setNewProgress() {
-            const progressbar = document.getElementById("progressbar");
-            if (bottle.amount > 0) {
-                const width = cartCount * 100 / bottle.amount;
-                progressbar.style.width = `${width}%`;
-            } else {
-                progressbar.style.width = '0%';
-            }
-        };
-
-        function addToCart(ingredientId, amount) {
-            axios.post(`/addCart/${ingredientId}`, { amount }).then((response) => {
-                if (response.data.stored) {
-                 setImg(response.data.image, amount);
-                 getProgress();
-                } else {
-                    showAlertTooMany();
-                }
-            }); 
-        }
-     
-        function removeAllAlert(self) {
-            Swal.fire({
-                title: 'Bist du Dir sicher?',
-                text: "Wenn du zurückgehst wird deine bisherige Zusammenstellung unwiederruflich gelöscht!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#6D9E1F',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Weiter zurück!',
-                cancelButtonText: 'Abbrechen!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    location.href = self.data('href');
-                }
-            });
-        }
-        function showAlertTooMany() {
-            Swal.fire({
-                title: 'Du hast zu viele Zutaten ausgewählt!',
-                text: "",
-                icon: 'error',
-                showCancelButton: false,
-                confirmButtonColor: '#6D9E1F',
-                confirmButtonText: 'Okay!',
-            });
-        }
-        function setNewSizeCounter() {
-            $(".cart-count").html(cartCount);
-            $(".liquid-count").html(liquidCount);
-            $(".bottle-name").html(bottle.name);
-            $(".bottle-amount").html(bottle.amount);
-        }
-    </script>
 </x-guest-layout>
