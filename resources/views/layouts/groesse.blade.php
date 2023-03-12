@@ -1,32 +1,34 @@
-<hr class="w-75">
-<div class="flex">
-    <h4> Smoothie-Größe: {{ session()->get('bottle')->name }}</h4> <a href="{{ route('showBottleSizes') }} "
-        class="showBottleSizes mt-05"> <i class="fa fa-pencil"></i></a>
-</div>
-<p> Aktuell hast du <b class="cart-count">{{ Gloudemans\Shoppingcart\Facades\Cart::count() }}</b> von
-    <b>{{ session()->get('bottle')->amount }}</b> für Größe {{ session()->get('bottle')->name }} benötigte Zutaten
-    ausgewählt. </p>
-<hr class="w-75">
+<div class="mt-3">
+    <div class="d-flex">
+      <h5 class="font-weight-bold">Smoothie-Größe: <span class="bottle-name"></span></h5>
+      <button class="showBottleSizes" onclick="showBottleSizes()">
+        <v-icon small class="ml-3 mb-1">mdi-pencil</v-icon>
+      </button>
+    </div>
+
+    <p>
+      Aktuell hast du <b><span class="cart-count"></span> </b> von
+      <b><span class="bottle-amount"></span></b> benötigte Zutaten
+      und <b><span class="liquid-count"></span></b> von <b>1</b> benötigte Flüssigkeit für Größe <b><span class="bottle-name"></span></b> ausgewählt.
+    </p>
+  </div>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
-    $(".showBottleSizes").on("click", function(e) {
-        e.preventDefault();
-        var self = $(this);
-        console.log(self.data('name'));
-        Swal.fire({
-            title: 'Bist du Dir sicher?',
-            text: "Deine komplette Zusammenstellung wird bei Größenänderung unwiederruflich gelöscht!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#6D9E1F',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Andere Größe wählen!',
-            cancelButtonText: 'Abbrechen!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                location.href = self.attr('href');
-            }
-        })
-    });
+    function showBottleSizes() {
+      Swal.fire({
+        title: "Bist du Dir sicher?",
+        text: "Deine komplette Zusammenstellung wird bei Größenänderung unwiederruflich gelöscht!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#6D9E1F",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Andere Größe wählen!",
+        cancelButtonText: "Abbrechen!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          location.href = "/chooseBottleSize";
+        }
+      });
+    }
 </script>

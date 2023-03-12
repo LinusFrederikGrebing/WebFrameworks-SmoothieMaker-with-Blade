@@ -10,31 +10,80 @@ use Alert;
 use App\Models\IngredienteType;
 class ShoppingCartController extends Controller
 {
-    public function storeCart(Request $request, $ingredienteID)
+    public function storeIngredienteToCart(Request $request, $ingredienteID)
     {
-        //dd("test");
-        $zutat = Ingrediente::find($ingredienteID);
-        if ((Cart::count()+$request->amount) <= $request->session()->get('bottle')->amount) {
-         Cart::add(
-            array(
-                'id' => $zutat->id,
-                'name' => $zutat->name,
-                'qty' => $request->amount,
-                'price' => $zutat->price,
-                'options' => array('image' => $zutat->image),
-            )
-         );
-         return response()->json(['image' => $zutat->image, 'count' => Cart::count(), 'reqCount' => $request->amount, 'amount' => $request->session()->get('bottle')->amount]);
+        $ingrediente = Ingrediente::findOrFail($ingredienteID); 
 
-        // Alert::success('', 'Die Zutat wurde erfolgreich zum Warenkorb hinzugefügt!');
-        } 
-        /*else {
-            Alert::error('', 'Du hast zu viele Zutaten ausgewählt!');
-        }*/
-       
-        // $zutaten = Ingrediente::where('type', IngredienteType::FRUITS)->get();
+        $bottle = $this->getBottle($request);
 
-        // return view('steps/step2ChooseIngrediente', compact('zutaten'));
+        $liquidItems = $this->getCurrentLiquidItem();
+          
+        $total_amount = ($liquidItems->isNotEmpty()) ? $bottle->amount + 1 : $bottle->amount;
+    
+        if($ingrediente->type == 'liquid'){
+            foreach ($liquidItems as $item) { 
+                Cart::remove($item->rowId);
+            }
+            $this->addToCart($ingrediente, $request->amount);
+        } else {
+            $can_add_to_cart = (Cart::count() + $request->amount) <= $total_amount;
+            if($can_add_to_cart){
+               $this->addToCart($ingrediente, $request->amount);
+            } else {
+               return response()->json(['stored' => false]);
+            }
+        }
+        return response()->json(['stored' => true, 'image' => $ingrediente->image]);
+    }
+    private function getBottle(Request $request)
+    {
+        if ($request->session()->get('bottle') == true) {
+            return $request->session()->get('bottle');
+        } else {
+            return BottleSize::findOrFail("4");
+        }
+    }
+    private function getCurrentLiquidItem(){
+        return Cart::content()->filter(function($item) {
+            return $item->options->type == 'liquid';
+        });
+    }
+    private function addToCart($ingrediente, $amount){
+        Cart::add([
+            'id' => $ingrediente->id,
+            'name' => $ingrediente->name,
+            'qty' => $amount,
+            'price' => $ingrediente->price,
+            'options' => [
+                'image' => $ingrediente->image,
+                'type' =>  $ingrediente->type,
+            ],
+        ]);
+    }
+    public function getCurrentCartCount(Request $request)
+    {
+        $bottle = $this->getBottle($request);
+        $liquidItems = $this->getCurrentLiquidItem();
+        $cartcount = ($liquidItems->isNotEmpty()) ?  Cart::count() - 1 : Cart::count();
+        $liquidCount = ($liquidItems->isNotEmpty()) ?  1 : 0;
+        return response()->json(['cartCount' => $cartcount, 'bottle' => $bottle, 'liquidCount' => $liquidCount]);
+    }
+    public function getCurrentLiquid(Request $request)
+    {
+        $liquidItems = Cart::content()->filter(function($item) {
+            return $item->options->type === 'liquid';
+        });
+        return response()->json(['liquidItems' => $liquidItems], 200);
+    }
+    public function getCurrentCartContent(Request $request)
+    {
+        $cart = Cart::content();
+        return response()->json(['cart' => $cart]);
+    }
+    public function getCurrentBottle(Request $request)
+    {
+        $bottle = $this->getBottle($request);
+        return response()->json(['bottle' => $bottle]);
     }
 
     public function deleteCart(Request $request, $ingredienteID)

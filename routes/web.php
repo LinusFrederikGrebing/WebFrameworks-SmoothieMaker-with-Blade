@@ -42,8 +42,11 @@ Route::post('/delete/ingrediente/{zutat}', [App\Http\Controllers\IngredienteCont
 Route::post('/updated/ingrediente/{zutat}', [App\Http\Controllers\IngredienteController::class, 'updateIngrediente']);
 Route::post('/update/ingrediente/{zutat}', [App\Http\Controllers\IngredienteController::class, 'showUpdateField'])->name('update');
 
+
+Route::get('/cart/count', [App\Http\Controllers\ShoppingCartController::class, 'getCurrentCartCount']);
+
 //ShoppingCard-Routes
-Route::post('/addCart/{zutat}', [App\Http\Controllers\ShoppingCartController::class, 'storeCart'])->name('storeInCart');
+Route::post('/addCart/{ingredienteId}', [App\Http\Controllers\ShoppingCartController::class, 'storeIngredienteToCart'])->name('storeInCart');
 Route::post('/deleteCart/{carditem}', [App\Http\Controllers\ShoppingCartController::class, 'deleteCart'])->name('deleteCart');
 Route::get('/removeAll', [App\Http\Controllers\ShoppingCartController::class, 'removeAllFromCard'])->name('removeAll');
 Route::post('/increaseCardQty/{carditem}', [App\Http\Controllers\ShoppingCartController::class, 'increaseCardQty'])->name('increaseCardQty');

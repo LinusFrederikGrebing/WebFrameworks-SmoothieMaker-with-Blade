@@ -30,7 +30,7 @@ class IngredienteController extends Controller
     {
         $ingredients = Ingrediente::where('type', IngredienteType::LIQUID)->get();
 
-        return view('steps/step2ChooseIngrediente', compact('ingredients'));
+        return view('steps/step3ChooseLiquid', compact('ingredients'));
     }
 
     public function create()
