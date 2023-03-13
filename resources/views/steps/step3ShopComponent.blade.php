@@ -36,7 +36,7 @@
                                     <td><span class="text-dark">{{ $item->name }}</span></td>
                                     <td> <span class="font-weight-bold"> {{ $item->price }}€</span></td>
                                     <td class="text-center" data-title="stock">
-                                      <div class="flex">
+                                        <div class="flex">
                                             <button onclick="addSpecificOne('{{ $item->rowId }}')"
                                                 class="btn increase"><svg xmlns="http://www.w3.org/2000/svg"
                                                     fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -45,7 +45,7 @@
                                                         d="M12 4.5v15m7.5-7.5h-15" />
                                                 </svg>
                                             </button>
-                                            <span class="qty" id='qty{{ $item->id }}'>{{ $item->id }}</span>
+                                            <span class="qty" id='qty{{ $item->id }}'>{{ $item->qty }}</span>
                                             <button onclick="removeSpecificOne('{{ $item->rowId }}')"
                                                 class="btn decrease"><svg xmlns="http://www.w3.org/2000/svg"
                                                     fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -54,7 +54,7 @@
                                                         d="M19.5 12h-15" />
                                                 </svg>
                                             </button>
-                                        </div> 
+                                        </div>
                                     </td>
                                     <td>
                                         <button onclick="removeSpecificCart('{{ $item->rowId }}')">

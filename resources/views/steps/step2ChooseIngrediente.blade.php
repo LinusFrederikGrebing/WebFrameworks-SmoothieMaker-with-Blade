@@ -18,27 +18,40 @@
         <div class="flex flex-col md:flex-row">
             <div class="w-full md:w-3/5">
                 <div class="flex flex-wrap item-list">
-                    @foreach ($ingredients as $ingredient)
-                    <div class="w-full sm:w-1/2 md:w-1/4 lg:w-1/5 p-2">
-                        <div class="v-card mx-auto ingrediente-item bg-white rounded-md overflow-hidden">
-                            <div class="text-center">
-                                <div class="h-16 w-16 mx-auto mt-4">
-                                    <img class="h-full w-full object-contain"
-                                         src="/images/piece/{{ $ingredient->image }}"
-                                         alt="{{ $ingredient->name }}">
+                    @foreach ($ingredients as $index => $ingredient)
+                        <div class="w-full sm:w-1/2 md:w-1/4 lg:w-1/5 p-2">
+                            <div class="v-card mx-auto ingrediente-item bg-white rounded-md overflow-hidden">
+                                <div class="text-center">
+                                    <div class="h-16 w-16 mx-auto mt-4">
+                                        <img class="h-full w-full object-contain"
+                                            src="/images/piece/{{ $ingredient->image }}" alt="{{ $ingredient->name }}">
+                                    </div>
+                                    <p class="font-bold text-lg my-2">{{ $ingredient->name }}</p>
+                                    <p>{{ $ingredient->price }}€ / 50g</p>
                                 </div>
-                                <p class="font-bold text-lg my-2">{{ $ingredient->name }}</p>
-                                <p>{{ $ingredient->price }}€ / 50g</p>
+                                @csrf
+                                <div>
+                                    <div class="flex">
+                                        <button class="w-30px"
+                                            onclick="increaseSelectedAmount({{ $index }})"><span
+                                                class="material-symbols-outlined">
+                                                add
+                                            </span></button>
+                                        <div width="15" complete="false" id="selectedAmount_{{ $index }}">1
+                                        </div>
+                                        <button class="w-30px"
+                                            onclick="decreaseSelectedAmount({{ $index }})"><span
+                                                class="material-symbols-outlined">
+                                                remove
+                                            </span></button>
+                                        <button
+                                            onclick="addToCartWithselectedAmounts({{ $ingredient->id }}, {{ $index }})"><i
+                                                style="color: black" class="material-icons">shopping_cart</i></button>
+                                    </div>
+                                </div>
                             </div>
-                            @csrf
-
-                            <button class="custom-btn grey-bg add-to-cart-btn"
-                                    onclick="addToCart({{ $ingredient->id }}, 1)">
-                                add to Cart
-                            </button>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
                 </div>
                 <div class="flex">
                     <button onclick="window.location='{{ route('showBottleSizes') }}'"
@@ -58,3 +71,27 @@
         </div>
     </div>
 </x-guest-layout>
+<script>
+    var ingredients = {!! json_encode($ingredients) !!};
+    var selectedAmounts = Array(ingredients.length).fill(1);
+
+    function increaseSelectedAmount(index) {
+        if (selectedAmounts[index] < 20) {
+            selectedAmounts[index]++;
+        }
+        var element = document.getElementById('selectedAmount_' + index);
+        element.innerHTML = selectedAmounts[index];
+    }
+
+    function decreaseSelectedAmount(index) {
+        if (selectedAmounts[index] > 1) {
+            selectedAmounts[index]--;
+        }
+        var element = document.getElementById('selectedAmount_' + index);
+        element.innerHTML = selectedAmounts[index];
+    }
+
+    function addToCartWithselectedAmounts(ingredienteId, index) {
+        addIngredienteToCart(ingredienteId, selectedAmounts[index])
+    }
+</script>

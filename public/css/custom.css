@@ -29,6 +29,9 @@
 .bg-white {
     background-color: #ffffff;
 }
+.selected-card {
+    border: 4px solid #80ba24;
+  }
 
 /* Progressbar */
 .container .progress-div {
