@@ -170,6 +170,14 @@ p {
    height: 40em;
    overflow-y: scroll;
 }
+.item-list-table {
+    height: 35em;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}  
+.w-95 {
+    width: 95%;
+}
 .v-card {
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
     border-radius: 0.375rem;
@@ -185,4 +193,31 @@ p {
     width: 100%;
     color: white;
     text-align: center;
+  }
+
+  .table-img {
+    width: 75px;
+    height: 75px;
+    margin-top: 1em; 
+    margin-bottom: 1em;
+  }
+
+  table td, table th {
+    padding: 0.5rem;
+  }
+  table th {
+    text-align: left;
+  }
+  table td {
+    text-align: center;
+  }
+  table td:nth-child(2) {
+    width: 30%;
+  }
+  table td:nth-child(3),
+  table td:nth-child(4) {
+    width: 20%;
+  }
+  table td:nth-child(5) {
+    width: 10%;
   }

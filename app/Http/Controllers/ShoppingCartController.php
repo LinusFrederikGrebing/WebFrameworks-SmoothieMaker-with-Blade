@@ -126,14 +126,25 @@ class ShoppingCartController extends Controller
     {
         Cart::destroy();
         Alert::info('', 'Der Warenkorb wurde erfolgreich geleert!');
-        return view('steps/step3ShopComponent');
+        $ingredients = Cart::content()->filter(function ($item) {
+            return $item->options->type === IngredienteType::FRUITS || $item->options->type === IngredienteType::VEGETABLES;
+        });
+        $liquids = Cart::content()->reject(function ($item) {
+            return $item->options->type === IngredienteType::LIQUID;
+        });
+        return view('steps/step3ShopComponent', compact('ingredients', 'liquids'));
     }
 
 
 
     public function showCard(Request $request)
     {  
-      
-        return view('steps/step3ShopComponent');
+        $ingredients = Cart::content()->filter(function ($item) {
+            return $item->options->type === IngredienteType::FRUITS || $item->options->type === IngredienteType::VEGETABLES;
+        });
+        $liquids = Cart::content()->filter(function ($item) {
+            return $item->options->type === IngredienteType::LIQUID;
+        });
+        return view('steps/step3ShopComponent', compact('ingredients', 'liquids'));
     }
 }
