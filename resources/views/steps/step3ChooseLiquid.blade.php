@@ -45,6 +45,7 @@
 </x-guest-layout>
 <script>
     var liquidList = {!! json_encode($ingredients) !!};
+
     function setLiquidBasedOnId(liquidId) {
         for (let i = 0; i < liquidList.length; i++) {
             if (liquidList[i].id === liquidId) {

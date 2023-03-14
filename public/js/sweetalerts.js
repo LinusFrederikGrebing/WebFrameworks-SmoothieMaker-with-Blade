@@ -40,3 +40,30 @@ function showBottleSizes() {
         }
     });
 }
+
+function showAlertError(title, text) {
+    Swal.fire({
+      title: title,
+      text: text,
+      icon: "error",
+      showCancelButton: false,
+      confirmButtonColor: "#6D9E1F",
+      confirmButtonText: "Okay!",
+    });
+  }
+  function removeAllAlert() {
+    Swal.fire({
+      title: "Bist du Dir sicher?",
+      text: "Deine komplette Zusammenstellung wird unwiederruflich gelöscht!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#6D9E1F",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Zusammenstellung löschen!",
+      cancelButtonText: "Abbrechen!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.removeAllFromCart();
+      }
+    });
+  }

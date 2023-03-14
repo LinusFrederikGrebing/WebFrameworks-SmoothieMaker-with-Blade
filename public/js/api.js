@@ -48,30 +48,48 @@ function getActLiquid() {
         var response = response.data.liquidItems;
         Object.keys(response).forEach((key) => {
             liquid = response[key];
-            selectCard(liquid);
-            /* this.$refs.mixerComponent.liquidAnimation(this.liquid.options.image); */
+            liquidAnimation(liquid.options.image);
+            if (location.pathname == "/custom/liquids") {
+                console.log("test");
+                selectCard(liquid);
+            }
         });
     });
 }
 
+function getCartContent(bottle) {
+    axios.get("/cartContent").then((response) => {
+        var cartContent = Object.values(response.data.cart);
+        liquidContent = cartContent.filter(
+            (cartItem) => cartItem.options.type === "liquid"
+        );
+        ingredienteContent = cartContent.filter(
+            (cartItem) => cartItem.options.type !== "liquid"
+        );
+        checkResult(bottle);
+    });
+}
+
 function selectCard(liquidObj) {
-    /* liquidAnimation(liquid); */
+    liquidAnimation(liquidObj.image);
     liquid = liquidObj;
-    const selectedCard = document.querySelectorAll('.selected-card');
-    for (let i = 0; i < selectedCard.length; i++) { 
+    const selectedCard = document.querySelectorAll(".selected-card");
+    for (let i = 0; i < selectedCard.length; i++) {
         let card = selectedCard[i];
-        card.classList.remove('selected-card');
+        card.classList.remove("selected-card");
     }
-    var element = document.getElementById('liquid_' + liquidObj.id);
-    element.classList.add('selected-card');
+    var element = document.getElementById("liquid_" + liquidObj.id);
+    element.classList.add("selected-card");
 }
-function showStep3afterLiquid(){
-  console.log(liquid);
-  if (Object.keys(liquid).length !== 0) {
-    addLiquidToCart(liquid, 1);
-  }
-  location.href = "/showCard"; 
+
+function showStep3afterLiquid() {
+    console.log(liquid);
+    if (Object.keys(liquid).length !== 0) {
+        addLiquidToCart(liquid, 1);
+    }
+    location.href = "/showCard";
 }
+
 function removeAllFromCart() {
     removeCartItems();
     getProgress();
@@ -79,43 +97,45 @@ function removeAllFromCart() {
 }
 function removeCartItems() {
     axios.get("/removeAll");
-    /*   getCartContent();
-   this.$refs.mixerComponent.removeAll(); */
+    /*   getCartContent(); */
+    removeAll();
 }
 function removeSpecificCart(cartId) {
     axios.post(`/deleteCart/${cartId}`).then((response) => {
         console.log(response);
         const { wasLiquid, image } = response.data;
         if (wasLiquid) {
-            /* this.$refs.mixerComponent.clearLiquid(); */
+            clearLiquid();
         }
-        /* this.$refs.mixerComponent.removeSpecificAll(image);
-        getCartContent(); */
+        removeSpecificAll(image);
         getProgress();
     });
 }
-function addSpecificOne(cartId) {
+
+function addSpecificOne(cartId, id) {
     axios.post(`/increaseCardQty/${cartId}`, { amount: 1 }).then((response) => {
-        const { stored, image } = response.data;
+        const { stored, image, newqty } = response.data;
         if (stored) {
-            /* this.$refs.mixerComponent.setImg(image, 1); */
+            setImg(image, 1);
             getProgress();
-            getCartTotal();
+            /*getCartTotal();*/
+            setnewAmount(newqty, id);
         } else {
             showAlertError("Du hast zu viele Zutaten ausgewählt!", "");
         }
     });
 }
-function removeSpecificOne(cartId) {
+function removeSpecificOne(cartId, id) {
     axios.post(`/decreaseCardQty/${cartId}`, { amount: 1 }).then((response) => {
         const { newqty, image } = response.data;
         if (newqty > 0) {
             getProgress();
-            getCartTotal();
+            setnewAmount(newqty, id);
+            /*getCartTotal();*/
         } else {
-            /* this.getCartContent(); */
+            location.reload();
         }
-        /* this.$refs.mixerComponent.removeSpecificOne(image);*/
+        removeMixerSpecificOne(image);
     });
 }
 
@@ -123,6 +143,9 @@ function clearSessionStorage() {
     sessionStorage.clear();
 }
 
+function setnewAmount(newCounter, id) {
+    $('#qty' + id).html(newCounter);
+}
 function setNewSizeCounter() {
     $(".cart-count").html(cartCount);
     $(".liquid-count").html(liquidCount);

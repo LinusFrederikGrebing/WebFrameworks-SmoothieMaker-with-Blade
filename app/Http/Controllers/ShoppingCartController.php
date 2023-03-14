@@ -96,10 +96,11 @@ class ShoppingCartController extends Controller
         $bottle = $this->getBottle($request);
         $liquidItems = $this->getCurrentLiquidItem();
         $total_amount = ($liquidItems->isNotEmpty()) ? $bottle->amount + 1 : $bottle->amount;
-   
+        
         if (Cart::count() < $total_amount) {
-            Cart::update($ingredienteID, Cart::get($ingredienteID)->qty + 1); 
-            return response()->json(['stored' => true, 'image' => Cart::get($ingredienteID)->options->image]);
+            $newqty = Cart::get($ingredienteID)->qty + 1;
+            Cart::update($ingredienteID, $newqty); 
+            return response()->json(['stored' => true, 'image' => Cart::get($ingredienteID)->options->image, 'newqty' => $newqty]);
         }
         return response()->json(['stored' => false]);
     }
@@ -125,26 +126,28 @@ class ShoppingCartController extends Controller
     public function removeAllFromCard(Request $request)
     {
         Cart::destroy();
-        Alert::info('', 'Der Warenkorb wurde erfolgreich geleert!');
+        $bottle = $this->getBottle($request);
         $ingredients = Cart::content()->filter(function ($item) {
             return $item->options->type === IngredienteType::FRUITS || $item->options->type === IngredienteType::VEGETABLES;
         });
         $liquids = Cart::content()->reject(function ($item) {
             return $item->options->type === IngredienteType::LIQUID;
         });
-        return view('steps/step3ShopComponent', compact('ingredients', 'liquids'));
+        return view('steps/step3ShopComponent', compact('ingredients', 'liquids', 'bottle'));
     }
 
 
 
     public function showCard(Request $request)
     {  
+        $bottle = $this->getBottle($request);
         $ingredients = Cart::content()->filter(function ($item) {
             return $item->options->type === IngredienteType::FRUITS || $item->options->type === IngredienteType::VEGETABLES;
         });
         $liquids = Cart::content()->filter(function ($item) {
             return $item->options->type === IngredienteType::LIQUID;
         });
-        return view('steps/step3ShopComponent', compact('ingredients', 'liquids'));
+        return view('steps/step3ShopComponent', compact('ingredients', 'liquids', 'bottle'));
     }
+ 
 }

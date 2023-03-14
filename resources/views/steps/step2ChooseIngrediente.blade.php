@@ -36,17 +36,20 @@
                                             onclick="increaseSelectedAmount({{ $index }})"><span
                                                 class="material-symbols-outlined">
                                                 add
-                                            </span></button>
+                                            </span>
+                                        </button>
                                         <div width="15" complete="false" id="selectedAmount_{{ $index }}">1
                                         </div>
                                         <button class="w-30px"
                                             onclick="decreaseSelectedAmount({{ $index }})"><span
                                                 class="material-symbols-outlined">
                                                 remove
-                                            </span></button>
+                                            </span>
+                                        </button>
                                         <button
                                             onclick="addToCartWithselectedAmounts({{ $ingredient->id }}, {{ $index }})"><i
-                                                style="color: black" class="material-icons">shopping_cart</i></button>
+                                                style="color: black" class="material-icons">shopping_cart</i>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -92,6 +95,6 @@
     }
 
     function addToCartWithselectedAmounts(ingredienteId, index) {
-        addIngredienteToCart(ingredienteId, selectedAmounts[index])
+        addIngredienteToCart(ingredienteId, selectedAmounts[index]);
     }
 </script>
