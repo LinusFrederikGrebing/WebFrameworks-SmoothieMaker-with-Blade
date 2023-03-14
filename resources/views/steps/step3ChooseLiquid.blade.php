@@ -14,7 +14,7 @@
                                     <hr />
                                     <p class="font-weight-bold ml-1 mr-1">{{ $ingredient->name }}:</p>
                                     <hr />
-                                    <p>{{ $ingredient->price }}€ / 50g</p>
+                                    <p>{{ $ingredient->price }}€ / 50ml</p>
                                 </div>
                                 <div class="d-flex align-items-center mb-2">
                                     <button class="ml-4 mr-4 flex-grow-1 green-bg custom-btn">
@@ -26,7 +26,7 @@
                     @endforeach
                 </div>
                 <div class="flex">
-                    <button onclick="window.location='{{ route('showBottleSizes') }}'"
+                    <button onclick="window.location='{{ route('showFruits') }}'"
                         class="flex justify-center w-1/2 custom-btn red-bg custom-btn">
                         Zurück
                     </button>

@@ -22,7 +22,7 @@ function checkResult() {
 function removeMixerSpecificOne(image) {
     var count = 0;
     for (var i = 0; i < balls.length; i++) {
-        if (balls[i].img === "/images/piece/" + image) {
+        if (balls[i].img === "../images/piece/" + image) {
             balls.splice(i, 1);
             count++;
             i--;
@@ -38,13 +38,13 @@ function removeSpecificAll(img) {
     balls = balls.filter(function (ball) {
         return ball.img !== "../images/piece/" + img;
     });
-    sessionStorage.setItem("zutatenArray", JSON.stringify(balls));
+    sessionStorage.setItem("ingredientsArray", JSON.stringify(balls));
 }
 
 function removeAll() {
     clearLiquid();
     balls = [];
-    sessionStorage.setItem("zutatenArray", JSON.stringify(balls));
+    sessionStorage.setItem("ingredientsArray", JSON.stringify(balls));
 }
 
 function Ball(x, y, radius, e, mass, image) {
@@ -79,7 +79,7 @@ function setImg(image, count) {
             new Ball(Math.random() * (265 - 0) + 0, 50, 14, 0.7, 10, image)
         );
     }
-    sessionStorage.setItem("zutatenArray", JSON.stringify(balls));
+    sessionStorage.setItem("ingredientsArray", JSON.stringify(balls));
 }
 
 var setup = function () {
@@ -88,8 +88,8 @@ var setup = function () {
     width = canvas.width;
     height = canvas.height;
     timer = setInterval(loop, dt);
-    if (JSON.parse(sessionStorage.getItem("zutatenArray"))) {
-        balls = JSON.parse(sessionStorage.getItem("zutatenArray"));
+    if (JSON.parse(sessionStorage.getItem("ingredientsArray"))) {
+        balls = JSON.parse(sessionStorage.getItem("ingredientsArray"));
     }
 };
 
@@ -167,6 +167,7 @@ function loop() {
 
         collisionBall(balls[i]);
         collisionWall(balls[i]);
+
     }
 }
 function showAlertSuccess(title, text) {
@@ -248,8 +249,6 @@ var timer = 0;
 var mixAnimationBool = false;
 
 function mixAnimation(amount) {
-    clearInterval(timer);
-    timer = setInterval(loop, 15);
 
     mixAnimationBool = true;
     const tl = gsap.timeline();
@@ -272,7 +271,7 @@ function mixAnimation(amount) {
 function liquidAnimation(image) {
     const img = new Image();
     img.crossOrigin = "Anonymous";
-    img.src = "/images/piece/" + image;
+    img.src = "../images/piece/" + image;
     img.onload = () => {
         const svg = document.getElementById("liquidImage");
         let color = getMaxColor(img);
@@ -288,7 +287,6 @@ function liquidAnimation(image) {
     };
 }
 function juiceAnimation(amount) {
-    console.log(amount);
     const amountInPercent = 87 - 2.6 * amount;
     getRGBList();
     const svg = document.getElementById("innerImage");

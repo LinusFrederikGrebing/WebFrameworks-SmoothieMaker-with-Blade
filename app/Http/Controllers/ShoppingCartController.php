@@ -80,6 +80,12 @@ class ShoppingCartController extends Controller
         $cart = Cart::content();
         return response()->json(['cart' => $cart]);
     }
+    public function getCurrentCartTotal(Request $request)
+    {
+        $cartTotal = Cart::total();
+        $cartSubTotal = Cart::subtotal();
+        return response()->json(['cartTotal' => $cartTotal, 'cartSubTotal' => $cartSubTotal]);
+    }
     public function getCurrentBottle(Request $request)
     {
         $bottle = $this->getBottle($request);

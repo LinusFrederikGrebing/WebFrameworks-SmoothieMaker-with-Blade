@@ -83,7 +83,7 @@
                                         <td><img src="/images/piece/{{ $item->options->image }}" class="table-img">
                                         </td>
                                         <td><span class="text-dark">{{ $item->name }}</span></td>
-                                        <td> <span class="font-weight-bold"> {{ $item->price }}€</span></td>
+                                        <td> <span class="font-weight-bold"> {{ $item->price }}€ / 50ml</span></td>
                                         <td class="text-center" data-title="stock">
                                             <div class="flex">
                                                 <span class="qty"
@@ -108,8 +108,8 @@
                 </div>
                 <div class="">
                     <hr class="w-75">
-                    <p>Total: <b>{{ Gloudemans\Shoppingcart\Facades\Cart::subtotal() }}</b></p>
-                    <h5>Total inkl. MwSt: <b>{{ Gloudemans\Shoppingcart\Facades\Cart::total() }}</b></h5>
+                    <p>Total: <b id="subTotal">{{ Gloudemans\Shoppingcart\Facades\Cart::subtotal() }}</b></p>
+                    <h5>Total inkl. MwSt: <b id="total">{{ Gloudemans\Shoppingcart\Facades\Cart::total() }}</b></h5>
                     <button class="custom-btn green-bg" role="button" onclick="getLiquidAndIngredientContent()">
                         Jetzt kaufen </button>
                 </div>

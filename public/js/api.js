@@ -41,7 +41,6 @@ function addLiquidToCart(ingredient, amount) {
 
 function getActLiquid() {
     axios.get("/getCurrentLiquid").then((response) => {
-        console.log(response);
         if (Object.keys(response.data).length === 0) {
             return;
         }
@@ -50,7 +49,6 @@ function getActLiquid() {
             liquid = response[key];
             liquidAnimation(liquid.options.image);
             if (location.pathname == "/custom/liquids") {
-                console.log("test");
                 selectCard(liquid);
             }
         });
@@ -69,6 +67,12 @@ function getCartContent(bottle) {
         checkResult(bottle);
     });
 }
+function getCartTotal() {
+    axios.get("/cartTotal").then((response) => {
+        $("#total").html(response.data.cartTotal);
+        $("#subTotal").html(response.data.cartSubTotal);
+    });
+}
 
 function selectCard(liquidObj) {
     liquidAnimation(liquidObj.image);
@@ -83,7 +87,6 @@ function selectCard(liquidObj) {
 }
 
 function showStep3afterLiquid() {
-    console.log(liquid);
     if (Object.keys(liquid).length !== 0) {
         addLiquidToCart(liquid, 1);
     }
@@ -97,18 +100,18 @@ function removeAllFromCart() {
 }
 function removeCartItems() {
     axios.get("/removeAll");
-    /*   getCartContent(); */
     removeAll();
+    location.reload();
 }
 function removeSpecificCart(cartId) {
     axios.post(`/deleteCart/${cartId}`).then((response) => {
-        console.log(response);
         const { wasLiquid, image } = response.data;
         if (wasLiquid) {
             clearLiquid();
         }
         removeSpecificAll(image);
         getProgress();
+        location.reload();
     });
 }
 
@@ -118,8 +121,8 @@ function addSpecificOne(cartId, id) {
         if (stored) {
             setImg(image, 1);
             getProgress();
-            /*getCartTotal();*/
             setnewAmount(newqty, id);
+            getCartTotal();
         } else {
             showAlertError("Du hast zu viele Zutaten ausgewählt!", "");
         }
@@ -131,11 +134,12 @@ function removeSpecificOne(cartId, id) {
         if (newqty > 0) {
             getProgress();
             setnewAmount(newqty, id);
-            /*getCartTotal();*/
+            removeMixerSpecificOne(image);
+            getCartTotal();
         } else {
+            removeMixerSpecificOne(image);
             location.reload();
         }
-        removeMixerSpecificOne(image);
     });
 }
 
