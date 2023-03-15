@@ -1,28 +1,33 @@
 <x-guest-layout>
     <div class="container">
+        <div class="text-center pt-12">
+            <h1 class="font-bold text-xl md:text-2xl lg:text-3xl font-heading text-black">
+                Wähle jetzt deine Smoothie-Größe!
+            </h1>
+        </div>
         @include('layouts.groesse')
         <div class="flex flex-col md:flex-row">
             <div class="w-full md:w-3/5">
-                <div class="flex flex-wrap item-list">
+                <div class="flex flex-wrap item-liquid-list">
                     @foreach ($ingredients as $index => $ingredient)
-                        <div class="col-sm-12 col-md-12 col-xl-6 col-lg-12 col-xs-12 my-2 mx-2 card-color"
-                            id="liquid_{{ $ingredient->id }}" onclick="setLiquidBasedOnId({{ $ingredient->id }})">
-                            <div>
-                                <img class="white--text align-end ml-auto mr-auto mt-1 mb-1" height="60px" width="60px"
-                                    src="/images/piece/{{ $ingredient->image }}">
-                                <div class="d-flex justify-center">
-                                    <hr />
-                                    <p class="font-weight-bold ml-1 mr-1">{{ $ingredient->name }}:</p>
-                                    <hr />
-                                    <p>{{ $ingredient->price }}€ / 50ml</p>
+                    <div  class="w-full sm:w-1/2 md:w-1/4 lg:w-1/5 p-2" id="ingrediente-card{{$index}}" onmouseenter="hoverEnter(event)" onmouseleave="hoverLeave(event)">
+                        <div id="liquid_{{ $ingredient->id }}" class="v-card mx-auto ingrediente-item bg-white rounded-md overflow-hidden">
+                            <div class="text-center">
+                                <div class="h-16 w-16 mx-auto mt-4">
+                                    <img class="h-full w-full object-contain"
+                                        src="/images/piece/{{ $ingredient->image }}" alt="{{ $ingredient->name }}">
                                 </div>
-                                <div class="d-flex align-items-center mb-2">
-                                    <button class="ml-4 mr-4 flex-grow-1 green-bg custom-btn">
-                                        Wählen!
-                                    </button>
-                                </div>
+                                <p class="font-bold text-lg my-2">{{ $ingredient->name }}</p>
+                                <p>{{ $ingredient->price }}€ / 50g</p>
+                            </div>
+                            @csrf
+                            <div class="d-flex align-items-center mb-2">
+                                <button class="ml-4 mr-4 flex-grow-1 green-bg custom-btn" onclick="setLiquidBasedOnId({{ $ingredient->id }})">
+                                    Wählen!
+                                </button>
                             </div>
                         </div>
+                    </div>
                     @endforeach
                 </div>
                 <div class="flex">

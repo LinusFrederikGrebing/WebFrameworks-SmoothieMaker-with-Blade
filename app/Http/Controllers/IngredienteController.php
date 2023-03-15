@@ -69,7 +69,7 @@ class IngredienteController extends Controller
         $zutat->type = $request->type;
         $zutat->save();
         Alert::success('', 'Die Zutat wurde erfolgreich hinzugefügt!');
-        return redirect('/dashboard');
+        return redirect('/home');
     }
 
 
@@ -112,6 +112,6 @@ class IngredienteController extends Controller
 
         $zutat->save();
         Alert::success('', 'Die Zutat wurde erfolgreich aktualisiert!');
-        return redirect('/dashboard');
+        return redirect('/home');
     }
 }
