@@ -7,8 +7,8 @@
                 </h1>
             </div>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                @foreach ($bottles as $bottle)
-                    <div class="v-card w-full bg-gray-200 rounded-lg sahdow-lg overflow-hidden flex flex-col md:flex-row"
+                @foreach ($bottles as $index => $bottle)
+                    <div id="bottle-card{{$index}}" class="v-card w-full bg-gray-200 rounded-lg sahdow-lg overflow-hidden flex flex-col md:flex-row"
                         onmouseenter="hoverEnter(event)" onmouseleave="hoverLeave(event)">
                         <div class="w-full md:w-2/5 h-80">
                             <img class="object-center object-cover w-full h-full" src="/images/{{ $bottle['image'] }}"
@@ -34,5 +34,6 @@
     </div>
 </x-guest-layout>
 <script>
+    enterGrid();
     sessionStorage.clear();
 </script>

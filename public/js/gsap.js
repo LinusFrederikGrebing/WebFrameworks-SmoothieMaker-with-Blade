@@ -150,7 +150,6 @@ gsap.fromTo(
 
   
   function hoverEnter(obj) {
-    console.log(obj);
     gsap.to(obj.target, {
       duration: 0.2,
       scale: 1.05,
@@ -160,10 +159,10 @@ gsap.fromTo(
     gsap.to(obj.target, { duration: 0.2, scale: 1 });
   };
   function enterGrid() {
-    for (let i = 1; i <= 4; i++) {
+    for (let i = 0; i < 4; i++) {
       let element = document.getElementById("bottle-card" + i);
-      let start = 1400;
-      if(i % 2 == 0) { start = -1400 } 
+      let start = -1400;
+      if(i % 2 == 0) { start = +1400 } 
       gsap.fromTo(
         element,
         {

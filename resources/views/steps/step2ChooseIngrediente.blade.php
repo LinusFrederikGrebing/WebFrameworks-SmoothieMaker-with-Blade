@@ -19,7 +19,7 @@
             <div class="w-full md:w-3/5">
                 <div class="flex flex-wrap item-list">
                     @foreach ($ingredients as $index => $ingredient)
-                        <div class="w-full sm:w-1/2 md:w-1/4 lg:w-1/5 p-2">
+                        <div class="w-full sm:w-1/2 md:w-1/4 lg:w-1/5 p-2" id="ingrediente-card{{$index}}" onmouseenter="hoverEnter(event)" onmouseleave="hoverLeave(event)">
                             <div class="v-card mx-auto ingrediente-item bg-white rounded-md overflow-hidden">
                                 <div class="text-center">
                                     <div class="h-16 w-16 mx-auto mt-4">
@@ -75,9 +75,10 @@
     </div>
 </x-guest-layout>
 <script>
+  
     var ingredients = {!! json_encode($ingredients) !!};
     var selectedAmounts = Array(ingredients.length).fill(1);
-
+    enterIngredientGrid();
     function increaseSelectedAmount(index) {
         if (selectedAmounts[index] < 20) {
             selectedAmounts[index]++;
@@ -96,5 +97,25 @@
 
     function addToCartWithselectedAmounts(ingredienteId, index) {
         addIngredienteToCart(ingredienteId, selectedAmounts[index]);
+    }
+
+
+    function enterIngredientGrid() {
+      for (let i = 0; i < ingredients.length; i++) {
+        let element = document.getElementById("ingrediente-card" + i);
+        gsap.fromTo(
+          element,
+          {
+            y: -1000,
+            x: -1000,
+          },
+          {
+            delay: Math.random() / 2,
+            duration: 2,
+            y: 0,
+            x: 0,
+          }
+        );
+      }
     }
 </script>

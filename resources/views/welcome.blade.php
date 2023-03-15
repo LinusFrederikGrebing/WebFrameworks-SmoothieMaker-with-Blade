@@ -26,7 +26,7 @@
             <div class="py-8 main-container m-auto px-6">
                 <div class="lg:flex justify-between items-center">
                     <div id="left-text" class="lg:w-6/12">
-                        <h1 class="text-4xl font-bold leading-tight mb-5 capitalize px-4 mt-16 p-16"> Smoothiemaker </h1>
+                        <h1 class="text-4xl font-bold leading-tight mb-5 capitalize px-4 mt-16 pt-16"> Smoothiemaker </h1>
                         <p class="text-xl px-4 py-4"> Stelle Dir jetzt deinen perfekten Smoothie zusammen! Deine Auswahl
                             erstreckt
                             sich aus einer Vielzahl verschiedener Zutaten. Es gibt vier veschiedene Smoothie-Größen. Du
@@ -41,8 +41,8 @@
                             </button>
                         </div>
                     </div>
-                    <div class="lg:w-7/12 order-2">
-                        <img class="v-card" id="right-img" src="/images/smoothie.jpg"
+                    <div class="lg:w-7/12 order-2 mt-16">
+                        <img class="v-card mt-16" id="right-img" src="/images/smoothie.jpg"
                             style="transform: scale(1) perspective(1040px) rotateY(-11deg) rotateX(2deg) rotate(2deg);"
                             alt="" class="rounded">
                     </div>
