@@ -13,13 +13,9 @@ class ShoppingCartController extends Controller
     public function storeIngredienteToCart(Request $request, $ingredienteID)
     {
         $ingrediente = Ingrediente::findOrFail($ingredienteID); 
-
         $bottle = $this->getBottle($request);
-
         $liquidItems = $this->getCurrentLiquidItem();
-          
         $total_amount = ($liquidItems->isNotEmpty()) ? $bottle->amount + 1 : $bottle->amount;
-    
         if($ingrediente->type == 'liquid'){
             foreach ($liquidItems as $item) { 
                 Cart::remove($item->rowId);
@@ -96,7 +92,6 @@ class ShoppingCartController extends Controller
         Cart::destroy();
         return [];
     }
-
     public function increaseCardQty(Request $request, $ingredienteID)
     {   
         $bottle = $this->getBottle($request);
@@ -118,8 +113,6 @@ class ShoppingCartController extends Controller
         Cart::update($ingredienteID, $newqty); 
         return response()->json(['image' => $image, 'newqty' => $newqty]);
     }
-
-
     public function deleteCart(Request $request, $ingredienteID)
     {
         $item = Cart::get($ingredienteID);
@@ -128,7 +121,6 @@ class ShoppingCartController extends Controller
         Cart::remove($ingredienteID);
         return response()->json(['image' => $image, 'wasLiquid' => $wasLiquid]);
     }
-
     public function removeAllFromCard(Request $request)
     {
         Cart::destroy();
@@ -141,9 +133,6 @@ class ShoppingCartController extends Controller
         });
         return view('steps/step3ShopComponent', compact('ingredients', 'liquids', 'bottle'));
     }
-
-
-
     public function showCard(Request $request)
     {  
         $bottle = $this->getBottle($request);
@@ -155,5 +144,4 @@ class ShoppingCartController extends Controller
         });
         return view('steps/step3ShopComponent', compact('ingredients', 'liquids', 'bottle'));
     }
- 
 }

@@ -7,36 +7,24 @@
                     <div class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20 w-40em">
                         <div class="max-w-md mx-auto">
                             <div>
-                                <h1 class="text-2xl font-semibold">Zutat {{ $zutat['name'] }} aktualisieren:</h1>
+                                <h1 class="text-2xl font-semibold">Zutat {{ $ingrediente['name'] }} aktualisieren:</h1>
                             </div>
                             <div class="divide-y divide-gray-200">
                                 <div class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
-                                <form action="/updated/ingrediente/{{ $zutat['id'] }}" enctype="multipart/form-data" method="post">
+                                <form action="/api/updated/ingrediente/{{ $ingrediente['id'] }}" enctype="multipart/form-data" method="post">
                                   @csrf
-
                                     <div>
                                        <x-jet-label for="name" value="{{ __('Neuer Name:') }}" />
-                                        <input class="block mt-1 w-full" id="name"  value="{{ old('name') ?? $zutat['name'] }}" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" required  autofocus />
-                                        @if ($errors->has('name'))
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('name') }}</strong>
-                                        </span>
-                                        @endif
+                                        <input class="block mt-1 w-full" id="name"  value="{{ old('name') ?? $ingrediente['name'] }}" type="text" name="name" required autofocus />
                                     </div>
-
                                     <div class="mt-4">
                                       <x-jet-label for="price" value="{{ __('Neuer Einzelpreis:') }}" />
-                                        <input class="block mt-1 w-full" id="price" type="number" value="{{ old('price') ?? $zutat['price'] }}" step="0.01" class="form-control{{ $errors->has('price') ? ' is-invalid' : '' }}" name="price" required  autofocus />
-                                        @if ($errors->has('price'))
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('price') }}</strong>
-                                        </span>
-                                        @endif
+                                        <input class="block mt-1 w-full" id="price" type="number" value="{{ old('price') ?? $ingrediente['price'] }}" step="0.01" name="price" required autofocus />
                                     </div>
                                     
                                     <div class="mt-4">
                                       <x-jet-label for="type" value="{{ __('Neuer Type:') }}" />
-                                        <select class="block mt-1 w-full" name="type" value="{{ old('type') ?? $zutat['type'] }}" required autofocus>
+                                        <select class="block mt-1 w-full" name="type" value="{{ old('type') ?? $ingrediente['type'] }}" required autofocus>
                                             <option value="fruits">fruits</option>
                                             <option value="vegetables">vegetables</option>
                                             <option value="liquid">liquid</option>
@@ -44,7 +32,7 @@
                                     </div>
                                     <div class="mt-4">
                                       <x-jet-label for="image" value="{{ __('Neues SVG der Zutat:') }}" />
-                                      <input type="file" class="form-control-file" id="image" name="image"  value="{{ old('image') ?? $zutat -> image }}">
+                                      <input type="file" class="form-control-file" id="image" name="image"  value="{{ old('image') ?? $ingrediente -> image }}">
                                     <x-jet-button class="mt-4">
                                             {{ __('Zutat aktualisieren') }}
                                     </x-jet-button>

@@ -40,8 +40,8 @@ class IngredienteController extends Controller
 
     public function showUpdateField(Request $request, $ingredienteID)
     {
-        $zutat = Ingrediente::findOrFail($ingredienteID);
-        return view('ingrediente/updateZutat', compact('zutat'));
+        $ingrediente = Ingrediente::findOrFail($ingredienteID);
+        return view('ingrediente/updateZutat', compact('ingrediente'));
     }
 
     public function store(Request $request)
@@ -56,13 +56,12 @@ class IngredienteController extends Controller
             $file = $request->file('image');
             $extension = $file->getClientOriginalExtension(); // getting image extension
             $filename = time() . '.' . $extension;
-            $file->move('images/', $filename);
+            $file->move('images/piece/', $filename);
             $zutat->image = $filename;
         } else {
             $zutat->image = '';
             return $request;
         }
-
         $zutat->name = $request->name;
         $zutat->amount = $request->amount;
         $zutat->price = $request->price;
@@ -71,8 +70,6 @@ class IngredienteController extends Controller
         Alert::success('', 'Die Zutat wurde erfolgreich hinzugefügt!');
         return redirect('/home');
     }
-
-
     public function deleteIngediengte(Request $request, $ingredienteID)
     {
         $zutat = Ingrediente::find($ingredienteID);
@@ -80,7 +77,6 @@ class IngredienteController extends Controller
         Alert::success('', 'Die Zutat wurde erfolgreich gelöscht!');
         return redirect()->back();
     }
-
     public function updateIngrediente(Request $request, $ingredienteID)
     {
         $zutat = Ingrediente::find($ingredienteID);
@@ -106,7 +102,7 @@ class IngredienteController extends Controller
             $file = $request->file('image');
             $extension = $file->getClientOriginalExtension(); // getting image extension
             $filename = time() . '.' . $extension;
-            $file->move('images/', $filename);
+            $file->move('images/piece/', $filename);
             $zutat->image = $filename;
         }
 

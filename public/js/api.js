@@ -3,13 +3,6 @@ var bottle = [];
 var liquidCount = 0;
 var liquid = [];
 
-var dropdownBtn = document.getElementById('dropdown-btn');
-var dropdownMenu = dropdownBtn.nextElementSibling;
-
-dropdownBtn.addEventListener('click', function() {
-  dropdownMenu.classList.toggle('hidden');
-});
-
 getProgress();
 getActLiquid();
 function getProgress() {

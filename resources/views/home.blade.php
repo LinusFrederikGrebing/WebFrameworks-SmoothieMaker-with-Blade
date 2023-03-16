@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
+            {{ __('Home') }}
         </h2>
     </x-slot>
     <div class="py-12">
@@ -13,7 +13,7 @@
                             <div>
                                 <ol
                                     class="grid grid-cols-1 divide-x divide-gray-100 overflow-hidden rounded-lg border border-gray-100 text-sm text-gray-500 sm:grid-cols-3 w-100">
-                                    <button onclick="window.location='{{ route('dashboard') }}'">
+                                    <button onclick="window.location='{{ route('home') }}'">
                                         <li class="flex items-center justify-center p-4 bg-gray-600">
                                             <img src="/images/fruitsicon.png" alt=""
                                                 class="mr-2 h-7 w-7 flex-shrink-0">
@@ -66,24 +66,24 @@
 
                                 </div>
                             </button>
-                            @foreach ($zutaten as $zutat)
+                            @foreach ($ingredients as $ingrediente)
                                 <div>
 
                                     <div
                                         class="relative overflow-hidden transition duration-300 transform rounded lg:hover:-translate-y-2 px-2">
                                         <img class="object-cover h-12 md:h-20 xl:h-28"
-                                            src="/images/piece/{{ $zutat['image'] }}" />
+                                            src="/images/piece/{{ $ingrediente['image'] }}" />
                                     </div>
                                     <div class="mx-auto my-2">
                                         <div>
-                                            <span class="text-dark">Zutat: {{ $zutat['name'] }}</span>
+                                            <span class="text-dark">Zutat: {{ $ingrediente['name'] }}</span>
                                             <div>
-                                                <span class="font-weight-bold"> Preis: {{ $zutat['price'] }}€</span>
+                                                <span class="font-weight-bold"> Preis: {{ $ingrediente['price'] }}€</span>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="flex">
-                                        <form class="box" action="/update/ingrediente/{{ $zutat['id'] }}"
+                                        <form class="box" action="/api/update/ingrediente/{{ $ingrediente['id'] }}"
                                             enctype="multipart/form-data" method="post">
                                             @csrf
                                             <button> <svg class="mr-16" xmlns="http://www.w3.org/2000/svg"
@@ -93,7 +93,7 @@
                                                         d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
                                                 </svg></button>
                                         </form>
-                                        <form action="/delete/ingrediente/{{ $zutat['id'] }}"
+                                        <form action="/api/delete/ingrediente/{{ $ingrediente['id'] }}"
                                             enctype="multipart/form-data" method="post">
                                             @csrf
                                             <button class="btn"><svg xmlns="http://www.w3.org/2000/svg"

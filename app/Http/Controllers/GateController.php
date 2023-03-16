@@ -10,22 +10,20 @@ class GateController extends Controller
 {
     public function show()
     {
-        $zutaten = Ingrediente::where('type', IngredienteType::FRUITS)->get();
+        $ingredients = Ingrediente::where('type', IngredienteType::FRUITS)->get();
 
-        return view('dashboard', compact('zutaten'));
-
+        return view('home', compact('ingredients'));
     }
     public function showVeggieEmployee(Request $request)
     {
-        $zutaten = Ingrediente::where('type', IngredienteType::VEGETABLES)->get();
+        $ingredients = Ingrediente::where('type', IngredienteType::VEGETABLES)->get();
 
-        return view('dashboard', compact('zutaten'));
-
+        return view('home', compact('ingredients'));
     }
     public function showLiquidEmployee(Request $request)
     {
-        $zutaten = Ingrediente::where('type', IngredienteType::LIQUID)->get();
+        $ingredients = Ingrediente::where('type', IngredienteType::LIQUID)->get();
 
-        return view('dashboard', compact('zutaten'));
+        return view('home', compact('ingredients'));
     }
 }

@@ -115,7 +115,7 @@
                 </div>
             </div>
             <div class="w-full md:w-2/5">
-                <livewire:mixer />
+                @include('layouts.mixer')
                 @include('layouts.progressbar')
             </div>
         </div>

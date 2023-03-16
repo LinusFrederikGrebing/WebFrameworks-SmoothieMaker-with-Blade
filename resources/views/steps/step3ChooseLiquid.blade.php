@@ -2,7 +2,7 @@
     <div class="container">
         <div class="text-center pt-12">
             <h1 class="font-bold text-xl md:text-2xl lg:text-3xl font-heading text-black">
-                Wähle jetzt deine Smoothie-Größe!
+                Wähle jetzt abschließend deine Flüssigkeit!
             </h1>
         </div>
         @include('layouts.groesse')
@@ -42,7 +42,7 @@
                 </div>
             </div>
             <div class="w-full md:w-2/5">
-                <livewire:mixer />
+                @include('layouts.mixer')
                 @include('layouts.progressbar')
             </div>
         </div>

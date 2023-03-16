@@ -36,7 +36,7 @@ function showBottleSizes() {
         cancelButtonText: "Abbrechen!",
     }).then((result) => {
         if (result.isConfirmed) {
-            location.href = "/custom/bottleSize";
+            location.href = "/bottleSize";
         }
     });
 }
