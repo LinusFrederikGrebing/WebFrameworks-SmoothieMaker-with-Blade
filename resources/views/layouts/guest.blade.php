@@ -27,11 +27,13 @@
     @livewireStyles
 </head>
 
-<body>
+<body class="body">
     @include('layouts.navigation')
     @include('sweetalert::alert')
-    <div class="font-sans text-gray-900 antialiased m-auto w-3/4 bg-white-500">
-        {{ $slot }}
+    <div class="font-sans text-gray-900 antialiased content-container m-auto bg-grey-500">
+        <div class="v-card h-100 pb-8">
+            {{ $slot }}
+        </div>
     </div>
     @livewireScripts
 </body>

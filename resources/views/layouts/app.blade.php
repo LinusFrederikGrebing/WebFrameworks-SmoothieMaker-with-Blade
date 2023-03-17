@@ -19,11 +19,11 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
     
-    <body class="font-sans antialiased">
+    <body class="font-sans antialiased body">
         <x-jet-banner />
             @include('layouts.navigation')
             <!-- Page Content -->
-            <main>
+            <main class="content-container">
                 {{ $slot }}
             </main>
              @include('layouts.footer')

@@ -19,15 +19,15 @@
     
 </head>
 
-<body class="antialiased">
+<body>
     <x-guest-layout>
         <!-- component -->
-        <div class="container v-card">
-            <div class="py-8 main-container m-auto px-6">
+        <div class="v-card">
+            <div class="py-16 main-container m-auto px-32">
                 <div class="lg:flex justify-between items-center">
-                    <div id="left-text" class="lg:w-6/12">
+                    <div id="left-text" class="lg:w-5/12 mr-16">
                         <h1 class="text-4xl font-bold leading-tight mb-5 capitalize px-4 mt-16 pt-16"> Smoothiemaker </h1>
-                        <p class="text-xl px-4 py-4"> Stelle Dir jetzt deinen perfekten Smoothie zusammen! Deine Auswahl
+                        <p class="px-4 py-4"> Stelle Dir jetzt deinen perfekten Smoothie zusammen! Deine Auswahl
                             erstreckt
                             sich aus einer Vielzahl verschiedener Zutaten. Es gibt vier veschiedene Smoothie-Größen. Du
                             kannst entscheiden, ob dein Smoothie aus 250ml, 500ml, 750ml oder sogar 1l leckeren Zutaten
@@ -41,7 +41,7 @@
                             </button>
                         </div>
                     </div>
-                    <div class="lg:w-7/12 order-2 mt-16">
+                    <div class="lg:w-7/12 order-2 mt-16 ml-16">
                         <img class="v-card mt-16" id="right-img" src="/images/smoothie.jpg"
                             style="transform: scale(1) perspective(1040px) rotateY(-11deg) rotateX(2deg) rotate(2deg);"
                             alt="" class="rounded">
@@ -120,7 +120,7 @@
                 <h2 class="pb-3 text-2xl font-bold md:text-3xl">Unsere Smoothie-Tipps der Woche</h2>
                 <p>Hier findest du unsere Smoothie-Geheimtipps. Lasse dich gerne von unseren Top-Vorschlägen inspirieren!</p>
             </div>
-            <section id="tips" class="p-4 lg:p-8">
+            <section id="tips" class="p-4 px-32 mx-32">
                 <div class="container mx-auto space-y-12">
                     <hr>
                     <div id="tip1" class="flex flex-col overflow-hidden rounded-md shadow-sm lg:flex-row">

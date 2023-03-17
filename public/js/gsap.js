@@ -169,6 +169,7 @@ gsap.fromTo(
           x: start
         },
         {
+          delay: 0.1,
           duration: 1,
           x: 0
         }
