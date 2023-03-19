@@ -47,3 +47,9 @@ Route::get('/removeAll', [App\Http\Controllers\ShoppingCartController::class, 'r
 Route::get('/getCurrentLiquid', [App\Http\Controllers\ShoppingCartController::class, 'getCurrentLiquid']);
 Route::get('/getCurrentBottle', [App\Http\Controllers\ShoppingCartController::class, 'getCurrentBottle']);
 Route::get('/showCard', [App\Http\Controllers\ShoppingCartController::class, 'showCard'])->name('showCard');
+
+//Preset-Routes
+Route::get('/checkPreset/{presetName}', [App\Http\Controllers\PresetController::class, 'checkPreset'])->name('checkPreset');
+Route::post('/storeAsPreset', [App\Http\Controllers\PresetController::class, 'storeAsPreset'])->name('storeAsPreset');
+Route::get('/user-presets', [App\Http\Controllers\PresetController::class, 'getUserPresets']);
+Route::get('/deletePreset/{ingrediente}', [App\Http\Controllers\PresetController::class, 'deleteUserPreset'])->name('deletePreset');
