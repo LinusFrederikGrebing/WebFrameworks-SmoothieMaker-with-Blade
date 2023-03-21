@@ -9,24 +9,31 @@
 
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
-        <!-- Styles -->
-        @livewireStyles
-
-        <!-- Scripts -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+        <link rel="stylesheet"
+         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
         <script src="{{ asset('js/app.js') }}" defer></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
     </head>
     
     <body class="font-sans antialiased body">
-        <x-jet-banner />
-            @include('layouts.navigation')
+            @include('layouts.headerTemplate')
             <!-- Page Content -->
-            <main class="content-container">
-                {{ $slot }}
+            <main class="content-container m-auto bg-grey-500">
+                <div class="v-card h-100 pb-8">
+                    {{ $slot }}
+                </div>
             </main>
-             @include('layouts.footer')
+             @include('layouts.footerTemplate')
         </div>
        
         @stack('modals')

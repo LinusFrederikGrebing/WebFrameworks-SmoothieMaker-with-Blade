@@ -17,7 +17,7 @@ class BottleSizeController extends Controller
         }
         $bottles = BottleSize::all();
         //return response()->json(['bottles' => $bottles ]);
-        return view('steps/step1ChooseSize', compact('bottles'));
+        return view('steps/step1ChooseBottleSize', compact('bottles'));
     }
 
     public function showInhalt(Request $request, $bottleID)

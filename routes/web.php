@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('landingPageTemplate');
 });
 
 Route::middleware([
@@ -23,8 +23,9 @@ Route::middleware([
     'verified'
 ])->group(function () {
     Route::get('/home',  [App\Http\Controllers\GateController::class, 'show'])->name('home');
-    Route::get('/dashboard/Veggie',  [App\Http\Controllers\GateController::class, 'showVeggieEmployee'])->name('dashboardVeggie');
-    Route::get('/dashboard/Liquid',  [App\Http\Controllers\GateController::class, 'showLiquidEmployee'])->name('dashboardLiquid');
+    Route::get('/employee/Fruits',  [App\Http\Controllers\GateController::class, 'showFruitsEmployee'])->name('showFruitsEmployee');
+    Route::get('/employee/Veggie',  [App\Http\Controllers\GateController::class, 'showVeggieEmployee'])->name('showVeggieEmployee');
+    Route::get('/employee/Liquid',  [App\Http\Controllers\GateController::class, 'showLiquidEmployee'])->name('showLiquidEmployee');
 });
 
 Route::get('/custom/fruits', [App\Http\Controllers\IngredienteController::class, 'showFruits'])->name('showFruits');

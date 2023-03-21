@@ -26,8 +26,10 @@
               <li class="ml-4 relative">
                   <button id="dropdown-btn" class="flex items-center text-white hover:text-gray-300 focus:outline-none">
                     <span class="mr-1">{{ Auth::user()->name }}</span>
+                    <span class="material-symbols-outlined mb-1">
+                      expand_more
+                   </span>
                   </button>
-                
                   <!-- Dropdown items -->
                   <div class="absolute right-0 mt-2 w-32 bg-white rounded-md shadow-lg hidden">
                     <a class="block px-4 py-2 text-gray-800 hover:bg-gray-100 hover:text-gray-900" href="/home">

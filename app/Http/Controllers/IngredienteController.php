@@ -35,13 +35,13 @@ class IngredienteController extends Controller
 
     public function create()
     {
-        return view('ingrediente/createZutat');
+        return view('ingrediente/createIngrediente');
     }
 
     public function showUpdateField(Request $request, $ingredienteID)
     {
         $ingrediente = Ingrediente::findOrFail($ingredienteID);
-        return view('ingrediente/updateZutat', compact('ingrediente'));
+        return view('ingrediente/updateIngrediente', compact('ingrediente'));
     }
 
     public function store(Request $request)

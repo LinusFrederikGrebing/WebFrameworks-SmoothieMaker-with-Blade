@@ -1,6 +1,6 @@
 <x-guest-layout>
     <div class="container">
-        @include('layouts.groesse')
+        @include('layouts.sizeComponent')
         <div class="w-full">
             <div class="flex">
                 <button onclick="window.location='{{ route('showFruits') }}'"
@@ -68,8 +68,8 @@
                 </div>
             </div>
             <div class="w-full md:w-2/5">
-                @include('layouts.mixer')
-                @include('layouts.progressbar')
+                @include('layouts.mixerComponent')
+                @include('layouts.progressbarComponent')
             </div>
         </div>
     </div>

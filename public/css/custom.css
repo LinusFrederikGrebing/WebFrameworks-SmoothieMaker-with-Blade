@@ -234,3 +234,16 @@ p {
   .body {
     overflow-x: hidden;
   }
+
+  .plus-icon-container {
+    background-color: rgb(83, 153, 83);
+    color: white;
+    scale: 0.9;
+  }
+
+  .plus-icon {
+    font-size: 12rem; /* Größe des Symbols ändern */
+    display: flex;
+    justify-content: center; /* Horizontal ausrichten */
+    align-items: center; /* Vertikal ausrichten */
+  }

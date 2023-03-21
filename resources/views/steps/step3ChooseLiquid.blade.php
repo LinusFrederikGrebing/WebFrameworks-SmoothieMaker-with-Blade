@@ -1,11 +1,14 @@
 <x-guest-layout>
     <div class="container">
-        <div class="text-center pt-12">
-            <h1 class="font-bold text-xl md:text-2xl lg:text-3xl font-heading text-black">
-                Wähle jetzt abschließend deine Flüssigkeit!
-            </h1>
+        @include('layouts.sizeComponent')
+        <div class="w-full">
+            <div class="flex">
+                <button class="flex justify-center w-full custom-btn grey-bg">
+                    <img src="/images/liquidicon.png" alt="Bild 1" class="inline-block h-6">
+                    Flüssigkeit
+                </button>
+            </div>
         </div>
-        @include('layouts.groesse')
         <div class="flex flex-col md:flex-row">
             <div class="w-full md:w-3/5">
                 <div class="flex flex-wrap item-liquid-list">
@@ -42,8 +45,8 @@
                 </div>
             </div>
             <div class="w-full md:w-2/5">
-                @include('layouts.mixer')
-                @include('layouts.progressbar')
+                @include('layouts.mixerComponent')
+                @include('layouts.progressbarComponent')
             </div>
         </div>
     </div>

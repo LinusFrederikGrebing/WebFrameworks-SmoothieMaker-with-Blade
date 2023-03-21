@@ -131,7 +131,7 @@ class ShoppingCartController extends Controller
         $liquids = Cart::content()->reject(function ($item) {
             return $item->options->type === IngredienteType::LIQUID;
         });
-        return view('steps/step3ShopComponent', compact('ingredients', 'liquids', 'bottle'));
+        return view('steps/shopComponent', compact('ingredients', 'liquids', 'bottle'));
     }
     public function showCard(Request $request)
     {  
@@ -142,6 +142,6 @@ class ShoppingCartController extends Controller
         $liquids = Cart::content()->filter(function ($item) {
             return $item->options->type === IngredienteType::LIQUID;
         });
-        return view('steps/step3ShopComponent', compact('ingredients', 'liquids', 'bottle'));
+        return view('steps/shopComponent', compact('ingredients', 'liquids', 'bottle'));
     }
 }
