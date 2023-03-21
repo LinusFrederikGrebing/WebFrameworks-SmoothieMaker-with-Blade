@@ -52,6 +52,8 @@ Route::get('/showCard', [App\Http\Controllers\ShoppingCartController::class, 'sh
 //Preset-Routes
 Route::get('/checkPreset/{presetName}', [App\Http\Controllers\PresetController::class, 'checkPreset'])->name('checkPreset');
 Route::post('/storeAsPreset', [App\Http\Controllers\PresetController::class, 'storeAsPreset'])->name('storeAsPreset');
+Route::get('/storeExistingPreset/{presetName}', [App\Http\Controllers\PresetController::class, 'storeExistingPreset'])->name('storeExistingPreset');
+
 Route::get('/user-presets', [App\Http\Controllers\PresetController::class, 'getUserPresets']);
 Route::get('/deletePreset/{ingrediente}', [App\Http\Controllers\PresetController::class, 'deleteUserPreset'])->name('deletePreset');
 

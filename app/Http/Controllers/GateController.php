@@ -5,6 +5,8 @@ use App\Models\UserRole;
 use App\Models\Ingrediente;
 use App\Models\IngredienteType;
 use Illuminate\Http\Request;
+use App\Models\Preset;
+use Illuminate\Support\Facades\Auth;
 
 class GateController extends Controller
 {
@@ -21,7 +23,12 @@ class GateController extends Controller
         if (auth()->check()) {
             $user = auth()->user();
             if($user->type == UserRole::KUNDE) {
-                return view('auth.customerTemplate', compact('user'));
+                if (!Auth::check()) { 
+                    return;
+                }
+                $user = Auth::user();
+                $userPresets = Preset::where('user_id', $user->id)->pluck('name');
+                return view('auth.customerTemplate', compact('user', 'userPresets'));
             } else if ($user->type == UserRole::MITARBEITER) {
                 $ingredients = Ingrediente::where('type', IngredienteType::FRUITS)->get();
                 return view('auth.employeeTemplate', compact('ingredients'));

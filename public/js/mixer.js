@@ -336,6 +336,10 @@ function getSumColor() {
     const commonColor = `rgb(${avgR},${avgG},${avgB})`;
     return commonColor;
 }
+function removeBall() {
+    balls = [];
+    sessionStorage.setItem("ingredientsArray", JSON.stringify(balls));
+}
 function clearLiquid() {
     gsap.set("#innerImage, #liquidImage", {
         opacity: 0,
@@ -343,7 +347,6 @@ function clearLiquid() {
         transformOrigin: "bottom center",
     });
 }
-
 function collisionWall(ball) {
     if (ball.position.x > width - ball.radius) {
         ball.velocity.x *= ball.e;

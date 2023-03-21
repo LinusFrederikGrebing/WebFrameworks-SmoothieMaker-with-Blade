@@ -20,10 +20,10 @@
                             <thead>
                                 <tr>
                                     <th scope="col">Image</th>
-                                    <th scope="col" class="text-center">Name</th>
-                                    <th scope="col" class="text-center">Preis</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Preis</th>
                                     <th scope="col">Menge</th>
-                                    <th scope="col" class="text-center">Remove</th>
+                                    <th scope="col">Remove</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -31,7 +31,7 @@
                                     <tr>
                                         <td><img src="/images/piece/{{ $item->options->image }}" class="table-img"></td>
                                         <td><span class="text-dark">{{ $item->name }}</span></td>
-                                        <td> <span class="font-weight-bold"> {{ $item->price }}€</span></td>
+                                        <td> <span class="font-weight-bold"> {{ $item->price }}€ / 50g</span></td>
                                         <td class="text-center" data-title="stock">
                                             <div class="flex">
                                                 <button onclick="addSpecificOne('{{ $item->rowId }}', {{ $item->id }})"
@@ -106,8 +106,16 @@
 </x-guest-layout>
 <script>
     var bottle = {!! json_encode($bottle) !!};
-    var ingredienteContent = [];
+    var ingredienteContent = Object.values({!! json_encode($ingredients) !!});
     var liquidContent = [];
+    removeBall();
+    ingredienteContent.forEach((ingrediente) => {
+          console.log(ingrediente);
+           setImg(
+            ingrediente.options.image,
+            ingrediente.qty
+          );
+    });
     function getLiquidAndIngredientContent() {
         getCartContent(bottle);
     }

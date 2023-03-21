@@ -67,3 +67,23 @@ function showAlertError(title, text) {
       }
     });
   }
+  function showAlertError(title, text) {
+    Swal.fire({
+      title: title,
+      text: text,
+      icon: "error",
+      showCancelButton: false,
+      confirmButtonColor: "#6D9E1F",
+      confirmButtonText: "Okay!",
+    });
+  }
+  function showAlertSuccess(title, text) {
+    Swal.fire({
+      title: title,
+      text: text,
+      icon: "success",
+      showCancelButton: false,
+      confirmButtonColor: "#6D9E1F",
+      confirmButtonText: "Okay!",
+    });
+  }

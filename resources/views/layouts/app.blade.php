@@ -38,6 +38,9 @@
        
         @stack('modals')
         @include('sweetalert::alert')
-        @livewireScripts
+        
+        <script src="{{ asset('js/gsap.js') }}"></script>
+        <script src="{{ asset('js/api.js') }}"></script>
+        <script src="{{ asset('js/sweetalerts.js') }}"></script>
     </body>
 </html>
