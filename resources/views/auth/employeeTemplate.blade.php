@@ -1,6 +1,6 @@
 <x-app-layout>
-    <div class="w-3/4 ml-auto mr-auto">
-        <div id="stepsheader" class="container p-4 mx-auto my-6 space-y-1 text-center">
+    <div class="w-3/4 ml-auto mr-auto mb-16">
+        <div class="container p-4 mx-auto my-6 space-y-1 text-center">
             <h3 class="pb-3 text-2xl font-bold md:text-3xl">Admin-Ansicht</h3>
             <p>Hier können alle Zutaten eingesehen und verwaltet werden!</p>
         </div>
@@ -48,14 +48,14 @@
                                 @csrf
                                 <div>
                                     <div class="flex w-full mt-2">
-                                        <form class="w-1/2" action="/api/update/ingrediente/{{ $ingredient['id'] }}"
+                                        <form class="w-1/2" action="/update/ingrediente/{{ $ingredient['id'] }}"
                                             enctype="multipart/form-data" method="post">
                                             @csrf
                                             <button class="v-card w-full">
                                                 <span class="material-symbols-outlined">edit</span>
                                             </button>
                                         </form>
-                                        <form class="w-1/2" action="/api/delete/ingrediente/{{ $ingredient['id'] }}"
+                                        <form class="w-1/2" action="/delete/ingrediente/{{ $ingredient['id'] }}"
                                             enctype="multipart/form-data" method="post">
                                             @csrf
                                             <button class="v-card w-full">

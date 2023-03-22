@@ -6,7 +6,6 @@ use App\Models\Preset;
 use App\Models\BottleSize;
 use Cart;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\Rules;
 
 
 use Illuminate\Http\Request;
@@ -28,7 +27,7 @@ class PresetController extends Controller
     public function deleteUserPreset(Request $request, $name)
     {
         $preset = Preset::where('name', $name)->where('user_id', Auth::id())
-        ->firstOrFail();;
+        ->firstOrFail();
         $preset->delete($preset->id);   
     }
     public function storeAsPreset(Request $request)

@@ -2,14 +2,14 @@
     <div class="container">
         @include('layouts.sizeComponent')
         <div class="w-full">
-            <div class="flex">
+            <div class="flex"> 
                 <button onclick="window.location='{{ route('showFruits') }}'"
-                    class="flex justify-center w-1/2 custom-btn grey-bg">
+                    class="flex justify-center w-1/2 custom-btn {{ request()->is('custom/fruits') ? 'grey-active-bg' : 'grey-bg' }}">
                     <img src="/images/fruitsicon.png" alt="Bild 1" class="inline-block h-6">
                     Früchte
                 </button>
                 <button onclick="window.location='{{ route('showVeggie') }}'"
-                    class="flex items-center justify-center w-1/2 custom-btn grey-bg">
+                    class="flex items-center justify-center w-1/2 custom-btn {{ request()->is('custom/veggie') ? 'grey-active-bg' : 'grey-bg' }}">
                     <img src="/images/vegetablesicon.png" alt="Bild 2" class="inline-block h-6">
                     Gemüse
                 </button>
@@ -31,7 +31,7 @@
                                 </div>
                                 @csrf
                                 <div>
-                                    <div class="flex">
+                                    <div class="flex justify-center mb-1">
                                         <button class="w-30px"
                                             onclick="increaseSelectedAmount({{ $index }})"><span
                                                 class="material-symbols-outlined">

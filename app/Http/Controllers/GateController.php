@@ -42,7 +42,7 @@ class GateController extends Controller
 
      public function showFruitsEmployee(Request $request)
      {
-         $ingredients = Ingrediente::where('type', IngredienteType::LIQUID)->get();
+         $ingredients = Ingrediente::where('type', IngredienteType::FRUITS)->get();
          return view('auth.employeeTemplate', compact('ingredients'));
      }
 

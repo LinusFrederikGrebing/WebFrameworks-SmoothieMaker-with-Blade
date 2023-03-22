@@ -1,5 +1,5 @@
 <div class="progress-container">
-    <div class="progress2 mt-2">
+    <div class="bg-thm-grey mt-2 rounded">
         <div class="progress-bar" id="progressbar"></div>
     </div>
 </div>

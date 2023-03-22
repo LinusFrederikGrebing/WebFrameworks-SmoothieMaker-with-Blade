@@ -25,8 +25,7 @@ class BottleSizeController extends Controller
         $bottle = BottleSize::findOrFail($bottleID);
         $request->session()->put('bottle', $bottle);
         //return response()->json([]);
-        $ingredients = Ingrediente::where('type', IngredienteType::FRUITS)->get();
-        return view('steps/step2ChooseIngrediente', compact('ingredients'));
+        return redirect()->route('showFruits');
     }
 
 }

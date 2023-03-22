@@ -11,7 +11,7 @@
                     </div>
                     <div class="divide-y divide-gray-200">
                         <div class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
-                            <form action="/api/updated/ingrediente/{{ $ingrediente['id'] }}" enctype="multipart/form-data"
+                            <form action="/updated/ingrediente/{{ $ingrediente['id'] }}" enctype="multipart/form-data"
                                 method="post">
                                 @csrf
                                 <div>
@@ -40,9 +40,14 @@
                                     <x-jet-label for="image" value="{{ __('Neues SVG der Zutat:') }}" />
                                     <input type="file" class="form-control-file" id="image" name="image"
                                         value="{{ old('image') ?? $ingrediente->image }}">
-                                    <x-jet-button class="mt-4">
-                                        {{ __('Zutat aktualisieren') }}
-                                    </x-jet-button>
+                                    <div class="flex items-center justify-end mt-4">
+                                        <a class="underline text-sm text-gray-600 hover:text-gray-900" href="/home">
+                                            {{ __('Zurück') }}
+                                        </a>
+                                        <x-jet-button class="ml-4">
+                                            Zutat aktualisieren
+                                        </x-jet-button>
+                                    </div>
                             </form>
                         </div>
                     </div>

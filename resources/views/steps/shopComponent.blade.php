@@ -1,6 +1,20 @@
 <x-guest-layout>
     <div class="container">
-        @include('layouts.sizeComponent')
+        <div class="w-full flex">
+            <div class="lg:w-4/6">
+                @include('layouts.sizeComponent')
+            </div>
+            <div class="lg:w-2/6">
+                <div class="flex mt-3">
+                    <x-jet-input id="presetname-input" class="block mt-1 w-7/12" type="text" name="presetname"  />
+                    <div>
+                        <x-jet-button class="mt-2" onclick="storeAsPreset(document.getElementById('presetname-input').value)">
+                            Preset erstellen!
+                        </x-jet-button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="w-full">
             <div class="flex">
                 <button onclick="window.location='{{ route('showFruits') }}'"
@@ -13,7 +27,7 @@
             </div>
         </div>
         <div class="flex flex-col md:flex-row mt-4">
-            <div class="w-full md:w-3/5">
+            <div class="w-full md:w-4/6">
                 <div class="item-list-table">
                     <div class="w-95 ml-4">
                         <table>
@@ -23,12 +37,12 @@
                                     <th scope="col">Name</th>
                                     <th scope="col">Preis</th>
                                     <th scope="col">Menge</th>
-                                    <th scope="col">Remove</th>
+                                    <th scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($ingredients as $index => $item)
-                                    <tr>
+                                    <tr class="my-1">
                                         <td><img src="/images/piece/{{ $item->options->image }}" class="table-img"></td>
                                         <td><span class="text-dark">{{ $item->name }}</span></td>
                                         <td> <span class="font-weight-bold"> {{ $item->price }}€ / 50g</span></td>
@@ -51,16 +65,14 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <button onclick="removeSpecificCart('{{ $item->rowId }}')">
-                                                <span class="material-symbols-outlined">
-                                                    delete
-                                                </span>
-                                            </button>
+                                            <x-jet-button class="" onclick="removeSpecificCart('{{ $item->rowId }}')">
+                                                Löschen!
+                                            </x-jet-button>
                                         </td>
                                     </tr>
                                 @endforeach
                                 @foreach ($liquids as $index => $item)
-                                    <tr>
+                                    <tr class="my-1">
                                         <td><img src="/images/piece/{{ $item->options->image }}" class="table-img">
                                         </td>
                                         <td><span class="text-dark">{{ $item->name }}</span></td>
@@ -77,11 +89,9 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <button onclick="removeSpecificCart('{{ $item->rowId }}')">
-                                                <span class="material-symbols-outlined">
-                                                    delete
-                                                </span>
-                                            </button>
+                                            <x-jet-button class="" onclick="removeSpecificCart('{{ $item->rowId }}')">
+                                                Löschen!
+                                            </x-jet-button>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -97,7 +107,7 @@
                         Jetzt kaufen </button>
                 </div>
             </div>
-            <div class="w-full md:w-2/5">
+            <div class="w-full md:w-2/6">
                 @include('layouts.mixerComponent')
                 @include('layouts.progressbarComponent')
             </div>

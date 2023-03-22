@@ -3,17 +3,17 @@
         @include('layouts.sizeComponent')
         <div class="w-full">
             <div class="flex">
-                <button class="flex justify-center w-full custom-btn grey-bg">
+                <button class="flex justify-center w-full custom-btn grey-active-bg">
                     <img src="/images/liquidicon.png" alt="Bild 1" class="inline-block h-6">
                     Flüssigkeit
                 </button>
             </div>
         </div>
         <div class="flex flex-col md:flex-row">
-            <div class="w-full md:w-3/5">
+            <div class="w-full md:w-3/5 mt-2">
                 <div class="flex flex-wrap item-liquid-list">
                     @foreach ($ingredients as $index => $ingredient)
-                    <div  class="w-full sm:w-1/2 md:w-1/4 lg:w-1/5 p-2" id="ingrediente-card{{$index}}" onmouseenter="hoverEnter(event)" onmouseleave="hoverLeave(event)">
+                    <div  class="w-full sm:w-1/2 md:w-1/4 lg:w-1/3 p-2" id="ingrediente-card{{$index}}" onmouseenter="hoverEnter(event)" onmouseleave="hoverLeave(event)">
                         <div id="liquid_{{ $ingredient->id }}" class="v-card mx-auto ingrediente-item bg-white rounded-md overflow-hidden">
                             <div class="text-center">
                                 <div class="h-16 w-16 mx-auto mt-4">
@@ -24,10 +24,10 @@
                                 <p>{{ $ingredient->price }}€ / 50g</p>
                             </div>
                             @csrf
-                            <div class="d-flex align-items-center mb-2">
-                                <button class="ml-4 mr-4 flex-grow-1 green-bg custom-btn" onclick="setLiquidBasedOnId({{ $ingredient->id }})">
-                                    Wählen!
-                                </button>
+                            <div class="flex justify-center mb-2">
+                                <x-jet-button class="" onclick="setLiquidBasedOnId({{ $ingredient->id }})">
+                                    {{ __('Wählen!') }}
+                                </x-jet-button>
                             </div>
                         </div>
                     </div>

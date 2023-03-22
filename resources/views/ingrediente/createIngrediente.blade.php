@@ -11,7 +11,7 @@
                     </div>
                     <div class="divide-y divide-gray-200">
                         <div class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
-                            <form action="/api/create/ingrediente" enctype="multipart/form-data" method="post">
+                            <form action="/create/ingrediente" enctype="multipart/form-data" method="post">
                                 @csrf
                                 <div>
                                     <x-jet-label for="name" value="{{ __('Name:') }}" />
@@ -38,9 +38,14 @@
                                         name="image" required autofocus />
 
                                 </div>
-                                <x-jet-button class="mt-4">
-                                    {{ __('Neue Zutat hinzufügen') }}
-                                </x-jet-button>
+                                <div class="flex items-center justify-end mt-4">
+                                    <a class="underline text-sm text-gray-600 hover:text-gray-900"  href="/home">
+                                        {{ __('Zurück') }}
+                                    </a>
+                                    <x-jet-button class="ml-4">
+                                        {{ __('Zutat hinzufügen') }}
+                                    </x-jet-button>
+                                </div>
                             </form>
                         </div>
                     </div>

@@ -8,9 +8,10 @@
             </div>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 @foreach ($bottles as $index => $bottle)
-                    <div id="bottle-card{{$index}}" class="v-card w-full bg-gray-200 rounded-lg sahdow-lg overflow-hidden flex flex-col md:flex-row"
+                <div id="bottle-card{{$index}}" class="bg-container">
+                    <div class="mx-4 mb-2 v-card w-full bg-white rounded-lg sahdow-lg overflow-hidden flex flex-col md:flex-row rounded-box"
                         onmouseenter="hoverEnter(event)" onmouseleave="hoverLeave(event)">
-                        <div class="w-full md:w-2/5 h-80">
+                        <div class="w-full md:w-2/5 h-70">
                             <img class="object-center object-cover w-full h-full" src="/images/{{ $bottle['image'] }}"
                                 alt="bottleSize">
                         </div>
@@ -27,7 +28,9 @@
                                 </button>
                             </div>
                         </div>
-                    </div>
+                    </div> 
+                    <div class="green-background-rotate mx-auto rounded-box"></div>
+                </div>
                 @endforeach
             </div>
         </section>

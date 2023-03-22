@@ -4,7 +4,6 @@
         <a class="text-white text-lg" href="{{ url('/') }}">
             SmoothieMaker
         </a>
-        
         <!-- Navigation items -->
         <div class="flex items-center">
           <!-- Authentication Links -->
