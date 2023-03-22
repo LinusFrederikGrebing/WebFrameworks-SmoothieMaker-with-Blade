@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call(IngredienteSeed::class);    
         $this->call(BottleSizeSeed::class);    
         $this->call(UserSeed::class);    
-        $this->call(PresetSeed::class);    
+        $this->call(PresetSeed::class); 
+        $this->call(IngredientInfoSeed::class);   
     }
 }
