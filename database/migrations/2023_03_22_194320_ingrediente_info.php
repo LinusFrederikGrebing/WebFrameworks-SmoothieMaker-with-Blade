@@ -18,9 +18,9 @@ class IngredienteInfo extends Migration
             $table->string('info');
             $table->string('energie');
             $table->string('fett');
-            $table->string('fatty-acids');
+            $table->string('fattyacids');
             $table->string('carbohydrates');
-            $table->string('fruits-carbohydrates');
+            $table->string('fruitscarbohydrates');
             $table->string('protein');
             $table->string('salt');
             $table->unsignedBigInteger('ingrediente_id')->nullable();

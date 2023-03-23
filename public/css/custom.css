@@ -237,7 +237,9 @@ p {
     width: 10%;
   }
 
-
+  .alert-table td:nth-child(2) {
+    width: 60%;
+  }
   .body {
     overflow-x: hidden;
   }
@@ -275,4 +277,11 @@ p {
 .rounded-box {
   border-radius: 30px !important;
   padding: 5px;
+}
+
+.info-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  opacity: 0.4;
 }

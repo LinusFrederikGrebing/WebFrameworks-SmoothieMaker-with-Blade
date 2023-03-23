@@ -67,3 +67,5 @@ Route::post('/updated/ingrediente/{ingrediente}', [App\Http\Controllers\Ingredie
 Route::post('/update/ingrediente/{ingrediente}', [App\Http\Controllers\IngredienteController::class, 'showUpdateField'])->name('update');
 Route::post('/create/ingrediente', [App\Http\Controllers\IngredienteController::class, 'store']);
     
+
+Route::get('/getIngredientInfo/{ingredientId}', [App\Http\Controllers\IngredientInfoController::class, 'getIngredientInfo'])->name('getIngredientInfo');

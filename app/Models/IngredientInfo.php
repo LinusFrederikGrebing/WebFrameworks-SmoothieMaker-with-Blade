@@ -9,7 +9,7 @@ class IngredientInfo extends Model
 {
     use HasFactory;
     protected $table = 'ingredient_infos';
-    protected $fillable = ['info', 'ingrediente_id', 'energie', 'fett', 'fatty-acids', 'carbohydrates', 'fruits-carbohydrates', 'protein', 'salt'];
+    protected $fillable = ['info', 'ingrediente_id', 'energie', 'fett', 'fattyacids', 'carbohydrates', 'fruitscarbohydrates', 'protein', 'salt'];
     public $timestamps = false;
     public function ingrediente()
     {

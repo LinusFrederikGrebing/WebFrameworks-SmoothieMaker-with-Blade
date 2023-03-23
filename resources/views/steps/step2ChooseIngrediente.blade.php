@@ -25,6 +25,12 @@
                                     <div class="h-16 w-16 mx-auto mt-4">
                                         <img class="h-full w-full object-contain"
                                             src="/images/piece/{{ $ingredient->image }}" alt="{{ $ingredient->name }}">
+                                            <button
+                                            class="info-button"
+                                            onclick="showInfo({{$ingredient->id}}, '{{$ingredient->name}}')"
+                                          >
+                                            <span class="material-symbols-outlined mt-3 mr-3"> info </span>
+                                          </button>
                                     </div>
                                     <p class="font-bold text-lg my-2">{{ $ingredient->name }}</p>
                                     <p>{{ $ingredient->price }}€ / 50g</p>

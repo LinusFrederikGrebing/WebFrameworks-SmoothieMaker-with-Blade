@@ -4,6 +4,7 @@
             <div class="lg:w-4/6">
                 @include('layouts.sizeComponent')
             </div>
+            @auth
             <div class="lg:w-2/6">
                 <div class="flex mt-3">
                     <x-jet-input id="presetname-input" class="block mt-1 w-7/12" type="text" name="presetname"  />
@@ -14,6 +15,7 @@
                     </div>
                 </div>
             </div>
+            @endauth
         </div>
         <div class="w-full">
             <div class="flex">
@@ -37,6 +39,7 @@
                                     <th scope="col">Name</th>
                                     <th scope="col">Preis</th>
                                     <th scope="col">Menge</th>
+                                    <th scope="col"></th>
                                     <th scope="col"></th>
                                 </tr>
                             </thead>
@@ -65,6 +68,11 @@
                                             </div>
                                         </td>
                                         <td>
+                                            <a class="underline text-sm text-gray-600 hover:text-gray-900" onclick="showInfo({{$item->id}}, '{{$item->name}}')">
+                                                {{ __('infos') }}
+                                            </a>
+                                        </td>
+                                        <td>
                                             <x-jet-button class="" onclick="removeSpecificCart('{{ $item->rowId }}')">
                                                 Löschen!
                                             </x-jet-button>
@@ -87,6 +95,11 @@
                                                         </span>
                                                     </button>
                                             </div>
+                                        </td>
+                                        <td>
+                                            <a class="underline text-sm text-gray-600 hover:text-gray-900" onclick="showInfo({{$item->id}}, '{{$item->name}}')">
+                                                {{ __('infos') }}
+                                            </a>
                                         </td>
                                         <td>
                                             <x-jet-button class="" onclick="removeSpecificCart('{{ $item->rowId }}')">
