@@ -13,30 +13,30 @@
             <div class="w-full md:w-3/5 mt-2">
                 <div class="flex flex-wrap item-liquid-list">
                     @foreach ($ingredients as $index => $ingredient)
-                    <div  class="w-full sm:w-1/2 md:w-1/4 lg:w-1/3 p-2" id="ingrediente-card{{$index}}" onmouseenter="hoverEnter(event)" onmouseleave="hoverLeave(event)">
-                        <div id="liquid_{{ $ingredient->id }}" class="v-card mx-auto ingrediente-item bg-white rounded-md overflow-hidden">
-                            <div class="text-center">
-                                <div class="h-16 w-16 mx-auto mt-4">
-                                    <img class="h-full w-full object-contain"
-                                        src="/images/piece/{{ $ingredient->image }}" alt="{{ $ingredient->name }}">
-                                        <button
-                                        class="info-button"
-                                        onclick="showInfo({{$ingredient->id}}, '{{$ingredient->name}}')"
-                                      >
-                                        <span class="material-symbols-outlined mt-3 mr-3"> info </span>
-                                      </button>
+                        <div class="w-full sm:w-1/2 md:w-1/4 lg:w-1/3 p-2" id="ingrediente-card{{ $index }}"
+                            onmouseenter="hoverEnter(event)" onmouseleave="hoverLeave(event)">
+                            <div id="liquid_{{ $ingredient->id }}"
+                                class="v-card mx-auto ingrediente-item bg-white rounded-md overflow-hidden">
+                                <div class="text-center">
+                                    <div class="h-16 w-16 mx-auto mt-4">
+                                        <img class="h-full w-full object-contain"
+                                            src="/images/piece/{{ $ingredient->image }}" alt="{{ $ingredient->name }}">
+                                        <button class="info-button"
+                                            onclick="showInfo({{ $ingredient->id }}, '{{ $ingredient->name }}')">
+                                            <span class="material-symbols-outlined mt-3 mr-3"> info </span>
+                                        </button>
+                                    </div>
+                                    <p class="font-bold text-lg my-2">{{ $ingredient->name }}</p>
+                                    <p>{{ $ingredient->price }}€ / 50g</p>
                                 </div>
-                                <p class="font-bold text-lg my-2">{{ $ingredient->name }}</p>
-                                <p>{{ $ingredient->price }}€ / 50g</p>
-                            </div>
-                            @csrf
-                            <div class="flex justify-center mb-2">
-                                <x-jet-button class="" onclick="setLiquidBasedOnId({{ $ingredient->id }})">
-                                    {{ __('Wählen!') }}
-                                </x-jet-button>
+                                @csrf
+                                <div class="flex justify-center mb-2">
+                                    <x-jet-button class="" onclick="setLiquidBasedOnId({{ $ingredient->id }})">
+                                        {{ __('Wählen!') }}
+                                    </x-jet-button>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     @endforeach
                 </div>
                 <div class="flex">

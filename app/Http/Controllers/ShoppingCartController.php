@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Cart;
 use App\Models\BottleSize;
 use App\Models\Ingrediente;
-use Alert;
 use App\Models\IngredienteType;
 class ShoppingCartController extends Controller
 {

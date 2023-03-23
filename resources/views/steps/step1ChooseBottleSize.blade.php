@@ -8,29 +8,30 @@
             </div>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 @foreach ($bottles as $index => $bottle)
-                <div id="bottle-card{{$index}}" class="bg-container">
-                    <div class="mx-4 mb-2 v-card w-full bg-white rounded-lg sahdow-lg overflow-hidden flex flex-col md:flex-row rounded-box"
-                        onmouseenter="hoverEnter(event)" onmouseleave="hoverLeave(event)">
-                        <div class="w-full md:w-2/5 h-70">
-                            <img class="object-center object-cover w-full h-full" src="/images/{{ $bottle['image'] }}"
-                                alt="bottleSize">
-                        </div>
-                        <div class="w-full md:w-3/5 text-left p-6 md:p-4 space-y-2">
-                            <p class="text-xl text-black font-bold">Größe: {{ $bottle['name'] }}</p>
-                            <p class="text-base text-gray-400 font-normal"></p>
-                            <p class="text-base leading-relaxed text-gray-500 font-normal">{{ $bottle['description'] }}
-                            </p>
-                            <div>
-                                <button class="custom-btn green-bg newBottleSize"
-                                    onclick="window.location='{{ route('showInhalt', ['bottle' => $bottle]) }}'">
-                                    Weiter
+                    <div id="bottle-card{{ $index }}" class="bg-container">
+                        <div class="mx-4 mb-2 v-card w-full bg-white rounded-lg sahdow-lg overflow-hidden flex flex-col md:flex-row rounded-box"
+                            onmouseenter="hoverEnter(event)" onmouseleave="hoverLeave(event)">
+                            <div class="w-full md:w-2/5 h-70">
+                                <img class="object-center object-cover w-full h-full"
+                                    src="/images/{{ $bottle['image'] }}" alt="bottleSize">
+                            </div>
+                            <div class="w-full md:w-3/5 text-left p-6 md:p-4 space-y-2">
+                                <p class="text-xl text-black font-bold">Größe: {{ $bottle['name'] }}</p>
+                                <p class="text-base text-gray-400 font-normal"></p>
+                                <p class="text-base leading-relaxed text-gray-500 font-normal">
+                                    {{ $bottle['description'] }}
+                                </p>
+                                <div>
+                                    <button class="custom-btn green-bg newBottleSize"
+                                        onclick="window.location='{{ route('showInhalt', ['bottle' => $bottle]) }}'">
+                                        Weiter
 
-                                </button>
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                    </div> 
-                    <div class="green-background-rotate mx-auto rounded-box"></div>
-                </div>
+                        <div class="green-background-rotate mx-auto rounded-box"></div>
+                    </div>
                 @endforeach
             </div>
         </section>

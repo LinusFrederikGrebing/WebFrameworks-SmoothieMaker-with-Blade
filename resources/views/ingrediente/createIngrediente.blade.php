@@ -22,7 +22,6 @@
                                     <x-jet-label for="price" value="{{ __('Einzelpreis:') }}" />
                                     <input class="block mt-1 w-full" id="price" type="number" step="0.01"
                                         name="price" required autofocus />
-
                                 </div>
                                 <div class="mt-4">
                                     <x-jet-label for="type" value="{{ __('Type:') }}" />
@@ -36,10 +35,9 @@
                                     <x-jet-label for="image" value="{{ __('SVG der Zutat:') }}" />
                                     <input class="block mt-1 w-full" id="image" type="file" step="0.01"
                                         name="image" required autofocus />
-
                                 </div>
                                 <div class="flex items-center justify-end mt-4">
-                                    <a class="underline text-sm text-gray-600 hover:text-gray-900"  href="/home">
+                                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="/home">
                                         {{ __('Zurück') }}
                                     </a>
                                     <x-jet-button class="ml-4">

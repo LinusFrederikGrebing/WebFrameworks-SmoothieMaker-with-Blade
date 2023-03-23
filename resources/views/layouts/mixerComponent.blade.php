@@ -1,29 +1,19 @@
 <script>
-	$(document).ready(function() {
-		setup();
-	});
+    $(document).ready(function() {
+        setup();
+    });
 </script>
 <div class="containerMixer max-w-none mt-4">
     <canvas class="mx-8" id="myCanvas" width="240" height="325"></canvas>
     <img id="mixerLogo" src="/images/mixer2.png" class="mixer mt-2 max-w-none" />
     <img id="becherLogo" src="/images/becher.png" class="mixer mt-2 max-w-none" />
     <div class="becherWrapper">
-      <object
-        id="liquidImage"
-        type="image/svg+xml"
-        data="/images/liquid.svg"
-        class="inner-image"
-      ></object>
+        <object id="liquidImage" type="image/svg+xml" data="/images/liquid.svg" class="inner-image"></object>
     </div>
     <div class="becherWrapper">
-      <object
-        id="innerImage"
-        type="image/svg+xml"
-        data="/images/smoothie-juice.svg"
-        class="inner-image"
-      ></object>
+        <object id="innerImage" type="image/svg+xml" data="/images/smoothie-juice.svg" class="inner-image"></object>
     </div>
     <img id="mlZahlLogo" src="/images/mlzahl.png" class="mixer mt-2 max-w-none" />
-  </div>
-		
+</div>
+
 <script src="{{ asset('js/mixer.js') }}"></script>

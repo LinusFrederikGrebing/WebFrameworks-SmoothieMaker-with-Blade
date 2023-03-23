@@ -5,16 +5,17 @@
                 @include('layouts.sizeComponent')
             </div>
             @auth
-            <div class="lg:w-2/6">
-                <div class="flex mt-3">
-                    <x-jet-input id="presetname-input" class="block mt-1 w-7/12" type="text" name="presetname"  />
-                    <div>
-                        <x-jet-button class="mt-2" onclick="storeAsPreset(document.getElementById('presetname-input').value)">
-                            Preset erstellen!
-                        </x-jet-button>
+                <div class="lg:w-2/6">
+                    <div class="flex mt-3">
+                        <x-jet-input id="presetname-input" class="block mt-1 w-7/12" type="text" name="presetname" />
+                        <div>
+                            <x-jet-button class="mt-2"
+                                onclick="storeAsPreset(document.getElementById('presetname-input').value)">
+                                Preset erstellen!
+                            </x-jet-button>
+                        </div>
                     </div>
                 </div>
-            </div>
             @endauth
         </div>
         <div class="w-full">
@@ -51,7 +52,8 @@
                                         <td> <span class="font-weight-bold"> {{ $item->price }}€ / 50g</span></td>
                                         <td class="text-center" data-title="stock">
                                             <div class="flex">
-                                                <button onclick="addSpecificOne('{{ $item->rowId }}', {{ $item->id }})"
+                                                <button
+                                                    onclick="addSpecificOne('{{ $item->rowId }}', {{ $item->id }})"
                                                     class="btn increase">
                                                     <span class="material-symbols-outlined">
                                                         add
@@ -59,7 +61,8 @@
                                                 </button>
                                                 <span class="qty"
                                                     id='qty{{ $item->id }}'>{{ $item->qty }}</span>
-                                                <button onclick="removeSpecificOne('{{ $item->rowId }}', {{ $item->id }})"
+                                                <button
+                                                    onclick="removeSpecificOne('{{ $item->rowId }}', {{ $item->id }})"
                                                     class="btn decrease">
                                                     <span class="material-symbols-outlined">
                                                         remove
@@ -68,12 +71,14 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <a class="underline text-sm text-gray-600 hover:text-gray-900" onclick="showInfo({{$item->id}}, '{{$item->name}}')">
+                                            <a class="underline text-sm text-gray-600 hover:text-gray-900"
+                                                onclick="showInfo({{ $item->id }}, '{{ $item->name }}')">
                                                 {{ __('infos') }}
                                             </a>
                                         </td>
                                         <td>
-                                            <x-jet-button class="" onclick="removeSpecificCart('{{ $item->rowId }}')">
+                                            <x-jet-button class=""
+                                                onclick="removeSpecificCart('{{ $item->rowId }}')">
                                                 Löschen!
                                             </x-jet-button>
                                         </td>
@@ -89,20 +94,22 @@
                                             <div class="flex">
                                                 <span class="qty ml-2 mr-2"
                                                     id='qty{{ $item->id }}'>{{ $item->qty }}</span>
-                                                    <button onclick="window.location='{{ route('showLiquids') }}'">
-                                                        <span class="material-symbols-outlined">
-                                                            edit
-                                                        </span>
-                                                    </button>
+                                                <button onclick="window.location='{{ route('showLiquids') }}'">
+                                                    <span class="material-symbols-outlined">
+                                                        edit
+                                                    </span>
+                                                </button>
                                             </div>
                                         </td>
                                         <td>
-                                            <a class="underline text-sm text-gray-600 hover:text-gray-900" onclick="showInfo({{$item->id}}, '{{$item->name}}')">
+                                            <a class="underline text-sm text-gray-600 hover:text-gray-900"
+                                                onclick="showInfo({{ $item->id }}, '{{ $item->name }}')">
                                                 {{ __('infos') }}
                                             </a>
                                         </td>
                                         <td>
-                                            <x-jet-button class="" onclick="removeSpecificCart('{{ $item->rowId }}')">
+                                            <x-jet-button class=""
+                                                onclick="removeSpecificCart('{{ $item->rowId }}')">
                                                 Löschen!
                                             </x-jet-button>
                                         </td>
@@ -115,7 +122,8 @@
                 <div class="">
                     <hr class="w-75">
                     <p>Total: <b id="subTotal">{{ Gloudemans\Shoppingcart\Facades\Cart::subtotal() }}</b></p>
-                    <h5>Total inkl. MwSt: <b id="total">{{ Gloudemans\Shoppingcart\Facades\Cart::total() }}</b></h5>
+                    <h5>Total inkl. MwSt: <b id="total">{{ Gloudemans\Shoppingcart\Facades\Cart::total() }}</b>
+                    </h5>
                     <button class="custom-btn green-bg" role="button" onclick="getLiquidAndIngredientContent()">
                         Jetzt kaufen </button>
                 </div>
@@ -133,12 +141,13 @@
     var liquidContent = [];
     removeBall();
     ingredienteContent.forEach((ingrediente) => {
-          console.log(ingrediente);
-           setImg(
+        console.log(ingrediente);
+        setImg(
             ingrediente.options.image,
             ingrediente.qty
-          );
+        );
     });
+
     function getLiquidAndIngredientContent() {
         getCartContent(bottle);
     }
