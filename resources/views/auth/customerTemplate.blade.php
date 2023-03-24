@@ -17,7 +17,8 @@
                     <tr>
                         <td>{{ $item }}</td>
                         <td>
-                            <a class="underline text-sm text-gray-600 hover:text-gray-900" onclick="deletePreset('{{ $item }}')">
+                            <a class="underline text-sm text-gray-600 hover:text-gray-900"
+                                onclick="deletePreset('{{ $item }}')">
                                 {{ __('löschen') }}
                             </a>
                         </td>

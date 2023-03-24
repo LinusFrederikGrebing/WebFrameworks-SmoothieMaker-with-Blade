@@ -1,60 +1,109 @@
-<nav class="bg-thm-grey h-14">
-    <div class="container mx-auto flex items-center justify-between py-4">
-        <!-- SmoothieMaker logo -->
-        <a class="text-white text-lg" href="{{ url('/') }}">
-            SmoothieMaker
-        </a>
-        <!-- Navigation items -->
-        <div class="flex items-center">
-            <!-- Authentication Links -->
-            <ul class="flex items-center">
-                @guest
-                    @if (Route::has('login'))
-                        <li class="ml-4">
-                            <a class="text-white hover:text-gray-300" href="{{ route('login') }}">{{ __('Login') }}</a>
-                        </li>
-                    @endif
-                    @if (Route::has('register'))
-                        <li class="ml-4">
-                            <a class="text-white hover:text-gray-300"
-                                href="{{ route('register') }}">{{ __('Register') }}</a>
-                        </li>
-                    @endif
-                @else
-                    <!-- User dropdown -->
-                    <li class="ml-4 relative">
-                        <button id="dropdown-btn"
-                            class="flex items-center text-white hover:text-gray-300 focus:outline-none">
-                            <span class="mr-1">{{ Auth::user()->name }}</span>
-                            <span class="material-symbols-outlined mb-1">
-                                expand_more
-                            </span>
-                        </button>
-                        <!-- Dropdown items -->
-                        <div class="absolute right-0 mt-2 w-32 bg-white rounded-md shadow-lg hidden">
-                            <a class="block px-4 py-2 text-gray-800 hover:bg-gray-100 hover:text-gray-900" href="/home">
-                                Home
-                            </a>
-                            <a class="block px-4 py-2 text-gray-800 hover:bg-gray-100 hover:text-gray-900"
-                                href="{{ route('logout') }}"
-                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
-                            </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
-                                @csrf
-                            </form>
-                        </div>
-                    </li>
-                @endguest
-            </ul>
+<nav>
+    <div class="app-bar-content bg-thm-grey h-16">
+        <div class="text-white mt-1 ml-16" style="text-decoration: none">
+            <a href="{{ route('/') }}">
+                <h4>SmoothieMaker</h4>
+            </a>
         </div>
+        @guest
+            <div class="flex mr-16">
+                <div class="ml-4">
+                    <a href="{{ route('login') }}" class="text-white" style="text-decoration: none">
+                        <h6>Login</h6>
+                    </a>
+                </div>
+                <div class="ml-4">
+                    <a href="{{ route('register') }}" class="text-white" style="text-decoration: none">
+                        <h6>Register</h6>
+                    </a>
+                </div>
+            </div>
+        @endguest
+        @auth
+            <button class="flex mr-16" onclick="toggleDrawer()">
+                <span class="material-symbols-outlined" style="color: white;">
+                    menu
+                </span>
+                <div class="text-white">Menu</div>
+            </button>
+        @endauth
     </div>
+    @auth
+        <div class="active" id="navigation">
+            <div class="py-8" id="sidebar">
+                <div class="sidebar-body">
+                    <div class="sidebar-links">
+                        <small class="my-8 text-white">Benuter: {{ Auth::user()->name }}</small>
+                        <br>
+                        <small class="my-8 text-white">Rolle: {{ Auth::user()->type }}</small>
+                        <hr class="divider" />
+                        <div class="links">
+                            @if(Auth::user()->type === 'mitarbeiter')
+                            <div>
+                                <a >
+                                    <div class="icon">
+                                        <span class="material-symbols-outlined">
+                                            playlist_add_check
+                                        </span>
+                                    </div>
+                                    <div class="link-title" v-show="menuCompact.hidden">
+                                        Admin-Ansicht
+                                    </div>
+                                </a>
+                            </div>
+                            @endif
+                            <div>
+                                <a href="{{ route('/') }}">
+                                    <div class="icon">
+                                        <span class="material-symbols-outlined">
+                                            home
+                                        </span>
+                                    </div>
+                                    <div class="link-title" v-show="menuCompact.hidden">
+                                        Startseite
+                                    </div>
+                                </a>
+                            </div>
+                            <div>
+                                <a>
+                                    <div class="icon">
+                                        <span class="material-symbols-outlined">
+                                            info
+                                        </span>
+                                    </div>
+                                    <div class="link-title" v-show="menuCompact.hidden">
+                                        Kunden-Ansicht
+                                    </div>
+                                </a>
+                            </div>
+                            <div>
+                                <a href="{{ route('logout') }}"
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    <div class="icon">
+                                        <span class="material-symbols-outlined">
+                                            logout
+                                        </span>
+                                    </div>
+                                    <div class="link-title" v-show="menuCompact.hidden">
+                                        Logout
+                                    </div>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
+                                        @csrf
+                                    </form>
+                                </a>
+                            </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endauth
 </nav>
 <script>
-    var dropdownBtn = document.getElementById('dropdown-btn');
-    var dropdownMenu = dropdownBtn.nextElementSibling;
-
-    dropdownBtn.addEventListener('click', function() {
-        dropdownMenu.classList.toggle('hidden');
-    });
+    function toggleDrawer() {
+        var sidebar = document.getElementById("navigation");
+        console.log(sidebar);
+        sidebar.classList.toggle("active");
+    }
 </script>
