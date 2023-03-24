@@ -88,13 +88,14 @@ function showAlertError(title, text) {
     });
   }
 
-  function showInfo(ingredientId, ingredintName) {
+  function showInfo(ingredientId, ingredintName, isAdmin = false) {
     // Implementierung der showInfo-Methode
     axios.get(`/getIngredientInfo/${ingredientId}`, {}).then((response) => {
-        console.log(response);
+      var exists = true;
         var ingredientInfo = response.data.ingredientInfo;
         // Build the table HTML
         if (ingredientInfo == null) {
+            exists = false;
             var tableHTML =
                 "<p>Zu dieser Zutat gibt es keine Inhaltstoff-Informationen</p>";
         } else {
@@ -159,7 +160,19 @@ function showAlertError(title, text) {
             title: "Inhaltsstoffe - " + ingredintName,
             html: tableHTML,
             showCloseButton: true,
-            showConfirmButton: false,
-        });
+            showConfirmButton: isAdmin,
+            confirmButtonColor: "#000000",
+            confirmButtonText: "Bearbeiten!",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            if (exists) {
+              
+             window.location.href = "/showUpdate/ingredienteInfo/" + ingredientId;
+              } else {
+                  // Redirect zur Create-Route
+              window.location.href = "/create-ingredient/"+ingredientId;
+            }
+          };
     });
+});
 }

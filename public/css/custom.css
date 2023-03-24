@@ -343,14 +343,14 @@ p {
   transition: 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.sidebar-links a:hover {
+.sidebar-green:hover {
   transform: scale(1.08);
   background-image: linear-gradient(to right, rgba(128,186,36, 1), rgb(76, 119, 7));
   box-shadow: 0px 0px 8px rgba(128,186,36, 0.85);
   border-color: rgb(198, 246, 121);
 }
 
-.sidebar-links a:nth-last-of-type(1):hover {
+.sidebar-red:hover{
   background-image: linear-gradient(to right, red, rgb(100,0,0));
   box-shadow: 0px 0px 8px red;
   border-color: red;

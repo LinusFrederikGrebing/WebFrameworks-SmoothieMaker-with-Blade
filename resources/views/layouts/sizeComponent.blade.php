@@ -1,4 +1,4 @@
-<div class="my-3">
+<div class="mb-3 pt-4">
     <div class="flex">
         <h1><b>Smoothie-Größe: <span class="bottle-name"></span></b></h1>
         <button class="showBottleSizes" onclick="showBottleSizes()">

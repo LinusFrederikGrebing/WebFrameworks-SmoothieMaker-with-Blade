@@ -20,25 +20,29 @@ class GateController extends Controller
      }
      public function show()
      {
-        if (auth()->check()) {
-            $user = auth()->user();
-            if($user->type == UserRole::KUNDE) {
-                if (!Auth::check()) { 
-                    return;
-                }
-                $user = Auth::user();
-                $userPresets = Preset::where('user_id', $user->id)->pluck('name');
-                return view('auth.customerTemplate', compact('user', 'userPresets'));
-            } else if ($user->type == UserRole::MITARBEITER) {
-                $ingredients = Ingrediente::where('type', IngredienteType::FRUITS)->get();
-                return view('auth.employeeTemplate', compact('ingredients'));
-            } else {
-                return view('auth.login');
-            }
-        } else {
+        return view('landingpageTemplate');
+     }
+
+     public function employeeView(){
+        if(Auth::user()->type == UserRole::MITARBEITER) {
+            $ingredients = Ingrediente::where('type', IngredienteType::FRUITS)->get();
+            return view('auth.employeeTemplate', compact('ingredients'));
+        }
+        else {
             return view('auth.login');
         }
      }
+     public function customerView(){
+        if(Auth::user()) {
+            $user = Auth::user();
+            $userPresets = Preset::where('user_id', Auth::user()->id)->pluck('name');
+            return view('auth.customerTemplate', compact('user', 'userPresets'));
+        }
+        else {
+            return view('auth.login');
+        }
+     }
+     
 
      public function showFruitsEmployee(Request $request)
      {

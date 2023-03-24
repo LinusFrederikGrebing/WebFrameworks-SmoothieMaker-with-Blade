@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <div class="w-full bg-white-800">
+    <div class="w-full bg-white-800 mt-16">
         <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-4 py-12">
             <div class="text-center pb-12">
                 <h1 class="font-bold text-xl md:text-2xl lg:text-3xl font-heading text-black">

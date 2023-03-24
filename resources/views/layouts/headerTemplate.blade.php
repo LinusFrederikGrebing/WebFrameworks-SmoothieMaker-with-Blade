@@ -40,7 +40,7 @@
                         <div class="links">
                             @if(Auth::user()->type === 'mitarbeiter')
                             <div>
-                                <a >
+                                <a class="sidebar-green" href="{{ route('employeeView') }}">
                                     <div class="icon">
                                         <span class="material-symbols-outlined">
                                             playlist_add_check
@@ -53,7 +53,7 @@
                             </div>
                             @endif
                             <div>
-                                <a href="{{ route('/') }}">
+                                <a class="sidebar-green" href="{{ route('/') }}">
                                     <div class="icon">
                                         <span class="material-symbols-outlined">
                                             home
@@ -65,7 +65,7 @@
                                 </a>
                             </div>
                             <div>
-                                <a>
+                                <a class="sidebar-green" href="{{ route('customerView') }}">
                                     <div class="icon">
                                         <span class="material-symbols-outlined">
                                             info
@@ -77,7 +77,7 @@
                                 </a>
                             </div>
                             <div>
-                                <a href="{{ route('logout') }}"
+                                <a class="sidebar-red" href="{{ route('logout') }}"
                                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                     <div class="icon">
                                         <span class="material-symbols-outlined">

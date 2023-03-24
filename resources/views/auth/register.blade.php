@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <div class="min-h-[85vh] bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
+    <div class="min-h-[85vh] bg-gray-100 py-6 flex flex-col justify-center sm:py-12 mt-16">
         <div class="relative py-3 sm:max-w-xl sm:mx-auto">
             <div
                 class="absolute inset-0 bg-gradient-to-r from-lime-400 to-lime-600 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl w-40em">
@@ -33,32 +33,6 @@
                                     <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password"
                                         name="password_confirmation" required autocomplete="new-password" />
                                 </div>
-                                @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
-                                    <div class="mt-4">
-                                        <x-jet-label for="terms">
-                                            <div class="flex items-center">
-                                                <x-jet-checkbox name="terms" id="terms" />
-
-                                                <div class="ml-2">
-                                                    {!! __('I agree to the :terms_of_service and :privacy_policy', [
-                                                        'terms_of_service' =>
-                                                            '<a target="_blank" href="' .
-                                                            route('terms.show') .
-                                                            '" class="underline text-sm text-gray-600 hover:text-gray-900">' .
-                                                            __('Terms of Service') .
-                                                            '</a>',
-                                                        'privacy_policy' =>
-                                                            '<a target="_blank" href="' .
-                                                            route('policy.show') .
-                                                            '" class="underline text-sm text-gray-600 hover:text-gray-900">' .
-                                                            __('Privacy Policy') .
-                                                            '</a>',
-                                                    ]) !!}
-                                                </div>
-                                            </div>
-                                        </x-jet-label>
-                                    </div>
-                                @endif
                                 <div class="flex items-center justify-end mt-4">
                                     <a class="underline text-sm text-gray-600 hover:text-gray-900"
                                         href="{{ route('login') }}">

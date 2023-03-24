@@ -66,6 +66,14 @@ Route::post('/delete/ingrediente/{ingrediente}', [App\Http\Controllers\Ingredien
 Route::post('/updated/ingrediente/{ingrediente}', [App\Http\Controllers\IngredienteController::class, 'updateIngrediente']);
 Route::post('/update/ingrediente/{ingrediente}', [App\Http\Controllers\IngredienteController::class, 'showUpdateField'])->name('update');
 Route::post('/create/ingrediente', [App\Http\Controllers\IngredienteController::class, 'store']);
-    
+
+Route::post('/create/ingredienteInfo/{ingredienteID}', [App\Http\Controllers\IngredientInfoController::class, 'storeIngredientInfo']);
+Route::post('/update/ingredienteInfo/{ingredienteID}', [App\Http\Controllers\IngredientInfoController::class, 'updateIngrediente']);
+Route::get('/showUpdate/ingredienteInfo/{ingredienteID}', [App\Http\Controllers\IngredientInfoController::class, 'showUpdateField']);
+Route::get('/create-ingredient/{ingredienteID}', [App\Http\Controllers\IngredientInfoController::class, 'showCreateIngredient'])->name('createIngredient');
+
+
+Route::get('/employee', [App\Http\Controllers\GateController::class, 'employeeView'])->name('employeeView');
+Route::get('/customer', [App\Http\Controllers\GateController::class, 'customerView'])->name('customerView');
 
 Route::get('/getIngredientInfo/{ingredientId}', [App\Http\Controllers\IngredientInfoController::class, 'getIngredientInfo'])->name('getIngredientInfo');

@@ -67,8 +67,7 @@ class IngredienteController extends Controller
         $zutat->price = $request->price;
         $zutat->type = $request->type;
         $zutat->save();
-        Alert::success('', 'Die Zutat wurde erfolgreich hinzugefügt!');
-        return redirect('/home');
+        return redirect()->route('employeeView')->with('alert', ['id' => $zutat->id]);
     }
     public function deleteIngediengte(Request $request, $ingredienteID)
     {
@@ -108,6 +107,6 @@ class IngredienteController extends Controller
 
         $zutat->save();
         Alert::success('', 'Die Zutat wurde erfolgreich aktualisiert!');
-        return redirect('/home');
+        return redirect('/employee');
     }
 }

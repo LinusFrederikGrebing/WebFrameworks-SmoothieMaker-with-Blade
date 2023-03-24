@@ -25,7 +25,7 @@ class IngredienteInfo extends Migration
             $table->string('salt');
             $table->unsignedBigInteger('ingrediente_id')->nullable();
 
-            $table->foreign('ingrediente_id')->references('id')->on('ingredientes');
+            $table->foreign('ingrediente_id')->references('id')->on('ingredientes')->onDelete('cascade');
         });
     }
 

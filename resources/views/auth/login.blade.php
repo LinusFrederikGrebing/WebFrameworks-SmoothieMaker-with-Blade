@@ -1,7 +1,6 @@
 <x-guest-layout>
     <!-- component -->
-    <x-jet-validation-errors class="mb-4" />
-    <div class="min-h-[85vh] bg-gray-100 flex flex-col justify-center">
+    <div class="min-h-[85vh] bg-gray-100 flex flex-col justify-center mt-16">
         <div class="relative sm:max-w-xl sm:mx-auto">
             <div
                 class="absolute inset-0 bg-gradient-to-r from-lime-400 to-lime-600 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl w-40em">
@@ -34,7 +33,7 @@
                                 <div class="flex items-center justify-end mt-4">
                                     <a class="underline text-sm text-gray-600 hover:text-gray-900"
                                         href="{{ route('login') }}">
-                                        {{ __('Noch nicht registriert??') }}
+                                        {{ __('Noch nicht registriert?') }}
                                     </a>
                                     <x-jet-button class="ml-4">
                                         {{ __('Log in') }}

@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="min-h-[85vh] bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
+    <div class="min-h-[85vh] bg-gray-100 py-6 flex flex-col justify-center sm:py-12 mt-16">
         <div class="relative py-3 sm:max-w-xl sm:mx-auto">
             <div
                 class="absolute inset-0 bg-gradient-to-r from-lime-400 to-lime-600 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl w-40em">
@@ -37,7 +37,7 @@
                                         name="image" required autofocus />
                                 </div>
                                 <div class="flex items-center justify-end mt-4">
-                                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="/home">
+                                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="/employee">
                                         {{ __('Zurück') }}
                                     </a>
                                     <x-jet-button class="ml-4">

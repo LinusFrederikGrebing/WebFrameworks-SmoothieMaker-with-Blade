@@ -1,6 +1,6 @@
 <x-app-layout>
-    <div class="w-3/4 ml-auto mr-auto mb-16">
-        <div class="container p-4 mx-auto my-6 space-y-1 text-center">
+    <div class="w-3/4 ml-auto mr-auto mb-16 pt-2 mt-8">
+        <div class="container p-4 mx-auto my-6 space-y-1 text-center mt-16">
             <h3 class="pb-3 text-2xl font-bold md:text-3xl">Admin-Ansicht</h3>
             <p>Hier können alle Zutaten eingesehen und verwaltet werden!</p>
         </div>
@@ -41,6 +41,10 @@
                                     <div class="h-16 w-16 mx-auto mt-4">
                                         <img class="h-full w-full object-contain"
                                             src="/images/piece/{{ $ingredient->image }}" alt="{{ $ingredient->name }}">
+                                        <button class="info-button"
+                                            onclick="showInfo({{ $ingredient->id }}, '{{ $ingredient->name }}', true)">
+                                            <span class="material-symbols-outlined mt-3 mr-3"> info </span>
+                                        </button>
                                     </div>
                                     <p class="font-bold text-lg my-2">{{ $ingredient->name }}</p>
                                     <p>{{ $ingredient->price }}€ / 50g</p>
@@ -72,3 +76,20 @@
         </div>
     </div>
 </x-app-layout>
+@if (session('alert'))
+    <script>
+        Swal.fire({
+            title: "Die Zuatat wurde erfolgreich hinzugefügt!",
+            text: "Klicke auf Informationen hinzufügen, um die Inhaltsstoffe der Zutat einzutragen!",
+            icon: "success",
+            showCancelButton: true,
+            cancelButtonText: "Später hinzufügen",
+            confirmButtonColor: "#6D9E1F",
+            confirmButtonText: "Informationen hinzufügen",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "/create-ingredient/" + {{ session('alert')['id'] }};
+            }
+        });
+    </script>
+@endif

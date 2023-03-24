@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <div class="container">
+    <div class="container mt-16">
         @include('layouts.sizeComponent')
         <div class="w-full">
             <div class="flex">
