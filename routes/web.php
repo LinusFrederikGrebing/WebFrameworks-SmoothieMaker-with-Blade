@@ -22,10 +22,10 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::get('/home',  [App\Http\Controllers\GateController::class, 'show'])->name('home');
-    Route::get('/employee/Fruits',  [App\Http\Controllers\GateController::class, 'showFruitsEmployee'])->name('showFruitsEmployee');
-    Route::get('/employee/Veggie',  [App\Http\Controllers\GateController::class, 'showVeggieEmployee'])->name('showVeggieEmployee');
-    Route::get('/employee/Liquid',  [App\Http\Controllers\GateController::class, 'showLiquidEmployee'])->name('showLiquidEmployee');
+    Route::get('/home', [App\Http\Controllers\GateController::class, 'show'])->name('home');
+    Route::get('/employee/Fruits', [App\Http\Controllers\GateController::class, 'showFruitsEmployee'])->name('showFruitsEmployee');
+    Route::get('/employee/Veggie', [App\Http\Controllers\GateController::class, 'showVeggieEmployee'])->name('showVeggieEmployee');
+    Route::get('/employee/Liquid', [App\Http\Controllers\GateController::class, 'showLiquidEmployee'])->name('showLiquidEmployee');
 });
 
 Route::get('/custom/fruits', [App\Http\Controllers\IngredienteController::class, 'showFruits'])->name('showFruits');

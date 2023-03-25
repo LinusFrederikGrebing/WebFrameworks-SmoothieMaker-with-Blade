@@ -7,25 +7,26 @@ use Cart;
 use App\Models\BottleSize;
 use App\Models\Ingrediente;
 use App\Models\IngredienteType;
+
 class ShoppingCartController extends Controller
 {
     public function storeIngredienteToCart(Request $request, $ingredienteID)
     {
-        $ingrediente = Ingrediente::findOrFail($ingredienteID); 
+        $ingrediente = Ingrediente::findOrFail($ingredienteID);
         $bottle = $this->getBottle($request);
         $liquidItems = $this->getCurrentLiquidItem();
         $total_amount = ($liquidItems->isNotEmpty()) ? $bottle->amount + 1 : $bottle->amount;
-        if($ingrediente->type == 'liquid'){
-            foreach ($liquidItems as $item) { 
+        if ($ingrediente->type == 'liquid') {
+            foreach ($liquidItems as $item) {
                 Cart::remove($item->rowId);
             }
             $this->addToCart($ingrediente, $request->amount);
         } else {
             $can_add_to_cart = (Cart::count() + $request->amount) <= $total_amount;
-            if($can_add_to_cart){
-               $this->addToCart($ingrediente, $request->amount);
+            if ($can_add_to_cart) {
+                $this->addToCart($ingrediente, $request->amount);
             } else {
-               return response()->json(['stored' => false]);
+                return response()->json(['stored' => false]);
             }
         }
         return response()->json(['stored' => true, 'image' => $ingrediente->image]);
@@ -38,12 +39,14 @@ class ShoppingCartController extends Controller
             return BottleSize::findOrFail("4");
         }
     }
-    private function getCurrentLiquidItem(){
-        return Cart::content()->filter(function($item) {
+    private function getCurrentLiquidItem()
+    {
+        return Cart::content()->filter(function ($item) {
             return $item->options->type == 'liquid';
         });
     }
-    private function addToCart($ingrediente, $amount){
+    private function addToCart($ingrediente, $amount)
+    {
         Cart::add([
             'id' => $ingrediente->id,
             'name' => $ingrediente->name,
@@ -51,7 +54,7 @@ class ShoppingCartController extends Controller
             'price' => $ingrediente->price,
             'options' => [
                 'image' => $ingrediente->image,
-                'type' =>  $ingrediente->type,
+                'type' => $ingrediente->type,
             ],
         ]);
     }
@@ -59,13 +62,13 @@ class ShoppingCartController extends Controller
     {
         $bottle = $this->getBottle($request);
         $liquidItems = $this->getCurrentLiquidItem();
-        $cartcount = ($liquidItems->isNotEmpty()) ?  Cart::count() - 1 : Cart::count();
-        $liquidCount = ($liquidItems->isNotEmpty()) ?  1 : 0;
+        $cartcount = ($liquidItems->isNotEmpty()) ? Cart::count() - 1 : Cart::count();
+        $liquidCount = ($liquidItems->isNotEmpty()) ? 1 : 0;
         return response()->json(['cartCount' => $cartcount, 'bottle' => $bottle, 'liquidCount' => $liquidCount]);
     }
     public function getCurrentLiquid(Request $request)
     {
-        $liquidItems = Cart::content()->filter(function($item) {
+        $liquidItems = Cart::content()->filter(function ($item) {
             return $item->options->type === 'liquid';
         });
         return response()->json(['liquidItems' => $liquidItems], 200);
@@ -92,24 +95,24 @@ class ShoppingCartController extends Controller
         return [];
     }
     public function increaseCardQty(Request $request, $ingredienteID)
-    {   
+    {
         $bottle = $this->getBottle($request);
         $liquidItems = $this->getCurrentLiquidItem();
         $total_amount = ($liquidItems->isNotEmpty()) ? $bottle->amount + 1 : $bottle->amount;
-        
+
         if (Cart::count() < $total_amount) {
             $newqty = Cart::get($ingredienteID)->qty + 1;
-            Cart::update($ingredienteID, $newqty); 
+            Cart::update($ingredienteID, $newqty);
             return response()->json(['stored' => true, 'image' => Cart::get($ingredienteID)->options->image, 'newqty' => $newqty]);
         }
         return response()->json(['stored' => false]);
     }
     public function decreaseCardQty(Request $request, $ingredienteID)
     {
-        $cart_item =  Cart::get($ingredienteID);
+        $cart_item = Cart::get($ingredienteID);
         $image = $cart_item->options->image;
         $newqty = $cart_item->qty - 1;
-        Cart::update($ingredienteID, $newqty); 
+        Cart::update($ingredienteID, $newqty);
         return response()->json(['image' => $image, 'newqty' => $newqty]);
     }
     public function deleteCart(Request $request, $ingredienteID)
@@ -133,7 +136,7 @@ class ShoppingCartController extends Controller
         return view('steps/shopComponent', compact('ingredients', 'liquids', 'bottle'));
     }
     public function showCard(Request $request)
-    {  
+    {
         $bottle = $this->getBottle($request);
         $ingredients = Cart::content()->filter(function ($item) {
             return $item->options->type === IngredienteType::FRUITS || $item->options->type === IngredienteType::VEGETABLES;

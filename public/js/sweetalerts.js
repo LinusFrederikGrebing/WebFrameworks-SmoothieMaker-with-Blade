@@ -1,3 +1,4 @@
+
 function removeAllAlert() {
     Swal.fire({
         title: "Bist du Dir sicher?",
@@ -43,55 +44,55 @@ function showBottleSizes() {
 
 function showAlertError(title, text) {
     Swal.fire({
-      title: title,
-      text: text,
-      icon: "error",
-      showCancelButton: false,
-      confirmButtonColor: "#6D9E1F",
-      confirmButtonText: "Okay!",
+        title: title,
+        text: text,
+        icon: "error",
+        showCancelButton: false,
+        confirmButtonColor: "#6D9E1F",
+        confirmButtonText: "Okay!",
     });
-  }
-  function removeAllAlert() {
+}
+function removeAllAlert() {
     Swal.fire({
-      title: "Bist du Dir sicher?",
-      text: "Deine komplette Zusammenstellung wird unwiederruflich gelöscht!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#6D9E1F",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Zusammenstellung löschen!",
-      cancelButtonText: "Abbrechen!",
+        title: "Bist du Dir sicher?",
+        text: "Deine komplette Zusammenstellung wird unwiederruflich gelöscht!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#6D9E1F",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Zusammenstellung löschen!",
+        cancelButtonText: "Abbrechen!",
     }).then((result) => {
-      if (result.isConfirmed) {
-        this.removeAllFromCart();
-      }
+        if (result.isConfirmed) {
+            this.removeAllFromCart();
+        }
     });
-  }
-  function showAlertError(title, text) {
+}
+function showAlertError(title, text) {
     Swal.fire({
-      title: title,
-      text: text,
-      icon: "error",
-      showCancelButton: false,
-      confirmButtonColor: "#6D9E1F",
-      confirmButtonText: "Okay!",
+        title: title,
+        text: text,
+        icon: "error",
+        showCancelButton: false,
+        confirmButtonColor: "#6D9E1F",
+        confirmButtonText: "Okay!",
     });
-  }
-  function showAlertSuccess(title, text) {
+}
+function showAlertSuccess(title, text) {
     Swal.fire({
-      title: title,
-      text: text,
-      icon: "success",
-      showCancelButton: false,
-      confirmButtonColor: "#6D9E1F",
-      confirmButtonText: "Okay!",
+        title: title,
+        text: text,
+        icon: "success",
+        showCancelButton: false,
+        confirmButtonColor: "#6D9E1F",
+        confirmButtonText: "Okay!",
     });
-  }
+}
 
-  function showInfo(ingredientId, ingredintName, isAdmin = false) {
+function showInfo(ingredientId, ingredintName, isAdmin = false) {
     // Implementierung der showInfo-Methode
     axios.get(`/getIngredientInfo/${ingredientId}`, {}).then((response) => {
-      var exists = true;
+        var exists = true;
         var ingredientInfo = response.data.ingredientInfo;
         // Build the table HTML
         if (ingredientInfo == null) {
@@ -164,15 +165,30 @@ function showAlertError(title, text) {
             confirmButtonColor: "#000000",
             confirmButtonText: "Bearbeiten!",
         }).then((result) => {
-          if (result.isConfirmed) {
-            if (exists) {
-              
-             window.location.href = "/showUpdate/ingredienteInfo/" + ingredientId;
-              } else {
-                  // Redirect zur Create-Route
-              window.location.href = "/create-ingredient/"+ingredientId;
+            if (result.isConfirmed) {
+                if (exists) {
+                    window.location.href =
+                        "/showUpdate/ingredienteInfo/" + ingredientId;
+                } else {
+                    // Redirect zur Create-Route
+                    window.location.href = "/create-ingredient/" + ingredientId;
+                }
             }
-          };
+        });
     });
-});
+}
+
+function showAlertSuccess(title, text) {
+    Swal.fire({
+        title: title,
+        text: text,
+        icon: "success",
+        showCancelButton: false,
+        confirmButtonColor: "#6D9E1F",
+        confirmButtonText: "Weiter!",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            location.href = "/";
+        }
+    });
 }

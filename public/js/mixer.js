@@ -1,8 +1,40 @@
+var canvas = null;
+var ctx = null;
+var fps = 1 / 60; //60 FPS
+var dt = fps * 1000; //ms
+var timer = false;
+var Cd = 0.47;
+var rho = 1.22; //kg/m^3
+var mouse = { x: 0, y: 0, isDown: false };
+var ag = 9.81; //m/s^2 acceleration due to gravity on earth = 9.81 m/s^2.
+var width = 0;
+var height = 0;
+var balls = [];
+var img = new Image();
+var rgbList = [];
+var sumColor = 0;
+var darkerRgbColor = 0;
+var timer = 0;
+var mixAnimationBool = false;
+
+// gives a reference to the canvas and starts the canvas animation. If Ingredients exists in the sessionStorage load it
+var setup = function () {
+    canvas = document.getElementById("myCanvas");
+    ctx = canvas.getContext("2d");
+    width = canvas.width;
+    height = canvas.height;
+    timer = setInterval(loop, dt);
+    if (JSON.parse(sessionStorage.getItem("ingredientsArray"))) {
+        balls = JSON.parse(sessionStorage.getItem("ingredientsArray"));
+    }
+};
+
+// check that all the ingredients for the composition have been selected.
 function checkResult() {
     const ingredienteContentSum = ingredienteContent.reduce(
-        (sum, ingredient) => sum + ingredient.qty,
-        0
+        (sum, ingredient) => sum + ingredient.qty, 0
     );
+    // When all are selected, start the mixer animation
     if (ingredienteContentSum == bottle.amount && liquidContent.length == 1) {
         mixAnimation(bottle.amount);
     } else {
@@ -12,13 +44,12 @@ function checkResult() {
             errorMessage = `Füge noch ${missingIngredients} Zutaten hinzu, um deine Zusammenstellung abzuschließen. `;
         }
         if (liquidContent.length == 0) {
-            errorMessage =
-                errorMessage +
-                "Beachte, dass eine Flüssigkeit ausgewühlt sein muss!";
+            errorMessage = errorMessage + "Beachte, dass eine Flüssigkeit ausgewühlt sein muss!";
         }
         showAlertError("Nicht genug Zutaten ausgewählt!", errorMessage);
     }
 }
+// for each ingredient added, 3 "balls" are created on whose position the ingredient images are drawn. If an ingredient is removed, the associated 3 balls must also be removed
 function removeMixerSpecificOne(image) {
     var count = 0;
     for (var i = 0; i < balls.length; i++) {
@@ -33,20 +64,20 @@ function removeMixerSpecificOne(image) {
     }
     sessionStorage.setItem("ingredientsArray", JSON.stringify(balls));
 }
-
+// if an entire ingredient type is removed, all balls of that ingredient must be removed
 function removeSpecificAll(img) {
     balls = balls.filter(function (ball) {
         return ball.img !== "../images/piece/" + img;
     });
     sessionStorage.setItem("ingredientsArray", JSON.stringify(balls));
 }
-
+// when all ingredients are removed, all balls must also be removed from the mixer
 function removeAll() {
     clearLiquid();
     balls = [];
     sessionStorage.setItem("ingredientsArray", JSON.stringify(balls));
 }
-
+// object-instance representing an ingredient
 function Ball(x, y, radius, e, mass, image) {
     this.position = { x: x, y: y }; //m
     this.velocity = { x: 0, y: 0 }; // m/s
@@ -59,20 +90,8 @@ function Ball(x, y, radius, e, mass, image) {
     this.rotationDegree =
         ((Math.floor(Math.random() * 11) - 5) * Math.PI) / 270;
 }
-var canvas = null;
-var ctx = null;
-var fps = 1 / 60; //60 FPS
-var dt = fps * 1000; //ms
-var timer = false;
-var Cd = 0.47;
-var rho = 1.22; //kg/m^3
-var mouse = { x: 0, y: 0, isDown: false };
-var ag = 9.81; //m/s^2 acceleration due to gravity on earth = 9.81 m/s^2.
-var width = 0;
-var height = 0;
-var balls = [];
-var img = new Image();
 
+// creates an instance of an ingredient
 function setImg(image, count) {
     for (let i = 0; i < count * 2; i++) {
         balls.push(
@@ -82,17 +101,7 @@ function setImg(image, count) {
     sessionStorage.setItem("ingredientsArray", JSON.stringify(balls));
 }
 
-var setup = function () {
-    canvas = document.getElementById("myCanvas");
-    ctx = canvas.getContext("2d");
-    width = canvas.width;
-    height = canvas.height;
-    timer = setInterval(loop, dt);
-    if (JSON.parse(sessionStorage.getItem("ingredientsArray"))) {
-        balls = JSON.parse(sessionStorage.getItem("ingredientsArray"));
-    }
-};
-
+// draws the list of ingredients in the canvas, calculates its position and checks for collision
 function loop() {
     //create constants
     const gravity = 0.7;
@@ -147,6 +156,7 @@ function loop() {
 
         ctx.rotate(angleInRadians);
 
+        // draws the rotation of mix animation
         if (mixAnimationBool) {
             balls[i].rotation = angleInRadians + 0.5;
         }
@@ -164,29 +174,92 @@ function loop() {
         ctx.closePath();
 
         //Handling the ball collisions
-
         collisionBall(balls[i]);
         collisionWall(balls[i]);
 
     }
 }
-function showAlertSuccess(title, text) {
-    Swal.fire({
-        title: title,
-        text: text,
-        icon: "success",
-        showCancelButton: false,
-        confirmButtonColor: "#6D9E1F",
-        confirmButtonText: "Weiter!",
-    }).then((result) => {
-        if (result.isConfirmed) {
-            location.href = "/";
-        }
-    });
+// calculates the ball positions at wall collision
+function collisionWall(ball) {
+    if (ball.position.x > width - ball.radius) {
+        ball.velocity.x *= ball.e;
+        ball.position.x = width - ball.radius;
+    }
+    if (ball.position.y > height - ball.radius) {
+        ball.velocity.y *= ball.e;
+        ball.position.y = height - ball.radius;
+    }
+    if (ball.position.x < ball.radius) {
+        ball.velocity.x *= ball.e;
+        ball.position.x = ball.radius;
+    }
+    if (ball.position.y < ball.radius) {
+        ball.velocity.y *= ball.e;
+        ball.position.y = ball.radius;
+    }
 }
-var rgbList = [];
-var sumColor = 0;
-var darkerRgbColor = 0;
+// calculates the ball positions in mutual ball collisions
+function collisionBall(b1) {
+    for (var i = 0; i < balls.length; i++) {
+        var b2 = balls[i];
+        if (b1.position.x != b2.position.x && b1.position.y != b2.position.y) {
+            if (
+                b1.position.x + b1.radius + b2.radius > b2.position.x &&
+                b1.position.x < b2.position.x + b1.radius + b2.radius &&
+                b1.position.y + b1.radius + b2.radius > b2.position.y &&
+                b1.position.y < b2.position.y + b1.radius + b2.radius
+            ) {
+                var distX = b1.position.x - b2.position.x;
+                var distY = b1.position.y - b2.position.y;
+                var d = Math.sqrt(distX * distX + distY * distY);
+
+                if (d < b1.radius + b2.radius) {
+                    var nx = (b2.position.x - b1.position.x) / d;
+                    var ny = (b2.position.y - b1.position.y) / d;
+                    var p =
+                        (2 *
+                            (b1.velocity.x * nx +
+                                b1.velocity.y * ny -
+                                b2.velocity.x * nx -
+                                b2.velocity.y * ny)) /
+                        (b1.mass + b2.mass);
+
+                    // calulating the point of collision
+                    var colPointX =
+                        (b1.position.x * b2.radius +
+                            b2.position.x * b1.radius) /
+                        (b1.radius + b2.radius);
+                    var colPointY =
+                        (b1.position.y * b2.radius +
+                            b2.position.y * b1.radius) /
+                        (b1.radius + b2.radius);
+
+                    //stop overlap
+                    b1.position.x =
+                        colPointX +
+                        (b1.radius * (b1.position.x - b2.position.x)) / d;
+                    b1.position.y =
+                        colPointY +
+                        (b1.radius * (b1.position.y - b2.position.y)) / d;
+                    b2.position.x =
+                        colPointX +
+                        (b2.radius * (b2.position.x - b1.position.x)) / d;
+                    b2.position.y =
+                        colPointY +
+                        (b2.radius * (b2.position.y - b1.position.y)) / d;
+
+                    //updating velocity 
+                    b1.velocity.x -= p * b1.mass * nx;
+                    b1.velocity.y -= p * b1.mass * ny;
+                    b2.velocity.x += p * b2.mass * nx;
+                    b2.velocity.y += p * b2.mass * ny;
+                }
+            }
+        }
+    }
+}
+
+// saves all the main colors of the ingredient images to get the mixed color from it
 function getRGBList() {
     rgbList = [];
     Promise.all(
@@ -206,7 +279,7 @@ function getRGBList() {
         sumColor = getSumColor();
     });
 }
-
+// calculates the most common color pixels of the ingredient image
 function getMaxColor(img) {
     const canvas = document.createElement("canvas");
     const context = canvas.getContext("2d");
@@ -235,7 +308,7 @@ function getMaxColor(img) {
     );
     return maxColor;
 }
-
+// the juiceAnimation is just a subtle back and forth motion to represent a liquid animation
 function juice() {
     const tl = gsap.timeline();
     tl.play();
@@ -245,15 +318,15 @@ function juice() {
         .repeat(-1);
 }
 
-var timer = 0;
-var mixAnimationBool = false;
-
+// the mix animation is triggered as soon as the ingredients are complete and "buy" is clicked. The mixanimation is introduced in the CanvasAnimation by the mixAnimationBool. 
+// In addition to the juice animation, a mixer shake animation is initiated
 function mixAnimation(amount) {
-
     mixAnimationBool = true;
     const tl = gsap.timeline();
 
     juiceAnimation(amount);
+
+    // mixer shake animation
     tl.play();
     tl.to(".containerMixer", { duration: 0.1, rotate: -1 })
         .to(".containerMixer", { duration: 0.1, rotate: 1 })
@@ -261,31 +334,11 @@ function mixAnimation(amount) {
         .eventCallback("onComplete", () => {
             gsap.to(".containerMixer", { duration: 0, rotate: 0 });
             juice();
-            showAlertSuccess(
-                "Vielen Dank für deine Zusammenstellung!",
-                "Klicke auf weiter um wieder zur Startseite zu gelangen!"
-            );
+            showAlertSuccess("Vielen Dank für deine Zusammenstellung!", "Klicke auf weiter um wieder zur Startseite zu gelangen!");
         });
 }
 
-function liquidAnimation(image) {
-    const img = new Image();
-    img.crossOrigin = "Anonymous";
-    img.src = "../images/piece/" + image;
-    img.onload = () => {
-        const svg = document.getElementById("liquidImage");
-        let color = getMaxColor(img);
-        const rgb = color.split(",").map(Number);
-        svg.style.backgroundColor =
-            "rgb(" + rgb[0] + "," + rgb[1] + "," + rgb[2] + ")";
-
-        gsap.fromTo(
-            "#liquidImage",
-            { opacity: 0.8, y: "100%", transformOrigin: "bottom center" },
-            { duration: 1, opacity: 0.8, y: "88%", ease: "power3.out" }
-        );
-    };
-}
+// the juice animation gets the calculated total color of all ingredients and paints the svg. The SVG is faded into the mixer during animation
 function juiceAnimation(amount) {
     const amountInPercent = 87 - 2.6 * amount;
     getRGBList();
@@ -312,34 +365,27 @@ function juiceAnimation(amount) {
         );
     }, 300);
 }
-function getSumColor() {
-    const numColors = rgbList.length;
-    // Initialisierung der Summenvariablen für die RGB-Werte
-    let sumR = 0;
-    let sumG = 0;
-    let sumB = 0;
 
-    // Schleife, um alle RGB-Werte der Farben zu addieren
-    rgbList.forEach((color) => {
+// almost identical to the juice animation, only here the selected liquid is animated
+function liquidAnimation(image) {
+    const img = new Image();
+    img.crossOrigin = "Anonymous";
+    img.src = "../images/piece/" + image;
+    img.onload = () => {
+        const svg = document.getElementById("liquidImage");
+        let color = getMaxColor(img);
         const rgb = color.split(",").map(Number);
-        sumR += rgb[0];
-        sumG += rgb[1];
-        sumB += rgb[2];
-    });
+        svg.style.backgroundColor =
+            "rgb(" + rgb[0] + "," + rgb[1] + "," + rgb[2] + ")";
 
-    // Berechnung des Durchschnitts der RGB-Werte
-    const avgR = Math.round(sumR / numColors);
-    const avgG = Math.round(sumG / numColors);
-    const avgB = Math.round(sumB / numColors);
-
-    // Erstellung einer gemeinsamen Farbe
-    const commonColor = `rgb(${avgR},${avgG},${avgB})`;
-    return commonColor;
+        gsap.fromTo(
+            "#liquidImage",
+            { opacity: 0.8, y: "100%", transformOrigin: "bottom center" },
+            { duration: 1, opacity: 0.8, y: "88%", ease: "power3.out" }
+        );
+    };
 }
-function removeBall() {
-    balls = [];
-    sessionStorage.setItem("ingredientsArray", JSON.stringify(balls));
-}
+// reset the liquidAnimation
 function clearLiquid() {
     gsap.set("#innerImage, #liquidImage", {
         opacity: 0,
@@ -347,83 +393,37 @@ function clearLiquid() {
         transformOrigin: "bottom center",
     });
 }
-function collisionWall(ball) {
-    if (ball.position.x > width - ball.radius) {
-        ball.velocity.x *= ball.e;
-        ball.position.x = width - ball.radius;
-    }
-    if (ball.position.y > height - ball.radius) {
-        ball.velocity.y *= ball.e;
-        ball.position.y = height - ball.radius;
-    }
-    if (ball.position.x < ball.radius) {
-        ball.velocity.x *= ball.e;
-        ball.position.x = ball.radius;
-    }
-    if (ball.position.y < ball.radius) {
-        ball.velocity.y *= ball.e;
-        ball.position.y = ball.radius;
-    }
+// computes the common color
+function getSumColor() {
+    const numColors = rgbList.length;
+    // Initialization of the sum variable for the RGB values
+    let sumR = 0;
+    let sumG = 0;
+    let sumB = 0;
+
+    // Loop to add up all the RGB values of the colors
+    rgbList.forEach((color) => {
+        const rgb = color.split(",").map(Number);
+        sumR += rgb[0];
+        sumG += rgb[1];
+        sumB += rgb[2];
+    });
+
+    // Calculation of the average of the RGB values
+    const avgR = Math.round(sumR / numColors);
+    const avgG = Math.round(sumG / numColors);
+    const avgB = Math.round(sumB / numColors);
+
+    // Creation of a common color
+    const commonColor = `rgb(${avgR},${avgG},${avgB})`;
+    return commonColor;
 }
-function collisionBall(b1) {
-    for (var i = 0; i < balls.length; i++) {
-        var b2 = balls[i];
-        if (b1.position.x != b2.position.x && b1.position.y != b2.position.y) {
-            //quick check for potential collisions using AABBs
-            if (
-                b1.position.x + b1.radius + b2.radius > b2.position.x &&
-                b1.position.x < b2.position.x + b1.radius + b2.radius &&
-                b1.position.y + b1.radius + b2.radius > b2.position.y &&
-                b1.position.y < b2.position.y + b1.radius + b2.radius
-            ) {
-                //pythagoras
-                var distX = b1.position.x - b2.position.x;
-                var distY = b1.position.y - b2.position.y;
-                var d = Math.sqrt(distX * distX + distY * distY);
 
-                //checking circle vs circle collision
-                if (d < b1.radius + b2.radius) {
-                    var nx = (b2.position.x - b1.position.x) / d;
-                    var ny = (b2.position.y - b1.position.y) / d;
-                    var p =
-                        (2 *
-                            (b1.velocity.x * nx +
-                                b1.velocity.y * ny -
-                                b2.velocity.x * nx -
-                                b2.velocity.y * ny)) /
-                        (b1.mass + b2.mass);
-
-                    // calulating the point of collision
-                    var colPointX =
-                        (b1.position.x * b2.radius +
-                            b2.position.x * b1.radius) /
-                        (b1.radius + b2.radius);
-                    var colPointY =
-                        (b1.position.y * b2.radius +
-                            b2.position.y * b1.radius) /
-                        (b1.radius + b2.radius);
-
-                    //stoping overlap
-                    b1.position.x =
-                        colPointX +
-                        (b1.radius * (b1.position.x - b2.position.x)) / d;
-                    b1.position.y =
-                        colPointY +
-                        (b1.radius * (b1.position.y - b2.position.y)) / d;
-                    b2.position.x =
-                        colPointX +
-                        (b2.radius * (b2.position.x - b1.position.x)) / d;
-                    b2.position.y =
-                        colPointY +
-                        (b2.radius * (b2.position.y - b1.position.y)) / d;
-
-                    //updating velocity to reflect collision
-                    b1.velocity.x -= p * b1.mass * nx;
-                    b1.velocity.y -= p * b1.mass * ny;
-                    b2.velocity.x += p * b2.mass * nx;
-                    b2.velocity.y += p * b2.mass * ny;
-                }
-            }
-        }
-    }
+// remove all Ingredients from the array
+function removeBall() {
+    balls = [];
+    sessionStorage.setItem("ingredientsArray", JSON.stringify(balls));
 }
+
+
+

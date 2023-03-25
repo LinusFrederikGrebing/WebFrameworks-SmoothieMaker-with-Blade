@@ -15,18 +15,18 @@ class UserSeed extends Seeder
      */
     public function run()
     {
-       User::factory()->count(10)->create();
-       User::factory()->create([
+        User::factory()->count(10)->create();
+        User::factory()->create([
             'name' => 'Admin',
             'email' => 'Admin@admin.com',
-            'password' => bcrypt('password'), // str_random(10)
-            'type' =>  UserRole::MITARBEITER,
+            'password' => bcrypt('password'),
+            'type' => UserRole::MITARBEITER,
         ]);
         User::factory()->create([
             'name' => 'User',
             'email' => 'User@user.com',
-            'password' => bcrypt('password'), // str_random(10)
-            'type' =>  UserRole::KUNDE,
+            'password' => bcrypt('password'),
+            'type' => UserRole::KUNDE,
         ]);
     }
 }
