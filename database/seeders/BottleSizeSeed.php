@@ -14,6 +14,7 @@ class BottleSizeSeed extends Seeder
      */
     public function run()
     {
+        // The four sizes are created hard-coded
         BottleSize::create([
             'name' => 'S',
             'amount' => 5,

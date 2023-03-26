@@ -8,6 +8,7 @@ class IngredientInfoFactory extends Factory
 {
     protected $model = IngredientInfo::class;
 
+    //"faker" creates test data. This template can be used to create instances of the type IngredientInfo
     public function definition()
     {
         $info = [

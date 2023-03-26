@@ -148,7 +148,7 @@ function clearSessionStorage() {
 }
 
 function setnewAmount(newCounter, id) {
-    $('#qty' + id).html(newCounter);
+    $("#qty" + id).html(newCounter);
 }
 function setNewSizeCounter() {
     $(".cart-count").html(cartCount);
@@ -158,58 +158,58 @@ function setNewSizeCounter() {
 }
 
 function choosePreset(presetName) {
-    axios.get(`/checkPreset/${presetName}`).then( location.href="/showCard" );
+    axios.get(`/checkPreset/${presetName}`).then((location.href = "/showCard"));
 }
 function deletePreset(presetName) {
-    axios.get(`/deletePreset/${presetName}`).then( location.href="/home" );
+    axios.get(`/deletePreset/${presetName}`).then((location.href = "/customer"));
 }
 
 function storeExistingPreset(presetName) {
     axios
-      .get(`/storeExistingPreset/${presetName}`)
-      .then((response) => {
-        if (response.data.auth == false) {
-          this.showAlertError(
-            "Du must angemeldet sein, um dir das Preset abspeichern zu können!",
-            ""
-          );
-        } else {
-          this.showAlertSuccess(
-            "Das Preset wurde erfolgreich gespeichert!",
-            "Wenn du auf dein Profilnamen klickst und zur Homepage gehst, kannst du das Preset auswählen und deine Zusammenstellung abfrufen!"
-          );
-        }
-      })
-      .catch((error) => {
-        this.showAlertError(
-          "Den Namen für das Preset gibt es bereits!",
-          "Wähle einen anderen Namen, oder lösche das bestehende Preset!"
-        );
-      });
-  }
+        .get(`/storeExistingPreset/${presetName}`)
+        .then((response) => {
+            if (response.data.auth == false) {
+                this.showAlertError(
+                    "Du must angemeldet sein, um dir das Preset abspeichern zu können!",
+                    ""
+                );
+            } else {
+                this.showAlertSuccess(
+                    "Das Preset wurde erfolgreich gespeichert!",
+                    "Wenn du auf dein Profilnamen klickst und zur Homepage gehst, kannst du das Preset auswählen und deine Zusammenstellung abfrufen!"
+                );
+            }
+        })
+        .catch((error) => {
+            this.showAlertError(
+                "Den Namen für das Preset gibt es bereits!",
+                "Wähle einen anderen Namen, oder lösche das bestehende Preset!"
+            );
+        });
+}
 
 function storeAsPreset(presetName) {
     axios
-      .post(`/storeAsPreset`, {
-        name: presetName,
-      })
-      .then((response) => {
-        if (response.data.auth == false) {
-          this.showAlertError(
-            "Du must angemeldet sein, um dir das Preset abspeichern zu können!",
-            ""
-          );
-        } else {
-          this.showAlertSuccess(
-            "Das Preset wurde erfolgreich gespeichert!",
-            "Wenn du auf dein Profilnamen klickst und zur Homepage gehst, kannst du das Preset auswählen und deine Zusammenstellung abfrufen!"
-          );
-        }
-      })
-      .catch((error) => {
-        this.showAlertError(
-          "Den Namen für das Preset gibt es bereits!",
-          "Wähle einen anderen Namen, oder lösche das bestehende Preset!"
-        );
-      });
-  }
+        .post(`/storeAsPreset`, {
+            name: presetName,
+        })
+        .then((response) => {
+            if (response.data.auth == false) {
+                this.showAlertError(
+                    "Du must angemeldet sein, um dir das Preset abspeichern zu können!",
+                    ""
+                );
+            } else {
+                this.showAlertSuccess(
+                    "Das Preset wurde erfolgreich gespeichert!",
+                    "Wenn du auf dein Profilnamen klickst und zur Homepage gehst, kannst du das Preset auswählen und deine Zusammenstellung abfrufen!"
+                );
+            }
+        })
+        .catch((error) => {
+            this.showAlertError(
+                "Den Namen für das Preset gibt es bereits!",
+                "Wähle einen anderen Namen, oder lösche das bestehende Preset!"
+            );
+        });
+}

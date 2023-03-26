@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Preset;
+use App\Models\Ingrediente;
 
 class PresetSeed extends Seeder
 {
@@ -14,50 +15,52 @@ class PresetSeed extends Seeder
      */
     public function run()
     {
-        $preset = Preset::create([
-            'name' => 'Avocado-Schoko-Smoothie',
-            'user_id' => null,
-            'bottle_id' => 2,
-        ]);
-        $ingredients = [
-            ['id' => 35, 'quantity' => 1],
-            ['id' => 18, 'quantity' => 5],
-            ['id' => 1, 'quantity' => 5],
-        ];
-        foreach ($ingredients as $ingredient) {
-            $preset->ingredients()->attach($ingredient['id'], ['quantity' => $ingredient['quantity']]);
-        }
+        $this->createPreset(
+            'Avocado-Schoko-Smoothie', 2,
+            [
+                ['id' => 35, 'quantity' => 1],
+                ['id' => 18, 'quantity' => 5],
+                ['id' => 1, 'quantity' => 5],
+            ]
+        );
 
-        $preset = Preset::create([
-            'name' => 'Grüner Smoothie mit Rucola',
-            'user_id' => null,
-            'bottle_id' => 1,
-        ]);
-        $ingredients = [
-            ['id' => 31, 'quantity' => 1],
-            ['id' => 27, 'quantity' => 3],
-            ['id' => 24, 'quantity' => 1],
-            ['id' => 28, 'quantity' => 1],
-        ];
-        foreach ($ingredients as $ingredient) {
-            $preset->ingredients()->attach($ingredient['id'], ['quantity' => $ingredient['quantity']]);
-        }
+        $this->createPreset(
+            'Grüner Smoothie mit Rucola', 1,
+            [
+                ['id' => 31, 'quantity' => 1],
+                ['id' => 27, 'quantity' => 3],
+                ['id' => 24, 'quantity' => 1],
+                ['id' => 28, 'quantity' => 1],
+            ]
+        );
 
+        $this->createPreset(
+            'Beeren-Smoothie mit Flohsamenschalen & Kokoswasser', 3,
+            [
+                ['id' => 34, 'quantity' => 1],
+                ['id' => 4, 'quantity' => 3],
+                ['id' => 7, 'quantity' => 3],
+                ['id' => 13, 'quantity' => 3],
+                ['id' => 14, 'quantity' => 3],
+                ['id' => 17, 'quantity' => 3],
+            ]
+        );
+    }
+
+    private function createPreset(string $name, int $bottle_id, array $ingredients)
+    {
+        // creates a new Preset model in the database with the given name, Bottle ID, and user ID (null).
         $preset = Preset::create([
-            'name' => 'Beeren-Smoothie mit Flohsamenschalen & Kokoswasser',
+            'name' => $name,
             'user_id' => null,
-            'bottle_id' => 3,
+            'bottle_id' => $bottle_id,
         ]);
-        $ingredients = [
-            ['id' => 34, 'quantity' => 1],
-            ['id' => 4, 'quantity' => 3],
-            ['id' => 7, 'quantity' => 3],
-            ['id' => 13, 'quantity' => 3],
-            ['id' => 14, 'quantity' => 3],
-            ['id' => 17, 'quantity' => 3],
-        ];
+        // This loop attaches ingredients to the newly-created Preset model.
         foreach ($ingredients as $ingredient) {
-            $preset->ingredients()->attach($ingredient['id'], ['quantity' => $ingredient['quantity']]);
+            $preset->ingredients()->attach(
+                Ingrediente::find($ingredient['id']),
+                ['quantity' => $ingredient['quantity']]
+            );
         }
     }
 }

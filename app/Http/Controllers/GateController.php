@@ -11,46 +11,43 @@ use Illuminate\Support\Facades\Auth;
 
 class GateController extends Controller
 {
-    function checkLoggedInUser()
+    public function __construct()
     {
-        if (auth()->check()) {
-            $user = auth()->user();
-            return response()->json(['loggedIn' => true, 'username' => $user->name]);
-        } else {
-            return response()->json(['loggedIn' => false]);
-        }
+        $this->middleware('auth');
     }
+    /* Compared to vue, we also need the following methods, since the router view, with which the new views are integrated in vue, is omitted */
     public function show()
     {
         return view('landingpageTemplate');
     }
-
+    // Make sure the user is an employee before the view can be loaded. If not, load the login form
     public function employeeView()
     {
         if (Auth::user()->type == UserRole::MITARBEITER) {
-            $ingredients = Ingrediente::where('type', IngredienteType::FRUITS)->get();
-            return view('auth.employeeTemplate', compact('ingredients'));
+            // As an employee, a list of all ingredients is displayed. Starting with the fruit. That's why we initially filter for the fruit
+            return redirect()->route('showFruitsEmployee');
         } else {
             return view('auth.login');
         }
     }
+    // Make sure the user is authenticated before the view can be loaded. If not, load the login form
     public function customerView()
     {
         if (Auth::user()) {
-            $user = Auth::user();
+            // the user-specific presets are listed in the customer view. So we give the view the list of presets directly so that we can save ourselves a GET request to the database
             $userPresets = Preset::where('user_id', Auth::user()->id)->pluck('name');
-            return view('auth.customerTemplate', compact('user', 'userPresets'));
+            return view('auth.customerTemplate', compact('userPresets'));
         } else {
             return view('auth.login');
         }
     }
 
+    // If the employee selects one of the following lists from the employee template, the respective list of ingredients should be returned
     public function showFruitsEmployee(Request $request)
     {
         $ingredients = Ingrediente::where('type', IngredienteType::FRUITS)->get();
         return view('auth.employeeTemplate', compact('ingredients'));
     }
-
     public function showVeggieEmployee(Request $request)
     {
         $ingredients = Ingrediente::where('type', IngredienteType::VEGETABLES)->get();
@@ -60,15 +57,5 @@ class GateController extends Controller
     {
         $ingredients = Ingrediente::where('type', IngredienteType::LIQUID)->get();
         return view('auth.employeeTemplate', compact('ingredients'));
-    }
-
-    function getUserRole()
-    {
-        if (auth()->check()) {
-            $user = auth()->user();
-            return response()->json(['loggedIn' => true, 'type' => $user->type]);
-        } else {
-            return response()->json(['loggedIn' => false]);
-        }
     }
 }

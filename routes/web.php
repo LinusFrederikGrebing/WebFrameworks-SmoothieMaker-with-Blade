@@ -57,9 +57,6 @@ Route::get('/storeExistingPreset/{presetName}', [App\Http\Controllers\PresetCont
 Route::get('/user-presets', [App\Http\Controllers\PresetController::class, 'getUserPresets']);
 Route::get('/deletePreset/{ingrediente}', [App\Http\Controllers\PresetController::class, 'deleteUserPreset'])->name('deletePreset');
 
-Route::get('/checkLoggedInUser', [App\Http\Controllers\GateController::class, 'checkLoggedInUser'])->name('checkLoggedInUser');
-Route::get('/getUserRole', [App\Http\Controllers\GateController::class, 'getUserRole'])->name('getUserRole');
-
 //Ingrediente-Routes
 Route::get('/create', [App\Http\Controllers\IngredienteController::class, 'create'])->name('create');
 Route::post('/delete/ingrediente/{ingrediente}', [App\Http\Controllers\IngredienteController::class, 'deleteIngediengte'])->name('deleteZutat');

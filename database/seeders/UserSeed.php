@@ -15,6 +15,7 @@ class UserSeed extends Seeder
      */
     public function run()
     {
+        // creates 3 test customers, our administrator and a defined user "User" to increase the efficiency of testing
         User::factory()->count(10)->create();
         User::factory()->create([
             'name' => 'Admin',

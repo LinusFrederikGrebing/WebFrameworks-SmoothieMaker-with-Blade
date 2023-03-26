@@ -111,7 +111,6 @@ function loop() {
     ctx.clearRect(0, 0, width, height);
     for (let i = 0; i < balls.length; i++) {
         //physics - calculating the aerodynamic forces to drag
-        // -0.5 * Cd * A * v^2 * rho
         let fx =
             -0.5 *
                 drag *
@@ -130,7 +129,6 @@ function loop() {
                 (balls[i].velocity.y / Math.abs(balls[i].velocity.y)) || 0;
 
         //Calculating the acceleration of the ball
-        //F = ma or a =F/m
         let ax = fx / balls[i].mass;
         let ay = ag * gravity + fy / balls[i].mass;
 
@@ -143,7 +141,6 @@ function loop() {
         balls[i].position.y += balls[i].velocity.y * fps * 100;
 
         const img = new Image();
-        //Rendering the ball
         img.src = balls[i].img;
         ctx.beginPath();
 
@@ -212,7 +209,7 @@ function collisionBall(b1) {
                 var distX = b1.position.x - b2.position.x;
                 var distY = b1.position.y - b2.position.y;
                 var d = Math.sqrt(distX * distX + distY * distY);
-
+                 //checking circle vs circle collision
                 if (d < b1.radius + b2.radius) {
                     var nx = (b2.position.x - b1.position.x) / d;
                     var ny = (b2.position.y - b1.position.y) / d;
@@ -308,7 +305,7 @@ function getMaxColor(img) {
     );
     return maxColor;
 }
-// the juiceAnimation is just a subtle back and forth motion to represent a liquid animation
+// the juiceAnimation is just a subtle back and forth motion to represent a liquid 
 function juice() {
     const tl = gsap.timeline();
     tl.play();

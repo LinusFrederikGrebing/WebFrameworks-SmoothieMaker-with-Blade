@@ -15,6 +15,7 @@ class IngredienteSeed extends Seeder
      */
     public function run()
     {
+        // The basic Ingredients are created hard-coded
         /* FRUITS */
         Ingrediente::create([
             'name' => 'Banane',
@@ -46,7 +47,6 @@ class IngredienteSeed extends Seeder
             'image' => "mango-piece.png",
             'type' => IngredienteType::FRUITS,
         ]);
-
         Ingrediente::create([
             'name' => 'Apfel',
             'price' => 0.4,
