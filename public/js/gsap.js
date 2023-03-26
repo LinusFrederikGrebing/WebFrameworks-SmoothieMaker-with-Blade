@@ -1,41 +1,9 @@
-gsap.fromTo(
-    "#left-text",
-    {
-        scale: 0,
-        opacity: 0,
-        y: 200,
-    },
-    {
-        y: 0,
-        delay: 0.2,
-        duration: 2,
-        scale: 1,
-        opacity: 1,
-        ease: "power3.out",
-    }
-);
-gsap.fromTo(
-    "#right-img",
-    {
-        x: 500,
-        scale: 0,
-        opacity: 0,
-    },
-    {
-        x: 0,
-        delay: 0.2,
-        duration: 2,
-        scale: 1,
-        opacity: 1,
-        ease: "power3.out",
-    }
-);
+gsap.fromTo("#left-text", { scale: 0, opacity: 0, y: 200 }, { y: 0, delay: 0.2, duration: 2, scale: 1, opacity: 1, ease: "power3.out"});
+gsap.fromTo("#right-img", { x: 500, scale: 0, opacity: 0 }, { x: 0, delay: 0.2, duration: 2, scale: 1, opacity: 1, ease: "power3.out"});
 
 gsap.fromTo(
-    "#tipsheader",
-    {
-        opacity: 0,
-    },
+    "#tipsheader", 
+    { opacity: 0 },
     {
         opacity: 1,
         scrollTrigger: {
@@ -49,11 +17,7 @@ gsap.fromTo(
 );
 gsap.fromTo(
     "#tip1",
-    {
-        y: 0,
-        x: 1000,
-        opacity: 0,
-    },
+    { y: 0, x: 1000, opacity: 0 },
     {
         opacity: 1,
         x: 0,
@@ -68,11 +32,7 @@ gsap.fromTo(
 );
 gsap.fromTo(
     "#tip2",
-    {
-        y: 0,
-        x: -1000,
-        opacity: 0,
-    },
+    { y: 0, x: -1000, opacity: 0 },
     {
         opacity: 1,
         x: 0,
@@ -87,11 +47,7 @@ gsap.fromTo(
 );
 gsap.fromTo(
     "#tip3",
-    {
-        y: 0,
-        x: 1000,
-        opacity: 0,
-    },
+    { y: 0, x: 1000, opacity: 0 },
     {
         opacity: 1,
         x: 0,
@@ -105,67 +61,20 @@ gsap.fromTo(
     }
 );
 
-gsap.timeline({
-    delay: 0,
+gsap.timeline({ delay: 0,
     scrollTrigger: {
         trigger: "#steps",
         start: "top 80%",
         end: "bottom 0%",
         toggleActions: "play reset play reset ",
-    },
-})
-    .fromTo(
-        "#stepsheader",
-        {
-            delay: 0,
-            opacity: 0,
-        },
-        {
-            opacity: 1,
-        }
-    )
-    .fromTo(
-        "#step1",
-        {
-            delay: 0.5,
-            y: 300,
-            opacity: 0,
-        },
-        {
-            opacity: 1,
-            y: 0,
-        }
-    )
-    .fromTo(
-        "#step2",
-        {
-            y: 300,
-            delay: 0.5,
-            opacity: 0,
-        },
-        {
-            opacity: 1,
-            y: 0,
-        }
-    )
-    .fromTo(
-        "#step3",
-        {
-            delay: 0.5,
-            y: 300,
-            opacity: 0,
-        },
-        {
-            opacity: 1,
-            y: 0,
-        }
-    );
+    },})
+    .fromTo("#stepsheader", { delay: 0, opacity: 0 }, { opacity: 1 })
+    .fromTo("#step1", { delay: 0.5, y: 300, opacity: 0 }, { opacity: 1, y: 0 })
+    .fromTo("#step2", { y: 300, delay: 0.5, opacity: 0 }, { opacity: 1, y: 0 })
+    .fromTo( "#step3", { delay: 0.5, y: 300, opacity: 0 }, { opacity: 1, y: 0 });
 
 function hoverEnter(obj) {
-    gsap.to(obj.target, {
-        duration: 0.2,
-        scale: 1.05,
-    });
+    gsap.to(obj.target, { duration: 0.2, scale: 1.05 });
 }
 function hoverLeave(obj) {
     gsap.to(obj.target, { duration: 0.2, scale: 1 });
@@ -177,16 +86,6 @@ function enterGrid() {
         if (i % 2 == 0) {
             start = +1400;
         }
-        gsap.fromTo(
-            element,
-            {
-                x: start,
-            },
-            {
-                delay: 0.1,
-                duration: 1,
-                x: 0,
-            }
-        );
+        gsap.fromTo( element, { x: start }, { delay: 0.1, duration: 1, x: 0 });
     }
 }
