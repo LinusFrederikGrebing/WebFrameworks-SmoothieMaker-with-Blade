@@ -114,7 +114,7 @@
 #myCanvas {
     position: absolute;
     top: 3.6em;
-    left: 1.85em;
+    left: 2em;
     z-index: 0;
     -webkit-clip-path: polygon(
         100% 0,

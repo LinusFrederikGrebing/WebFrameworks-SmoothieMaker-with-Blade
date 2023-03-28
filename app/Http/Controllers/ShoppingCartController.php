@@ -79,7 +79,7 @@ class ShoppingCartController extends Controller
         return response()->json(['image' => $image, 'wasLiquid' => $wasLiquid]);
     }
     // remove all from the ShoppingCart
-    public function removeAllFromCard(Request $request)
+    public function removeAllFromCartList(Request $request)
     {
         Cart::destroy();
         $bottle = $this->getBottle($request);

@@ -4,7 +4,7 @@
     });
 </script>
 <div class="containerMixer max-w-none mt-4">
-    <canvas class="mx-8" id="myCanvas" width="240" height="325"></canvas>
+    <canvas class="mx-8" id="myCanvas" width="235" height="325"></canvas>
     <img id="mixerLogo" src="/images/mixer2.png" class="mixer mt-2 max-w-none" />
     <img id="becherLogo" src="/images/becher.png" class="mixer mt-2 max-w-none" />
     <div class="becherWrapper">

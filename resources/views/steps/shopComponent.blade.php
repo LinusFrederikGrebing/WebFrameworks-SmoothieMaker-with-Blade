@@ -86,7 +86,7 @@
                                 @endforeach
                                 @foreach ($liquids as $index => $item)
                                     <tr class="my-1">
-                                        <td><img src="/images/piece/{{ $item->options->image }}" class="table-img">
+                                        <td><img src="/images/piece/{{ $item->options->image }}" class=" w-2/4 ml-2">
                                         </td>
                                         <td><span class="text-dark">{{ $item->name }}</span></td>
                                         <td> <span class="font-weight-bold"> {{ $item->price }}€ / 50ml</span></td>
