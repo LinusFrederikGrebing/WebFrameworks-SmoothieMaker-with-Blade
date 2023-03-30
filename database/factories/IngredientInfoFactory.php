@@ -29,7 +29,7 @@ class IngredientInfoFactory extends Factory
         $infoString = implode(', ', $infoString);
         return [
             'info' => $infoString,
-            'ingrediente_id' => 1,
+            'ingredient_id' => 1,
             'energie' => $this->faker->randomFloat(1, 1300, 1500) . 'kJ / ' . $this->faker->randomFloat(1, 300, 350) . ' kcal',
             'fett' => $this->faker->randomFloat(1, 0.5, 0.9) . ' g/100g',
             'fattyacids' => $this->faker->randomFloat(1, 0, 0.2) . ' g/100g',

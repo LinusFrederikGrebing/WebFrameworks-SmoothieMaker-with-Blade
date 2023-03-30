@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // the below seeds can be traversed and created using the php artisan db:seed command
-        $this->call(IngredienteSeed::class);    
+        $this->call(IngredientSeed::class);    
         $this->call(BottleSizeSeed::class);    
         $this->call(UserSeed::class);    
         $this->call(PresetSeed::class); 

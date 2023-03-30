@@ -3,9 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Models\IngredienteType;
+use App\Models\IngredientType;
 
-class Ingrediente extends Migration
+class Ingredient extends Migration
 {
     /**
      * Run the migrations.
@@ -14,13 +14,13 @@ class Ingrediente extends Migration
      */
     public function up()
     {
-        Schema::create('ingredientes', function (Blueprint $table) {
+        Schema::create('ingredients', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->integer('amount')->nullable();
             $table->string('image');
             $table->float('price');
-            $table->enum('type', [IngredienteType::FRUITS, IngredienteType::VEGETABLES, IngredienteType::LIQUID]);
+            $table->enum('type', [IngredientType::FRUITS, IngredientType::VEGETABLES, IngredientType::LIQUID]);
         });
     }
 
@@ -31,6 +31,6 @@ class Ingrediente extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ingrediente');
+        Schema::dropIfExists('ingredient');
     }
 }

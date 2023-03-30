@@ -28,7 +28,7 @@ function setNewProgress() {
 }
 // If the response indicates that the ingredient was successfully added to the cart, it calls setImg Function from the Mixer and updated the Progressbar
 // Otherwise, it displays an error message using the showAlertError function.
-function addIngredienteToCart(ingredientId, amount) {
+function addIngredientToCart(ingredientId, amount) {
     axios.post(`/addCart/${ingredientId}`, { amount }).then((response) => {
         if (response.data.stored) {
             setImg(response.data.image, amount);
@@ -64,7 +64,7 @@ function getCartContent(bottle) {
         liquidContent = cartContent.filter(
             (cartItem) => cartItem.options.type === "liquid"
         );
-        ingredienteContent = cartContent.filter(
+        ingredientContent = cartContent.filter(
             (cartItem) => cartItem.options.type !== "liquid"
         );
         checkResult(bottle);

@@ -16,11 +16,11 @@ class PresetIngredients extends Migration
         Schema::create('preset_ingredients', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('preset_id');
-            $table->unsignedBigInteger('ingrediente_id');
+            $table->unsignedBigInteger('ingredient_id');
             $table->integer('quantity')->nullable();
     
             $table->foreign('preset_id')->references('id')->on('presets')->onDelete('cascade');
-            $table->foreign('ingrediente_id')->references('id')->on('ingredientes')->onDelete('cascade');
+            $table->foreign('ingredient_id')->references('id')->on('ingredients')->onDelete('cascade');
         });
     }
 

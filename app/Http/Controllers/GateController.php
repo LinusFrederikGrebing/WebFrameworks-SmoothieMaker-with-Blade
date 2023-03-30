@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\UserRole;
-use App\Models\Ingrediente;
-use App\Models\IngredienteType;
+use App\Models\Ingredient;
+use App\Models\IngredientType;
 use Illuminate\Http\Request;
 use App\Models\Preset;
 use Illuminate\Support\Facades\Auth;
@@ -45,17 +45,17 @@ class GateController extends Controller
     // If the employee selects one of the following lists from the employee template, the respective list of ingredients should be returned
     public function showFruitsEmployee(Request $request)
     {
-        $ingredients = Ingrediente::where('type', IngredienteType::FRUITS)->get();
+        $ingredients = Ingredient::where('type', IngredientType::FRUITS)->get();
         return view('auth.employeeTemplate', compact('ingredients'));
     }
     public function showVeggieEmployee(Request $request)
     {
-        $ingredients = Ingrediente::where('type', IngredienteType::VEGETABLES)->get();
+        $ingredients = Ingredient::where('type', IngredientType::VEGETABLES)->get();
         return view('auth.employeeTemplate', compact('ingredients'));
     }
     public function showLiquidEmployee(Request $request)
     {
-        $ingredients = Ingrediente::where('type', IngredienteType::LIQUID)->get();
+        $ingredients = Ingredient::where('type', IngredientType::LIQUID)->get();
         return view('auth.employeeTemplate', compact('ingredients'));
     }
 }

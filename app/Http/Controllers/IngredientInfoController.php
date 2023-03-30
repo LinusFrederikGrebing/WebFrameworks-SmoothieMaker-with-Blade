@@ -4,56 +4,56 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\IngredientInfo;
-use App\Models\Ingrediente;
+use App\Models\Ingredient;
 
 class IngredientInfoController extends Controller
 {
     // return the ingredient information for a specific ingredient
     public function getIngredientInfo(Request $request, $id)
     {
-        $ingredientInfo = IngredientInfo::where('ingrediente_id', $id)->first();
+        $ingredientInfo = IngredientInfo::where('ingredient_id', $id)->first();
         return response()->json(['ingredientInfo' => $ingredientInfo]);
     }
     // returns the view with the Ingredient for which the information should be updated
-    public function showUpdateField(Request $request, $ingredienteID)
+    public function showUpdateField(Request $request, $ingredientID)
     {
-        $ingrediente = Ingrediente::findOrFail($ingredienteID);
-        $ingredientInfo = IngredientInfo::where('ingrediente_id', $ingredienteID)->first();
-        return view('ingrediente/changeIngredientInfo', compact('ingrediente', 'ingredientInfo'));
+        $ingredient = Ingredient::findOrFail($ingredientID);
+        $ingredientInfo = IngredientInfo::where('ingredient_id', $ingredientID)->first();
+        return view('ingredient/changeIngredientInfo', compact('ingredient', 'ingredientInfo'));
     }
     // returns the view with the Ingredient for which the information should be created
-    public function showCreateIngredient($ingredienteID)
+    public function showCreateIngredient($ingredientID)
     {
-        $ingrediente = Ingrediente::findOrFail($ingredienteID);
-        return view('ingrediente/createIngredientInfo', compact('ingrediente'));
+        $ingredient = Ingredient::findOrFail($ingredientID);
+        return view('ingredient/createIngredientInfo', compact('ingredient'));
     }
      // create an IngredientInfo instance and fill it with the data from the request
-    public function storeIngredientInfo(Request $request, $ingredienteID)
+    public function storeIngredientInfo(Request $request, $ingredientID)
     {
-        $ingredienteInfo = new IngredientInfo;
-        $ingredienteInfo->ingrediente_id = $ingredienteID;
+        $ingredientInfo = new IngredientInfo;
+        $ingredientInfo->ingredient_id = $ingredientID;
 
-        $this->storeOrUpdateIngrediente($request, $ingredienteInfo);
+        $this->storeOrUpdateIngredient($request, $ingredientInfo);
         return redirect()->route('employeeView');
     }
      // get a reference to the existing IngredientInfo instance and update it with the data from the request
-    public function updateIngrediente(Request $request, $ingredienteID)
+    public function updateIngredient(Request $request, $ingredientID)
     {
-        $ingredientInfo = IngredientInfo::where('ingrediente_id', $ingredienteID)->first();
-        $this->storeOrUpdateIngrediente($request, $ingredientInfo);
+        $ingredientInfo = IngredientInfo::where('ingredient_id', $ingredientID)->first();
+        $this->storeOrUpdateIngredient($request, $ingredientInfo);
         return redirect()->route('employeeView');
     }
     // the ingredient information can be empty. If nothing was passed, just write an empty string to the database
-    public function storeOrUpdateIngrediente(Request $request, IngredientInfo $ingrediente)
+    public function storeOrUpdateIngredient(Request $request, IngredientInfo $ingredient)
     {
-        $ingrediente->info = $request->info ? $request->info : '';
-        $ingrediente->energie = $request->energie ? $request->energie : '';
-        $ingrediente->fett = $request->fett ? $request->fett : '';
-        $ingrediente->fattyacids = $request->fattyacids ? $request->fattyacids : '';
-        $ingrediente->carbohydrates = $request->carbohydrates ? $request->carbohydrates : '';
-        $ingrediente->fruitscarbohydrates = $request->fruitscarbohydrates ? $request->fruitscarbohydrates : '';
-        $ingrediente->protein = $request->protein ? $request->protein : '';
-        $ingrediente->salt = $request->salt ? $request->salt : '';
-        $ingrediente->save();
+        $ingredient->info = $request->info ? $request->info : '';
+        $ingredient->energie = $request->energie ? $request->energie : '';
+        $ingredient->fett = $request->fett ? $request->fett : '';
+        $ingredient->fattyacids = $request->fattyacids ? $request->fattyacids : '';
+        $ingredient->carbohydrates = $request->carbohydrates ? $request->carbohydrates : '';
+        $ingredient->fruitscarbohydrates = $request->fruitscarbohydrates ? $request->fruitscarbohydrates : '';
+        $ingredient->protein = $request->protein ? $request->protein : '';
+        $ingredient->salt = $request->salt ? $request->salt : '';
+        $ingredient->save();
     }
 }

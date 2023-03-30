@@ -28,9 +28,9 @@ Route::middleware([
     Route::get('/employee/Liquid', [App\Http\Controllers\GateController::class, 'showLiquidEmployee'])->name('showLiquidEmployee');
 });
 
-Route::get('/custom/fruits', [App\Http\Controllers\IngredienteController::class, 'showFruits'])->name('showFruits');
-Route::get('/custom/veggie', [App\Http\Controllers\IngredienteController::class, 'showVeggie'])->name('showVeggie');
-Route::get('/custom/liquids', [App\Http\Controllers\IngredienteController::class, 'showLiquids'])->name('showLiquids');
+Route::get('/custom/fruits', [App\Http\Controllers\IngredientController::class, 'showFruits'])->name('showFruits');
+Route::get('/custom/veggie', [App\Http\Controllers\IngredientController::class, 'showVeggie'])->name('showVeggie');
+Route::get('/custom/liquids', [App\Http\Controllers\IngredientController::class, 'showLiquids'])->name('showLiquids');
 
 //Bottle-Size-Routes
 Route::get('/bottleSize', [App\Http\Controllers\BottleSizeController::class, 'showBottleSizes'])->name('showBottleSizes');
@@ -43,7 +43,7 @@ Route::post('/decreaseCardQty/{carditem}', [App\Http\Controllers\ShoppingCartCon
 Route::get('/cart/count', [App\Http\Controllers\ShoppingCartController::class, 'getCurrentCartCount']);
 Route::get('/cartContent', [App\Http\Controllers\ShoppingCartController::class, 'getCurrentCartContent']);
 Route::get('/cartTotal', [App\Http\Controllers\ShoppingCartController::class, 'getCurrentCartTotal']);
-Route::post('/addCart/{ingrediente}', [App\Http\Controllers\ShoppingCartController::class, 'storeIngredienteToCart'])->name('storeInCart');
+Route::post('/addCart/{ingredient}', [App\Http\Controllers\ShoppingCartController::class, 'storeIngredientToCart'])->name('storeInCart');
 Route::get('/removeAll', [App\Http\Controllers\ShoppingCartController::class, 'removeAllFromCartList']);
 Route::get('/getCurrentLiquid', [App\Http\Controllers\ShoppingCartController::class, 'getCurrentLiquid']);
 Route::get('/getCurrentBottle', [App\Http\Controllers\ShoppingCartController::class, 'getCurrentBottle']);
@@ -55,19 +55,19 @@ Route::post('/storeAsPreset', [App\Http\Controllers\PresetController::class, 'st
 Route::get('/storeExistingPreset/{presetName}', [App\Http\Controllers\PresetController::class, 'storeExistingPreset'])->name('storeExistingPreset');
 
 Route::get('/user-presets', [App\Http\Controllers\PresetController::class, 'getUserPresets']);
-Route::get('/deletePreset/{ingrediente}', [App\Http\Controllers\PresetController::class, 'deleteUserPreset'])->name('deletePreset');
+Route::get('/deletePreset/{ingredient}', [App\Http\Controllers\PresetController::class, 'deleteUserPreset'])->name('deletePreset');
 
-//Ingrediente-Routes
-Route::get('/create', [App\Http\Controllers\IngredienteController::class, 'create'])->name('create');
-Route::post('/delete/ingrediente/{ingrediente}', [App\Http\Controllers\IngredienteController::class, 'deleteIngediengte'])->name('deleteZutat');
-Route::post('/updated/ingrediente/{ingrediente}', [App\Http\Controllers\IngredienteController::class, 'updateIngrediente']);
-Route::post('/update/ingrediente/{ingrediente}', [App\Http\Controllers\IngredienteController::class, 'showUpdateField'])->name('update');
-Route::post('/create/ingrediente', [App\Http\Controllers\IngredienteController::class, 'store']);
+//Ingredient-Routes
+Route::get('/create', [App\Http\Controllers\IngredientController::class, 'create'])->name('create');
+Route::post('/delete/ingredient/{ingredient}', [App\Http\Controllers\IngredientController::class, 'deleteIngediengte'])->name('deleteZutat');
+Route::post('/updated/ingredient/{ingredient}', [App\Http\Controllers\IngredientController::class, 'updateIngredient']);
+Route::post('/update/ingredient/{ingredient}', [App\Http\Controllers\IngredientController::class, 'showUpdateField'])->name('update');
+Route::post('/create/ingredient', [App\Http\Controllers\IngredientController::class, 'store']);
 
-Route::post('/create/ingredienteInfo/{ingredienteID}', [App\Http\Controllers\IngredientInfoController::class, 'storeIngredientInfo']);
-Route::post('/update/ingredienteInfo/{ingredienteID}', [App\Http\Controllers\IngredientInfoController::class, 'updateIngrediente']);
-Route::get('/showUpdate/ingredienteInfo/{ingredienteID}', [App\Http\Controllers\IngredientInfoController::class, 'showUpdateField']);
-Route::get('/create-ingredient/{ingredienteID}', [App\Http\Controllers\IngredientInfoController::class, 'showCreateIngredient'])->name('createIngredient');
+Route::post('/create/ingredientInfo/{ingredientID}', [App\Http\Controllers\IngredientInfoController::class, 'storeIngredientInfo']);
+Route::post('/update/ingredientInfo/{ingredientID}', [App\Http\Controllers\IngredientInfoController::class, 'updateIngredient']);
+Route::get('/showUpdate/ingredientInfo/{ingredientID}', [App\Http\Controllers\IngredientInfoController::class, 'showUpdateField']);
+Route::get('/create-ingredient/{ingredientID}', [App\Http\Controllers\IngredientInfoController::class, 'showCreateIngredient'])->name('createIngredient');
 
 
 Route::get('/employee', [App\Http\Controllers\GateController::class, 'employeeView'])->name('employeeView');

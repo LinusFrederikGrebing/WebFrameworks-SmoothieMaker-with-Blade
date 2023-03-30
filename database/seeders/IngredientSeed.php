@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\IngredienteType;
+use App\Models\IngredientType;
 use Illuminate\Database\Seeder;
-use App\Models\Ingrediente;
+use App\Models\Ingredient;
 
-class IngredienteSeed extends Seeder
+class IngredientSeed extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,225 +17,225 @@ class IngredienteSeed extends Seeder
     {
         // The basic Ingredients are created hard-coded
         /* FRUITS */
-        Ingrediente::create([
+        Ingredient::create([
             'name' => 'Banane',
             'price' => 0.8,
             'image' => "banana-piece.png",
-            'type' => IngredienteType::FRUITS,
+            'type' => IngredientType::FRUITS,
         ]);
-        Ingrediente::create([
+        Ingredient::create([
             'name' => 'Kirsche',
             'price' => 0.7,
             'image' => "kirsche-piece.png",
-            'type' => IngredienteType::FRUITS,
+            'type' => IngredientType::FRUITS,
         ]);
-        Ingrediente::create([
+        Ingredient::create([
             'name' => 'Trauben',
             'price' => 0.4,
             'image' => "traube-piece.png",
-            'type' => IngredienteType::FRUITS,
+            'type' => IngredientType::FRUITS,
         ]);
-        Ingrediente::create([
+        Ingredient::create([
             'name' => 'Erdbeere',
             'price' => 0.8,
             'image' => "erdbeere-piece.png",
-            'type' => IngredienteType::FRUITS,
+            'type' => IngredientType::FRUITS,
         ]);
-        Ingrediente::create([
+        Ingredient::create([
             'name' => 'Mango',
             'price' => 0.8,
             'image' => "mango-piece.png",
-            'type' => IngredienteType::FRUITS,
+            'type' => IngredientType::FRUITS,
         ]);
-        Ingrediente::create([
+        Ingredient::create([
             'name' => 'Apfel',
             'price' => 0.4,
             'image' => "apfel-piece.png",
-            'type' => IngredienteType::FRUITS,
+            'type' => IngredientType::FRUITS,
         ]);
-        Ingrediente::create([
+        Ingredient::create([
             'name' => 'Granatapfel',
             'price' => 0.7,
             'image' => "granatapfel-piece.png",
-            'type' => IngredienteType::FRUITS,
+            'type' => IngredientType::FRUITS,
         ]);
-        Ingrediente::create([
+        Ingredient::create([
             'name' => 'Orange',
             'price' => 0.5,
             'image' => "orange-piece.png",
-            'type' => IngredienteType::FRUITS,
+            'type' => IngredientType::FRUITS,
         ]);
-        Ingrediente::create([
+        Ingredient::create([
             'name' => 'Pfirsich',
             'price' => 0.5,
             'image' => "pfirsich-piece.png",
-            'type' => IngredienteType::FRUITS,
+            'type' => IngredientType::FRUITS,
         ]);
-        Ingrediente::create([
+        Ingredient::create([
             'name' => 'Ananas',
             'price' => 0.5,
             'image' => "ananas-piece.png",
-            'type' => IngredienteType::FRUITS,
+            'type' => IngredientType::FRUITS,
         ]);
-        Ingrediente::create([
+        Ingredient::create([
             'name' => 'Kiwi',
             'price' => 0.4,
             'image' => "kiwi-piece.png",
-            'type' => IngredienteType::FRUITS,
+            'type' => IngredientType::FRUITS,
         ]);
-        Ingrediente::create([
+        Ingredient::create([
             'name' => 'Zitrone',
             'price' => 0.3,
             'image' => "zitrone-piece.png",
-            'type' => IngredienteType::FRUITS,
+            'type' => IngredientType::FRUITS,
         ]);
-        Ingrediente::create([
+        Ingredient::create([
             'name' => 'Blaubeere',
             'price' => 0.7,
             'image' => "blaubeere-piece.png",
-            'type' => IngredienteType::FRUITS,
+            'type' => IngredientType::FRUITS,
         ]);
-        Ingrediente::create([
+        Ingredient::create([
             'name' => 'Himbeere',
             'price' => 0.9,
             'image' => "himbeere-piece.png",
-            'type' => IngredienteType::FRUITS,
+            'type' => IngredientType::FRUITS,
         ]);
-        Ingrediente::create([
+        Ingredient::create([
             'name' => 'Feige',
             'price' => 0.7,
             'image' => "feige-piece.png",
-            'type' => IngredienteType::FRUITS,
+            'type' => IngredientType::FRUITS,
         ]);
-        Ingrediente::create([
+        Ingredient::create([
             'name' => 'Litschi',
             'price' => 1.0,
             'image' => "litschi-piece.png",
-            'type' => IngredienteType::FRUITS,
+            'type' => IngredientType::FRUITS,
         ]);
-        Ingrediente::create([
+        Ingredient::create([
             'name' => 'Kokosnuss',
             'price' => 0.9,
             'image' => "kokosnuss-piece.png",
-            'type' => IngredienteType::FRUITS,
+            'type' => IngredientType::FRUITS,
         ]);
-        Ingrediente::create([
+        Ingredient::create([
             'name' => 'Avocado',
             'price' => 0.4,
             'image' => "avocado-piece.png",
-            'type' => IngredienteType::FRUITS,
+            'type' => IngredientType::FRUITS,
         ]);
 
         /* VEGETABLES */
-        Ingrediente::create([
+        Ingredient::create([
             'name' => 'Brokkoli',
             'price' => 0.5,
             'image' => "brokkoli-piece.png",
-            'type' => IngredienteType::VEGETABLES,
+            'type' => IngredientType::VEGETABLES,
         ]);
-        Ingrediente::create([
+        Ingredient::create([
             'name' => 'Gurke',
             'price' => 0.3,
             'image' => "gurke-piece.png",
-            'type' => IngredienteType::VEGETABLES,
+            'type' => IngredientType::VEGETABLES,
         ]);
-        Ingrediente::create([
+        Ingredient::create([
             'name' => 'Paprika',
             'price' => 0.3,
             'image' => "paprika-piece.png",
-            'type' => IngredienteType::VEGETABLES,
+            'type' => IngredientType::VEGETABLES,
         ]);
-        Ingrediente::create([
+        Ingredient::create([
             'name' => 'Karotte',
             'price' => 0.2,
             'image' => "karotte-piece.png",
-            'type' => IngredienteType::VEGETABLES,
+            'type' => IngredientType::VEGETABLES,
         ]);
-        Ingrediente::create([
+        Ingredient::create([
             'name' => 'Aubergine',
             'price' => 0.6,
             'image' => "aubergine-piece.png",
-            'type' => IngredienteType::VEGETABLES,
+            'type' => IngredientType::VEGETABLES,
         ]);
-        Ingrediente::create([
+        Ingredient::create([
             'name' => 'Grünkohl',
             'price' => 0.5,
             'image' => "grünkohl-piece.png",
-            'type' => IngredienteType::VEGETABLES,
+            'type' => IngredientType::VEGETABLES,
         ]);
-        Ingrediente::create([
+        Ingredient::create([
             'name' => 'Kürbis',
             'price' => 0.7,
             'image' => "kürbis-piece.png",
-            'type' => IngredienteType::VEGETABLES,
+            'type' => IngredientType::VEGETABLES,
         ]);
-        Ingrediente::create([
+        Ingredient::create([
             'name' => 'Rote Beete',
             'price' => 0.6,
             'image' => "rotebeete-piece.png",
-            'type' => IngredienteType::VEGETABLES,
+            'type' => IngredientType::VEGETABLES,
         ]);
-        Ingrediente::create([
+        Ingredient::create([
             'name' => 'Spinat',
             'price' => 0.3,
             'image' => "spinat-piece.png",
-            'type' => IngredienteType::VEGETABLES,
+            'type' => IngredientType::VEGETABLES,
         ]);
-        Ingrediente::create([
+        Ingredient::create([
             'name' => 'Zuccini',
             'price' => 0.6,
             'image' => "zucchini-piece.png",
-            'type' => IngredienteType::VEGETABLES,
+            'type' => IngredientType::VEGETABLES,
         ]);
-        Ingrediente::create([
+        Ingredient::create([
             'name' => 'Tomate',
             'price' => 0.4,
             'image' => "tomate-piece.png",
-            'type' => IngredienteType::VEGETABLES,
+            'type' => IngredientType::VEGETABLES,
         ]);
 
         /* LIQUIDS */
-        Ingrediente::create([
+        Ingredient::create([
             'name' => 'Milch',
             'price' => 1.7,
             'image' => "milch.png",
-            'type' => IngredienteType::LIQUID,
+            'type' => IngredientType::LIQUID,
         ]);
-        Ingrediente::create([
+        Ingredient::create([
             'name' => 'Wasser',
             'price' => 0.2,
             'image' => "wasser.png",
-            'type' => IngredienteType::LIQUID,
+            'type' => IngredientType::LIQUID,
         ]);
-        Ingrediente::create([
+        Ingredient::create([
             'name' => 'Orangensaft',
             'price' => 2.2,
             'image' => "orangen-saft.png",
-            'type' => IngredienteType::LIQUID,
+            'type' => IngredientType::LIQUID,
         ]);
-        Ingrediente::create([
+        Ingredient::create([
             'name' => 'Tomatensaft',
             'price' => 2.2,
             'image' => "tomaten-saft.png",
-            'type' => IngredienteType::LIQUID,
+            'type' => IngredientType::LIQUID,
         ]);
-        Ingrediente::create([
+        Ingredient::create([
             'name' => 'Kokosmilch',
             'price' => 0.7,
             'image' => "kokosmilch.png",
-            'type' => IngredienteType::LIQUID,
+            'type' => IngredientType::LIQUID,
         ]);
-        Ingrediente::create([
+        Ingredient::create([
             'name' => 'Schokomilch',
             'price' => 0.6,
             'image' => "schokomilch.png",
-            'type' => IngredienteType::LIQUID,
+            'type' => IngredientType::LIQUID,
         ]);
-        Ingrediente::create([
+        Ingredient::create([
             'name' => 'Hafermilch',
             'price' => 0.4,
             'image' => "hafermilch.png",
-            'type' => IngredienteType::LIQUID,
+            'type' => IngredientType::LIQUID,
         ]);
     }
 }

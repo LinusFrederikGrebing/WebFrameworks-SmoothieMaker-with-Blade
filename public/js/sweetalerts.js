@@ -152,7 +152,7 @@ function showInfo(ingredientId, ingredintName, isAdmin = false) {
             if (result.isConfirmed) {
                 if (exists) {
                     window.location.href =
-                        "/showUpdate/ingredienteInfo/" + ingredientId;
+                        "/showUpdate/ingredientInfo/" + ingredientId;
                 } else {
                     // Redirect zur Create-Route
                     window.location.href = "/create-ingredient/" + ingredientId;

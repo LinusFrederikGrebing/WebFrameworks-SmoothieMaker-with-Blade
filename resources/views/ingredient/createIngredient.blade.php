@@ -11,7 +11,7 @@
                     </div>
                     <div class="divide-y divide-gray-200">
                         <div class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
-                            <form action="/create/ingrediente" enctype="multipart/form-data" method="post">
+                            <form action="/create/ingredient" enctype="multipart/form-data" method="post">
                                 @csrf
                                 <div>
                                     <x-jet-label for="name" value="{{ __('Name:') }}" />

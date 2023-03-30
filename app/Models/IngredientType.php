@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class IngredienteType extends Model
+class IngredientType extends Model
 {
     use HasFactory;
     const FRUITS = 'fruits';

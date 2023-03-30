@@ -84,16 +84,16 @@ class PresetController extends Controller
         return $bottle;
     }
     // add an ingredient to the shopping cart
-    private function addToCart($ingrediente, $amount)
+    private function addToCart($ingredient, $amount)
     {
         Cart::add([
-            'id' => $ingrediente->id,
-            'name' => $ingrediente->name,
+            'id' => $ingredient->id,
+            'name' => $ingredient->name,
             'qty' => $amount,
-            'price' => $ingrediente->price,
+            'price' => $ingredient->price,
             'options' => [
-                'image' => $ingrediente->image,
-                'type' => $ingrediente->type,
+                'image' => $ingredient->image,
+                'type' => $ingredient->type,
             ],
         ]);
     }

@@ -7,69 +7,78 @@
             <div class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20 w-40em">
                 <div class="max-w-md mx-auto">
                     <div>
-                        <h1 class="text-2xl font-semibold">Informationen zur Zutat {{ $ingrediente['name'] }} hinzufügen:
-                        </h1>
+                        <h1 class="text-2xl font-semibold">Informationen zur Zutat {{ $ingredient['name'] }}
+                            aktualisieren:</h1>
                     </div>
                     <div class="divide-y divide-gray-200">
                         <div class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
-                            <form action="/create/ingredienteInfo/{{ $ingrediente['id'] }}" enctype="multipart/form-data"
+                            <form action="/update/ingredientInfo/{{ $ingredient['id'] }}" enctype="multipart/form-data"
                                 method="post">
                                 @csrf
                                 <div class="flex">
                                     <div class="grow">
                                         <x-jet-label for="info" value="{{ __('Info:') }}" />
                                         <input class="block mt-1 w-full" id="info" type="text" name="info"
-                                            required autofocus />
+                                            value="{{ old('info') ?? $ingredientInfo['info'] }}" required autofocus />
                                     </div>
                                     <div class="grow mx-2">
                                         <x-jet-label for="energie" value="{{ __('Energie:') }}" />
                                         <input class="block mt-1 w-full" id="energie" type="text" name="energie"
-                                            required autofocus />
+                                            value="{{ old('energie') ?? $ingredientInfo['energie'] }}" required
+                                            autofocus />
                                     </div>
                                 </div>
                                 <div class="flex mt-6">
                                     <div class="grow">
                                         <x-jet-label for="fett" value="{{ __('Fett:') }}" />
                                         <input class="block mt-1 w-full" id="fett" type="text" name="fett"
-                                            required autofocus />
+                                            value="{{ old('fett') ?? $ingredientInfo['fett'] }}" required autofocus />
                                     </div>
                                     <div class="grow mx-2">
                                         <x-jet-label for="fattyacids" value="{{ __('Fettsäure:') }}" />
                                         <input class="block mt-1 w-full" id="fattyacids" type="text"
-                                            name="fattyacids" required autofocus />
+                                            name="fattyacids"
+                                            value="{{ old('fattyacids') ?? $ingredientInfo['fattyacids'] }}" required
+                                            autofocus />
                                     </div>
                                 </div>
                                 <div class="flex mt-6">
                                     <div class="grow">
                                         <x-jet-label for="carbohydrates" value="{{ __('Kohlenhydrate:') }}" />
                                         <input class="block mt-1 w-full" id="carbohydrates" type="text"
-                                            name="carbohydrates" required autofocus />
+                                            name="carbohydrates"
+                                            value="{{ old('carbohydrates') ?? $ingredientInfo['carbohydrates'] }}"
+                                            required autofocus />
                                     </div>
                                     <div class="grow mx-2">
                                         <x-jet-label for="fruitscarbohydrates"
                                             value="{{ __('davon Fruchtzucker:') }}" />
                                         <input class="block mt-1 w-full" id="fruitscarbohydrates" type="text"
-                                            name="fruitscarbohydrates" required autofocus />
+                                            name="fruitscarbohydrates"
+                                            value="{{ old('fruitscarbohydrates') ?? $ingredientInfo['fruitscarbohydrates'] }}"
+                                            required autofocus />
                                     </div>
                                 </div>
                                 <div class="flex mt-6">
                                     <div class="grow">
                                         <x-jet-label for="protein" value="{{ __('Protein:') }}" />
                                         <input class="block mt-1 w-full" id="protein" type="text" name="protein"
-                                            required autofocus />
+                                            value="{{ old('protein') ?? $ingredientInfo['protein'] }}" required
+                                            autofocus />
                                     </div>
                                     <div class="grow mx-2">
                                         <x-jet-label for="salt" value="{{ __('Salz:') }}" />
                                         <input class="block mt-1 w-full" id="salt" type="text" name="salt"
-                                            required autofocus />
+                                            value="{{ old('salt') ?? $ingredientInfo['salt'] }}" required autofocus />
                                     </div>
                                 </div>
+
                                 <div class="flex items-center justify-end mt-4">
                                     <a class="underline text-sm text-gray-600 hover:text-gray-900" href="/employee">
                                         {{ __('Zurück') }}
                                     </a>
                                     <x-jet-button class="ml-4">
-                                        {{ __('Zutat hinzufügen') }}
+                                        {{ __('Zutat aktualisieren') }}
                                     </x-jet-button>
                                 </div>
                             </form>

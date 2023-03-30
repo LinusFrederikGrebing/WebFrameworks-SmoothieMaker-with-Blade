@@ -34,9 +34,9 @@
                         </button>
                     </div>
                     @foreach ($ingredients as $index => $ingredient)
-                        <div class="w-full sm:w-1/2 md:w-1/4 lg:w-2/12 p-2" id="ingrediente-card{{ $index }}"
+                        <div class="w-full sm:w-1/2 md:w-1/4 lg:w-2/12 p-2" id="ingredient-card{{ $index }}"
                             onmouseenter="hoverEnter(event)" onmouseleave="hoverLeave(event)">
-                            <div class="v-card mx-auto ingrediente-item bg-white rounded-md overflow-hidden">
+                            <div class="v-card mx-auto ingredient-item bg-white rounded-md overflow-hidden">
                                 <div class="text-center">
                                     <div class="h-16 w-16 mx-auto mt-4">
                                         <img class="h-full w-full object-contain"
@@ -52,14 +52,14 @@
                                 @csrf
                                 <div>
                                     <div class="flex w-full mt-2">
-                                        <form class="w-1/2" action="/update/ingrediente/{{ $ingredient['id'] }}"
+                                        <form class="w-1/2" action="/update/ingredient/{{ $ingredient['id'] }}"
                                             enctype="multipart/form-data" method="post">
                                             @csrf
                                             <button class="v-card w-full">
                                                 <span class="material-symbols-outlined">edit</span>
                                             </button>
                                         </form>
-                                        <form class="w-1/2" action="/delete/ingrediente/{{ $ingredient['id'] }}"
+                                        <form class="w-1/2" action="/delete/ingredient/{{ $ingredient['id'] }}"
                                             enctype="multipart/form-data" method="post">
                                             @csrf
                                             <button class="v-card w-full">

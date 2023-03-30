@@ -31,16 +31,16 @@ var setup = function () {
 
 // check that all the ingredients for the composition have been selected.
 function checkResult() {
-    const ingredienteContentSum = ingredienteContent.reduce(
+    const ingredientContentSum = ingredientContent.reduce(
         (sum, ingredient) => sum + ingredient.qty, 0
     );
     // When all are selected, start the mixer animation
-    if (ingredienteContentSum == bottle.amount && liquidContent.length == 1) {
+    if (ingredientContentSum == bottle.amount && liquidContent.length == 1) {
         mixAnimation(bottle.amount);
     } else {
         var errorMessage = "";
-        if (ingredienteContentSum !== bottle.amount) {
-            const missingIngredients = bottle.amount - ingredienteContentSum;
+        if (ingredientContentSum !== bottle.amount) {
+            const missingIngredients = bottle.amount - ingredientContentSum;
             errorMessage = `Füge noch ${missingIngredients} Zutaten hinzu, um deine Zusammenstellung abzuschließen. `;
         }
         if (liquidContent.length == 0) {

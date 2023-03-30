@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Preset;
-use App\Models\Ingrediente;
+use App\Models\Ingredient;
 
 class PresetSeed extends Seeder
 {
@@ -58,7 +58,7 @@ class PresetSeed extends Seeder
         // This loop attaches ingredients to the newly-created Preset model.
         foreach ($ingredients as $ingredient) {
             $preset->ingredients()->attach(
-                Ingrediente::find($ingredient['id']),
+                Ingredient::find($ingredient['id']),
                 ['quantity' => $ingredient['quantity']]
             );
         }

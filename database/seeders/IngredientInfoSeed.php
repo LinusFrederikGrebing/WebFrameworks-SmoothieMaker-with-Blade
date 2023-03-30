@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Ingrediente;
+use App\Models\Ingredient;
 use App\Models\IngredientInfo;
 use Illuminate\Database\Seeder;
 
@@ -11,12 +11,12 @@ class IngredientInfoSeed extends Seeder
     public function run()
     {
         // Get all ingredients
-        $ingredients = Ingrediente::all();
+        $ingredients = Ingredient::all();
 
         // Create IngredientInfo entry for each ingredient and use the IngredientInfo factory for that. This generates test data, with specific application-based constraints
         foreach ($ingredients as $ingredient) {
             IngredientInfo::factory()->create([
-                'ingrediente_id' => $ingredient->id,
+                'ingredient_id' => $ingredient->id,
             ]);
         }
     }

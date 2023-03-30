@@ -137,14 +137,14 @@
 </x-guest-layout>
 <script>
     var bottle = {!! json_encode($bottle) !!};
-    var ingredienteContent = Object.values({!! json_encode($ingredients) !!});
+    var ingredientContent = Object.values({!! json_encode($ingredients) !!});
     var liquidContent = [];
     removeBall();
-    ingredienteContent.forEach((ingrediente) => {
-        console.log(ingrediente);
+    ingredientContent.forEach((ingredient) => {
+        console.log(ingredient);
         setImg(
-            ingrediente.options.image,
-            ingrediente.qty
+            ingredient.options.image,
+            ingredient.qty
         );
     });
 

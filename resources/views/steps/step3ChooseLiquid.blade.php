@@ -13,10 +13,10 @@
             <div class="w-full md:w-3/5 mt-2">
                 <div class="flex flex-wrap item-liquid-list">
                     @foreach ($ingredients as $index => $ingredient)
-                        <div class="w-full sm:w-1/2 md:w-1/4 lg:w-1/3 p-2" id="ingrediente-card{{ $index }}"
+                        <div class="w-full sm:w-1/2 md:w-1/4 lg:w-1/3 p-2" id="ingredient-card{{ $index }}"
                             onmouseenter="hoverEnter(event)" onmouseleave="hoverLeave(event)">
                             <div id="liquid_{{ $ingredient->id }}"
-                                class="v-card mx-auto ingrediente-item bg-white rounded-md overflow-hidden">
+                                class="v-card mx-auto ingredient-item bg-white rounded-md overflow-hidden">
                                 <div class="text-center">
                                     <div class="h-16 w-16 mx-auto mt-4">
                                         <img class="h-full w-full object-contain"

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class IngredienteInfo extends Migration
+class IngredientInfo extends Migration
 {
     /**
      * Run the migrations.
@@ -23,9 +23,9 @@ class IngredienteInfo extends Migration
             $table->string('fruitscarbohydrates');
             $table->string('protein');
             $table->string('salt');
-            $table->unsignedBigInteger('ingrediente_id')->nullable();
+            $table->unsignedBigInteger('ingredient_id')->nullable();
 
-            $table->foreign('ingrediente_id')->references('id')->on('ingredientes')->onDelete('cascade');
+            $table->foreign('ingredient_id')->references('id')->on('ingredients')->onDelete('cascade');
         });
     }
 
