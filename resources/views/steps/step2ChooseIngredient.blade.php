@@ -2,14 +2,14 @@
     <div class="container mt-16">
         @include('layouts.sizeComponent')
         <div class="w-full">
-            <div class="flex">
+            <div class="flex flex-wrap">
                 <button onclick="window.location='{{ route('showFruits') }}'"
-                    class="flex justify-center w-1/2 custom-btn {{ request()->is('custom/fruits') ? 'grey-active-bg' : 'grey-bg' }}">
+                    class="flex justify-center flex-grow custom-btn {{ request()->is('custom/fruits') ? 'grey-active-bg' : 'grey-bg' }}">
                     <img src="/images/fruitsicon.png" alt="Bild 1" class="inline-block h-6">
                     Früchte
                 </button>
                 <button onclick="window.location='{{ route('showVeggie') }}'"
-                    class="flex items-center justify-center w-1/2 custom-btn {{ request()->is('custom/veggie') ? 'grey-active-bg' : 'grey-bg' }}">
+                    class="flex items-center justify-center flex-grow custom-btn {{ request()->is('custom/veggie') ? 'grey-active-bg' : 'grey-bg' }}">
                     <img src="/images/vegetablesicon.png" alt="Bild 2" class="inline-block h-6">
                     Gemüse
                 </button>

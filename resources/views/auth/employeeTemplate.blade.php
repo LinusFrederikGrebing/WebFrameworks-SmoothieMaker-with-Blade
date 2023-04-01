@@ -4,24 +4,19 @@
             <h3 class="pb-3 text-2xl font-bold md:text-3xl">Admin-Ansicht</h3>
             <p>Hier können alle Zutaten eingesehen und verwaltet werden!</p>
         </div>
-        <div>
-            <div class="flex">
-                <button onclick="window.location='{{ route('showFruitsEmployee') }}'"
-                    class="flex justify-center w-1/2 custom-btn grey-bg">
-                    <img src="/images/fruitsicon.png" alt="Bild 1" class="inline-block h-6">
-                    Früchte
-                </button>
-                <button onclick="window.location='{{ route('showVeggieEmployee') }}'"
-                    class="flex items-center justify-center w-1/2 custom-btn grey-bg">
-                    <img src="/images/vegetablesicon.png" alt="Bild 2" class="inline-block h-6">
-                    Gemüse
-                </button>
-                <button onclick="window.location='{{ route('showLiquidEmployee') }}'"
-                    class="flex items-center justify-center w-1/2 custom-btn grey-bg">
-                    <img src="/images/liquidicon.png" alt="Bild 2" class="inline-block h-6">
-                    Flüssigkeit
-                </button>
-            </div>
+        <div class="flex flex-wrap">
+            <button class="flex justify-center flex-grow custom-btn grey-bg"> <!-- Jeder Button erhält flex-grow: 1 -->
+              <img src="/images/fruitsicon.png" alt="Bild 1" class="inline-block h-6">
+              Früchte
+            </button>
+            <button class="flex items-center justify-center flex-grow custom-btn grey-bg">
+              <img src="/images/vegetablesicon.png" alt="Bild 2" class="inline-block h-6">
+              Gemüse
+            </button>
+            <button class="flex items-center justify-center flex-grow custom-btn grey-bg">
+              <img src="/images/liquidicon.png" alt="Bild 2" class="inline-block h-6">
+              Flüssigkeit
+            </button>
         </div>
         <div class="flex flex-col md:flex-row">
             <div class="w-full">

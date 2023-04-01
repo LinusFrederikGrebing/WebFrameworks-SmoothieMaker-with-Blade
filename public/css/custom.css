@@ -205,7 +205,6 @@ p {
 .item-list-table {
     height: 35em;
     overflow-y: scroll;
-    overflow-x: hidden;
 }
 .item-liquid-list {
     height: 40em;

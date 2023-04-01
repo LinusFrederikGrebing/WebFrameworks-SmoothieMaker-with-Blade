@@ -1,11 +1,11 @@
 <x-app-layout>
-    <div class="min-h-[85vh] bg-gray-100 py-6 flex flex-col justify-center sm:py-12 mt-16">
-        <div class="relative py-3 sm:max-w-xl sm:mx-auto">
+    <div class="min-h-[85vh] bg-gray-100 mt-16">
+        <div class="relative sm:mx-auto ">
             <div
-                class="absolute inset-0 bg-gradient-to-r from-lime-400 to-lime-600 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl w-40em">
+                class="absolute inset-0 bg-gradient-to-r from-lime-400 to-lime-600 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl mx-auto md:w-3/5 lg:w-2/5 top-16">
             </div>
-            <div class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20 w-40em">
-                <div class="max-w-md mx-auto">
+            <div class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20 mt-16 md:w-3/5 lg:w-2/5 top-16 mx-auto">
+                <div>
                     <div>
                         <h1 class="text-2xl font-semibold">Informationen zur Zutat {{ $ingredient['name'] }} hinzufügen:
                         </h1>

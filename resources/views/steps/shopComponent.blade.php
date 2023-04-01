@@ -1,11 +1,11 @@
 <x-guest-layout>
     <div class="container mt-16">
-        <div class="w-full flex">
-            <div class="lg:w-4/6">
+        <div class="w-full flex flex-wrap">
+            <div class="flex-grow">
                 @include('layouts.sizeComponent')
             </div>
             @auth
-                <div class="lg:w-2/6">
+                <div class="flex-grow">
                     <div class="flex mt-3">
                         <x-jet-input id="presetname-input" class="block mt-1 w-7/12" type="text" name="presetname" />
                         <div>
@@ -19,19 +19,19 @@
             @endauth
         </div>
         <div class="w-full">
-            <div class="flex">
+            <div class="flex flex-wrap">
                 <button onclick="window.location='{{ route('showFruits') }}'"
-                    class="flex justify-center w-1/2 green-bg custom-btn">
+                    class="flex justify-center flex-grow green-bg custom-btn">
                     Weitere Zutaten hinzufügen
                 </button>
-                <button onclick="removeAllAlert()" class="flex items-center justify-center w-1/2 red-bg custom-btn">
+                <button onclick="removeAllAlert()" class="flex items-center justify-center flex-grow red-bg custom-btn">
                     Alles aus dem Warenkorb entfernen
                 </button>
             </div>
         </div>
         <div class="flex flex-col md:flex-row mt-4">
             <div class="w-full md:w-4/6">
-                <div class="item-list-table">
+                <div class="item-list-table overflow-x-auto">
                     <div class="w-95 ml-4">
                         <table>
                             <thead>
