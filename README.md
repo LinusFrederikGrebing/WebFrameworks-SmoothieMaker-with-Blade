@@ -6,7 +6,7 @@ Zusätzlich wird composer benötigt. Composer ist ein Tool für die Abhängigkei
 Zum Schluss wird noch Node.js mit npm benötigt. 
 
 Hinweis: 
-Wichtig! Da sich einige Abhängigkeiten zwischen der ersten und der zweiten Kombination unterscheiden, sollte das Projekt für jede Kombination einzelnt geclont und die obenstehenden Schritte im dazugehörigen Branch ausgeführt werden. Sonst werden Abhänigkeiten installiert, die bei Projektausführung nicht gefunden werden, wodurch es zu Fehlern kommen kann.
+Wichtig! Da sich einige Abhängigkeiten zwischen der ersten und der zweiten Kombination unterscheiden, sollte das Projekt für jede Kombination einzelnt geclont und die untenstehende Schritte im dazugehörigen Branch ausgeführt werden. Sonst werden Abhänigkeiten installiert, die bei Projektausführung nicht gefunden werden, wodurch es zu Fehlern kommen kann.
 
 Die Kombination mit Blade und Laravel befindet sich im Master-Branch und eine Kopie davon zu Übersichtlichkeitszwecken in Kombination-1-Blade+Laravel-Branch.
 Die Kombination mit Vue und Laravel befindet sich nur im Branch Kombination-2-Vue+Laravel.
@@ -32,6 +32,7 @@ php artisan db:seed
 php artisan key:generate
 ```
 
+
 Dieses SweetAlert-Extension wird nur für die Blade Kombination gebraucht. Die beiden Befehle müssen für die Vue-Kombination nicht ausgeführt werden. 
 ### Publish Sweetalert-Extension
 ```
@@ -42,4 +43,23 @@ php artisan vendor:publish --provider=" Gloudemans\Shoppingcart\ShoppingcartServ
 ### Starting Laravel development server 
 ```
 php artisan serve
+```
+
+Um sich als Administrator anzumelden, benutzen Sie folgende Login-Daten:
+
+Name: Admin
+
+Passwort: password
+
+
+Um sich als Kunde anzumelden, können Sie folgende Login-Daten verwenden oder sich selbet registrieren:
+
+Name: User
+
+Passwort: password
+
+
+### Compile public files
+```
+npm run watch
 ```

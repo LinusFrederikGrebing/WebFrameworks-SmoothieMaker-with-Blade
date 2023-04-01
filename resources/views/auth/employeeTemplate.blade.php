@@ -5,15 +5,15 @@
             <p>Hier können alle Zutaten eingesehen und verwaltet werden!</p>
         </div>
         <div class="flex flex-wrap">
-            <button class="flex justify-center flex-grow custom-btn grey-bg"> <!-- Jeder Button erhält flex-grow: 1 -->
+            <button onclick="window.location='{{ route('showFruitsEmployee') }}'" class="flex justify-center flex-grow custom-btn grey-bg">
               <img src="/images/fruitsicon.png" alt="Bild 1" class="inline-block h-6">
               Früchte
             </button>
-            <button class="flex items-center justify-center flex-grow custom-btn grey-bg">
+            <button onclick="window.location='{{ route('showVeggieEmployee') }}'" class="flex items-center justify-center flex-grow custom-btn grey-bg">
               <img src="/images/vegetablesicon.png" alt="Bild 2" class="inline-block h-6">
               Gemüse
             </button>
-            <button class="flex items-center justify-center flex-grow custom-btn grey-bg">
+            <button onclick="window.location='{{ route('showLiquidEmployee') }}'" class="flex items-center justify-center flex-grow custom-btn grey-bg">
               <img src="/images/liquidicon.png" alt="Bild 2" class="inline-block h-6">
               Flüssigkeit
             </button>
