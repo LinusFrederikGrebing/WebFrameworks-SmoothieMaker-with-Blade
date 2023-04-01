@@ -5,6 +5,15 @@ Die .env.example-Datei muss in .env umbenannt werden. Es muss eine lokale Datenb
 Zusätzlich wird composer benötigt. Composer ist ein Tool für die Abhängigkeitsverwaltung in PHP-Anwendungen und kann, abhängig vom Betriebssystem auf der folgenden Seite installiert werden: https://getcomposer.org/download/.
 Zum Schluss wird noch Node.js mit npm benötigt. 
 
+Hinweis: 
+Wichtig! Da sich einige Abhängigkeiten zwischen der ersten und der zweiten Kombination unterscheiden, sollte das Projekt für jede Kombination einzelnt geclont und die obenstehenden Schritte im dazugehörigen Branch ausgeführt werden. Sonst werden Abhänigkeiten installiert, die bei Projektausführung nicht gefunden werden, wodurch es zu Fehlern kommen kann.
+
+Die Kombination mit Blade und Laravel befindet sich im Master-Branch und eine Kopie davon zu Übersichtlichkeitszwecken in Kombination-1-Blade+Laravel-Branch.
+Die Kombination mit Vue und Laravel befindet sich nur im Branch Kombination-2-Vue+Laravel.
+
+Der Branch old-Master war ursprünglich der Master. Aufgrund von Konflikten durch eine Fehlerhafte Tailwind-Installation musste das Projekt allerdings relativ früh neu aufgesetzt werden.
+
+
 Die folgenden Schritte sollten auch in der angegebenen Reihenfolge ausgeführt werden:
 ## Project setup
 ```
@@ -34,11 +43,3 @@ php artisan vendor:publish --provider=" Gloudemans\Shoppingcart\ShoppingcartServ
 ```
 php artisan serve
 ```
-
-Hinweis:
-Wichtig! Da sich einige Abhängigkeiten zwischen der ersten und der zweiten Kombination unterscheiden, sollte das Projekt für jede Kombination einzelnt geclont und die obenstehenden Schritte im dazugehörigen Branch ausgeführt werden. Sonst werden Abhänigkeiten installiert, die bei Projektausführung nicht gefunden werden, wodurch es zu Fehlern kommen kann.
-
-Die Kombination mit Blade und Laravel befindet sich im Master-Branch und eine Kopie davon zu Übersichtlichkeitszwecken in Kombination-1-Blade+Laravel-Branch.
-Die Kombination mit Vue und Laravel befindet sich nur im Branch Kombination-2-Vue+Laravel.
-
-Der Branch old-Master war ursprünglich der Master. Aufgrund von Konflikten durch eine Fehlerhafte Tailwind-Installation musste das Projekt allerdings relativ früh neu aufgesetzt werden.
