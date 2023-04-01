@@ -32,10 +32,10 @@ php artisan db:seed
 php artisan key:generate
 ```
 
+Dieses SweetAlert-Extension wird nur für die Blade Kombination gebraucht. Die beiden Befehle müssen für die Vue-Kombination nicht ausgeführt werden. 
 ### Publish Sweetalert-Extension
 ```
 php artisan sweetalert:publish
-
 php artisan vendor:publish --provider=" Gloudemans\Shoppingcart\ShoppingcartServiceProvider" --tag="config"
 ```
 
